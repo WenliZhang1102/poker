@@ -27,6 +27,7 @@ public class GamesActivity extends Activity {
         return true;
     }
     
+    
     public void buttonClicked(View view)
     {
     	EditText et=(EditText)findViewById(R.id.edittext);
