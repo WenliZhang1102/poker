@@ -32,6 +32,7 @@ public class GamesActivity extends Activity {
     {
     	EditText et=(EditText)findViewById(R.id.edittext);
     	String txt=et.getText().toString();
+    	if(txt.equals("")  == false)
     	 Toast.makeText(this, txt, Toast.LENGTH_LONG).show();
     	
     }
