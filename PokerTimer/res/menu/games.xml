@@ -1,9 +1,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
+   <!--   <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_settings"/>
+        
+        -->
+    
+     <item android:id="@+id/menu_add"
+          android:icon="@drawable/ic_menu_add"
+          android:title="@string/add_game"
+          android:showAsAction="ifRoom|withText" />
+     
+     <item android:id="@+id/menu_search"
+          android:icon="@drawable/ic_menu_search"
+          android:title="@string/search"
+          android:showAsAction="ifRoom|withText" />
+     
+     <item android:id="@+id/menu_menu"
+          android:icon="@drawable/ic_menu_preferences"
+          android:title="@string/settings"
+          android:showAsAction="ifRoom|withText" />
+    
 
 </menu>

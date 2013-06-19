@@ -1,0 +1,9 @@
+<sql>
+<statement>
+CREATE TABLE IF NOT EXISTS games (
+	_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+	name TEXT);
+</statement>
+<statement>INSERT INTO games VALUES(1,'Normal tournament')</statement>
+<statement>INSERT INTO games VALUES(2,'Turbo tournament')</statement>
+</sql>
