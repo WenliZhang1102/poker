@@ -17,6 +17,9 @@ import android.widget.Toast;
 public class GamesActivity extends ListActivity {
 	private GamesDataSource datasource;
 
+	private List<Game> games;
+	private ArrayAdapter<Game> adapter;
+	
 	/**
 	 * Set Activity content
 	 */
@@ -34,9 +37,8 @@ public class GamesActivity extends ListActivity {
 		datasource = new GamesDataSource(this);
 		datasource.open();
 		
-		List<Game> values = datasource.getAllGames();
-		ArrayAdapter<Game> adapter = new ArrayAdapter<Game>(this,
-		android.R.layout.simple_list_item_1, values);
+		games = datasource.getAllGames();
+		adapter = new ArrayAdapter<Game>(this, android.R.layout.simple_list_item_1, games);
 		setListAdapter(adapter);
 		
 		registerForContextMenu(getListView());
@@ -56,18 +58,19 @@ public class GamesActivity extends ListActivity {
 	 */
 	@Override
     public boolean onContextItemSelected(MenuItem item) {
- 
         AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
  
         switch(item.getItemId()){
             case R.id.menu_edit:
-                Toast.makeText(this, "Edit : " + info.position, Toast.LENGTH_SHORT).show();
-                break;
+                Toast.makeText(this, "Edit : " + info.id, Toast.LENGTH_SHORT).show();
+            break;
             case R.id.menu_delete:
-                Toast.makeText(this, "Delete : " + info.position, Toast.LENGTH_SHORT).show();
-                break;
- 
+                datasource.deleteGame(games.get(info.position));
+                adapter.remove(games.get(info.position));
+            break;
         }
+        
+        adapter.notifyDataSetChanged();
         return true;
     }
 	

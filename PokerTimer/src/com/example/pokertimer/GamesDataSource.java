@@ -45,9 +45,7 @@ public class GamesDataSource {
 
   public void deleteGame(Game game) {
     long id = game.getId();
-    System.out.println("Game deleted with id: " + id);
-    database.delete(DatabaseHelper.TABLE_GAMES, DatabaseHelper.COLUMN_ID
-        + " = " + id, null);
+    database.delete(DatabaseHelper.TABLE_GAMES, DatabaseHelper.COLUMN_ID + " = " + id, null);
   }
 
   public List<Game> getAllGames() {
