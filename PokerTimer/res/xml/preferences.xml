@@ -1,0 +1,11 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory 
+        android:title="Kategorie1"
+        android:key="pref_key_storage_settings">
+        <CheckBoxPreference
+            android:key="pref_key_auto_delete"
+            android:summary="something"
+            android:title="Something"
+            android:defaultValue="false" />
+</PreferenceCategory>
+</PreferenceScreen>

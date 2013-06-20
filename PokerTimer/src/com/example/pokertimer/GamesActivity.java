@@ -2,7 +2,9 @@ package com.example.pokertimer;
 import java.util.List;
 import java.util.Random;
 
+import android.app.ActionBar;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -38,6 +40,10 @@ public class GamesActivity extends ListActivity {
     setListAdapter(adapter);
     
     //my code
+    
+    ActionBar ab = getActionBar();
+    ab.setDisplayShowHomeEnabled(false);
+    ab.setDisplayShowTitleEnabled(false);
     
     ListView list = (ListView)findViewById(R.id.list);
     ///registerForContextMenu(list);                            <--------
@@ -88,15 +94,30 @@ public class GamesActivity extends ListActivity {
       return true;
   }
   
+  protected void startSettingsActivity(){
+  Intent intent = new Intent(this, SettingsActivity.class);
+  //intent.putExtra(AgeDisplayerActivity.AGE, age);
+  startActivity(intent);
+  }
+  
+  protected void startAddGameActivity(){
+	  Intent intent = new Intent(this, AddGameActivity.class);
+	  //intent.putExtra(AgeDisplayerActivity.AGE, age);
+	  startActivity(intent);
+	  }
+  
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
 
       switch (item.getItemId()) {
 	      case R.id.menu_add:    
-	    	  makeToast();
+	    	  startAddGameActivity();
 	          break;
+	      case R.id.menu_search:
+	    	  ///
+	    	  break;
 	      case R.id.menu_settings:
-	    	  
+	    	  startSettingsActivity();
 	    	  break;
 	      default:
 	          return super.onOptionsItemSelected(item);
@@ -131,9 +152,9 @@ public class GamesActivity extends ListActivity {
     		Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show();
     	break;
     	
-    	case R.id.menu_search:
+    	/*case R.id.menu_search:
     		Toast.makeText(this, "Pøidat hru", Toast.LENGTH_LONG).show();
-    	break;
+    	break;*/
     /*case R.id.add:
     	///zde se bude volat prepinani kontextu na nove okno nebo dialog, kde ziskame informace o vytvarene hre
       String newGameName = getName();//new String[] { "Cool", "Very nice", "Hate it" };
