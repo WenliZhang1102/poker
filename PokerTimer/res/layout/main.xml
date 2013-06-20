@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+<!-- 
     <LinearLayout
         android:id="@+id/group"
         android:layout_width="wrap_content"
@@ -23,7 +23,7 @@
             android:text="Delete First" 
             android:onClick="onClick"/>
         
-    </LinearLayout>
+    </LinearLayout>-->
 
     <!-- android:id="@android:id/list"-->
     <ListView
@@ -34,14 +34,5 @@
         android:text="hello"  
          > <!--android:onClick="onClick" predelat na hold, nevim jak to v XML pojmenovat-->
     </ListView>
-
-    <EditText
-        android:id="@+id/editTextNew"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
 
 </LinearLayout> 

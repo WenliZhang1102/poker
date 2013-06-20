@@ -9,6 +9,7 @@ import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -83,28 +84,29 @@ public class GamesActivity extends ListActivity {
   public boolean onCreateOptionsMenu(Menu menu) {
       MenuInflater inflater = getMenuInflater();
       inflater.inflate(R.menu.games, menu);
+      
       return true;
   }
   
- /* @Override
-  protected void onListItemClick(ListView l, View v, int position, long id) {
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
 
-      Log.i("Hello!", "Clicked! YAY!");
-
-  }
-  */
-  protected void makeToast()
-  {
-  	Toast.makeText(this,
-  			   "Úspìšnì jsi provedl/a realizaci kliknutí na tlaèítko.",
-  			   Toast.LENGTH_SHORT).show();
+      switch (item.getItemId()) {
+	      case R.id.menu_add:    
+	    	  makeToast();
+	          break;
+	      case R.id.menu_settings:
+	    	  
+	    	  break;
+	      default:
+	          return super.onOptionsItemSelected(item);
+      }
+      return true;
   }
   
-  protected String getName(){
-  EditText Input = ((EditText)findViewById(R.id.editTextNew));
-  String Str = Input.getText().toString();
- Input.setText("");
-  return Str;
+  public void makeToast(){
+	  Toast.makeText(this, "Ahoj", Toast.LENGTH_LONG).show();
+	  
   }
   
  /* public void onHold(View view) {
@@ -119,9 +121,20 @@ public class GamesActivity extends ListActivity {
   public void onClick(View view) {
     @SuppressWarnings("unchecked")
     ArrayAdapter<Game> adapter = (ArrayAdapter<Game>) getListAdapter();
-    Game game = null;
+    //Game game = null;
     switch (view.getId()) {
-    case R.id.add:
+    	case R.id.menu_add:
+    		Toast.makeText(this, "Pøidat hru", Toast.LENGTH_LONG).show();
+    	break;
+    	
+    	case R.id.menu_settings:
+    		Toast.makeText(this, "Settings", Toast.LENGTH_LONG).show();
+    	break;
+    	
+    	case R.id.menu_search:
+    		Toast.makeText(this, "Pøidat hru", Toast.LENGTH_LONG).show();
+    	break;
+    /*case R.id.add:
     	///zde se bude volat prepinani kontextu na nove okno nebo dialog, kde ziskame informace o vytvarene hre
       String newGameName = getName();//new String[] { "Cool", "Very nice", "Hate it" };
      if(newGameName.equals(""))
@@ -141,7 +154,7 @@ public class GamesActivity extends ListActivity {
         datasource.deleteGame(game);
         adapter.remove(game);
       }
-      break;
+      break;*/
 
     	
     }

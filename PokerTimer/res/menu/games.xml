@@ -18,7 +18,7 @@
           android:title="@string/search"
           android:showAsAction="ifRoom|withText" />
      
-     <item android:id="@+id/menu_menu"
+     <item android:id="@+id/menu_settings"
           android:icon="@drawable/ic_menu_preferences"
           android:title="@string/settings"
           android:showAsAction="ifRoom|withText" />
