@@ -1,4 +1,5 @@
 <sql>
+    <!-- Games -->
 	<statement>
 	CREATE TABLE IF NOT EXISTS games (
 		_id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -6,4 +7,31 @@
 	</statement>
 	<statement>INSERT INTO games VALUES(1,'Normal tournament')</statement>
 	<statement>INSERT INTO games VALUES(2,'Turbo tournament')</statement>
+	
+	<!-- Game rounds -->
+	<statement>
+	CREATE TABLE IF NOT EXISTS rounds (
+		_id INTEGER PRIMARY KEY AUTOINCREMENT,
+		INTEGER _id_game,
+		INTEGER number_of_round, 
+		INTEGER SB,
+		INTEGER BB,
+		INTEGER ante,
+		INTEGER seconds,
+		INTEGER break,
+		FOREIGN KEY (_id_game) REFERENCES games (_id)
+		);
+	</statement>
+	
+	<!-- Normal tournament -->
+	<statement>INSERT INTO rounds VALUES(1,1,25,50,0,1200,false)</statement>
+	<statement>INSERT INTO rounds VALUES(1,2,50,100,0,1200,false)</statement>
+	<statement>INSERT INTO rounds VALUES(1,3,100,200,0,1200,false)</statement>
+	<statement>INSERT INTO rounds VALUES(1,4,150,300,0,1200,false)</statement>
+	
+	<!-- Turbo tournament -->
+	<statement>INSERT INTO rounds VALUES(2,1,25,50,0,200,false)</statement>
+	<statement>INSERT INTO rounds VALUES(2,2,50,100,0,200,false)</statement>
+	<statement>INSERT INTO rounds VALUES(2,3,100,200,0,200,false)</statement>
+	<statement>INSERT INTO rounds VALUES(2,4,150,300,0,200,false)</statement>
 </sql>

@@ -10,11 +10,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
-public class GamesActivity extends ListActivity {
+public class GamesActivity extends ListActivity implements AdapterView.OnItemClickListener {
 	private GamesDataSource datasource;
 
 	private List<Game> games;
@@ -27,7 +29,7 @@ public class GamesActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		createGamesList();  
+		createGamesList(); 
 	}
 
 	/**
@@ -41,7 +43,10 @@ public class GamesActivity extends ListActivity {
 		adapter = new ArrayAdapter<Game>(this, android.R.layout.simple_list_item_1, games);
 		setListAdapter(adapter);
 		
-		registerForContextMenu(getListView());
+		ListView list = getListView();
+        list.setOnItemClickListener(this);
+        
+		registerForContextMenu(list);
 	}
 	
 	/**
@@ -62,7 +67,6 @@ public class GamesActivity extends ListActivity {
  
         switch(item.getItemId()){
             case R.id.menu_edit:
-                Toast.makeText(this, "Edit : " + info.id, Toast.LENGTH_SHORT).show();
             break;
             case R.id.menu_delete:
                 datasource.deleteGame(games.get(info.position));
@@ -98,6 +102,15 @@ public class GamesActivity extends ListActivity {
 	protected void startAddGameActivity(){
 		Intent intent = new Intent(this, AddGameActivity.class);
 		startActivity(intent);
+	}
+	
+	protected void startCountdownActivity(){
+		Intent intent = new Intent(this, GameCountdownActivity.class);
+		startActivity(intent);
+	} 
+	
+	public void onItemClick(AdapterView<?> parent, View v, int position, long id){
+		startCountdownActivity();
 	}
   
 	@Override
