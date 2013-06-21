@@ -37,20 +37,27 @@ public final class R {
         public static final int settings=0x7f020009;
     }
     public static final class id {
-        public static final int list=0x7f0b0001;
-        public static final int menu_add=0x7f0b0004;
-        public static final int menu_cancel=0x7f0b0003;
-        public static final int menu_delete=0x7f0b0008;
-        public static final int menu_edit=0x7f0b0007;
-        public static final int menu_ok=0x7f0b0002;
-        public static final int menu_search=0x7f0b0006;
-        public static final int menu_settings=0x7f0b0005;
-        public static final int textView1=0x7f0b0000;
+        public static final int default_roundlength_edit=0x7f0b0005;
+        public static final int default_roundlength_text=0x7f0b0004;
+        public static final int game_name_edit=0x7f0b0001;
+        public static final int game_name_text=0x7f0b0000;
+        public static final int game_rounds_edit=0x7f0b0003;
+        public static final int game_rounds_text=0x7f0b0002;
+        public static final int list=0x7f0b0007;
+        public static final int menu_add=0x7f0b000a;
+        public static final int menu_cancel=0x7f0b0009;
+        public static final int menu_delete=0x7f0b000e;
+        public static final int menu_edit=0x7f0b000d;
+        public static final int menu_ok=0x7f0b0008;
+        public static final int menu_search=0x7f0b000c;
+        public static final int menu_settings=0x7f0b000b;
+        public static final int textView1=0x7f0b0006;
     }
     public static final class layout {
-        public static final int countdown=0x7f030000;
-        public static final int games=0x7f030001;
-        public static final int main=0x7f030002;
+        public static final int add_game=0x7f030000;
+        public static final int countdown=0x7f030001;
+        public static final int games=0x7f030002;
+        public static final int main=0x7f030003;
     }
     public static final class menu {
         public static final int add_game=0x7f0a0000;
@@ -63,10 +70,18 @@ public final class R {
     }
     public static final class string {
         public static final int add_game=0x7f070002;
+        /**  ADD_GAME STRINGS 
+         */
+        public static final int add_game_title=0x7f07000c;
         public static final int app_name=0x7f070000;
         public static final int cancel=0x7f070007;
+        public static final int enter_gamename=0x7f07000d;
+        public static final int enter_roundlength=0x7f07000f;
+        public static final int enter_rounds_number=0x7f07000e;
         public static final int menu_delete=0x7f070005;
         public static final int menu_edit=0x7f070004;
+        public static final int modify_rounds=0x7f070011;
+        public static final int next=0x7f070010;
         public static final int ok=0x7f070006;
         /**  MAIN MENU STRINGS 
          */

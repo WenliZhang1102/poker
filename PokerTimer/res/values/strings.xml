@@ -39,5 +39,20 @@
         <item name="120">120</item>
         <item name="300">300</item>
     </string-array>
-
+    
+    
+	<!-- ADD_GAME STRINGS -->
+	
+	<string name="add_game_title">Add new game</string>
+	
+	<string name="enter_gamename">Name of the game</string>
+	<string name="enter_rounds_number">Number of rounds</string>
+	<string name="enter_roundlength">Time per round (in seconds)</string>
+	
+	<string name="next">Next</string>
+	<string name="modify_rounds">Modify rounds</string>
+	
+	
+   
+	
 </resources>

@@ -14,8 +14,12 @@ public class AddGameActivity extends Activity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.add_game);
+        
+        
         ActionBar ab = getActionBar();
         ab.setDisplayShowHomeEnabled(false);
+        setTitle(getString(R.string.add_game_title));
         //ab.setDisplayShowTitleEnabled(false);
     }
 	
