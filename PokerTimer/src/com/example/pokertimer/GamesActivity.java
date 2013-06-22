@@ -1,6 +1,7 @@
 package com.example.pokertimer;
 import java.util.List;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class GamesActivity extends ListActivity implements AdapterView.OnItemClickListener {
+	private static final int ACTIVITY_ADD_GAME = 0;
+
 	private DataSource datasource;
 
 	private List<Game> games;
@@ -100,7 +103,7 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
 	 */
 	protected void startAddGameActivity(){
 		Intent intent = new Intent(this, AddGameActivity.class);
-		startActivity(intent);
+		startActivityForResult(intent, ACTIVITY_ADD_GAME);
 	}
 	
 	protected void startCountdownActivity(Game game){
@@ -133,6 +136,21 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
 			return super.onOptionsItemSelected(item);
 		}
 		return true;
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(requestCode) {
+			case (ACTIVITY_ADD_GAME) : {
+				if (resultCode == Activity.RESULT_OK) {
+					Game newGame = (Game) data.getSerializableExtra("Game");
+					Game g = datasource.createGame(newGame);
+				    adapter.add(g);
+				}
+				break;
+			}
+		}
 	}
 
 	@Override

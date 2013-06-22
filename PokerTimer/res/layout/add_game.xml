@@ -18,7 +18,7 @@
 	    android:hint="@string/enter_gamename"
 	    android:imeActionLabel="@string/next"
 	    android:inputType="text" />
-	    
+	    <!-- 
 	    <TextView 
 	    android:id="@+id/game_rounds_text"
 	    android:layout_width="fill_parent" 
@@ -47,7 +47,7 @@
 	    android:imeActionLabel="@string/next"
 	    android:inputType="number" />
 	    
-   
+    -->
     
     <Button
         android:layout_width="match_parent"

@@ -39,9 +39,11 @@ public class DataSource {
 	 * @param name Name of the game.
 	 * @return Created game.
 	 */
-	public Game createGame(String name) {
+	public Game createGame(Game game) {
+		// TODO: edit this bullshit
+		this.open();
 	    ContentValues values = new ContentValues();
-	    values.put(DatabaseHelper.COLUMN_GAMENAME, name);
+	    values.put(DatabaseHelper.COLUMN_GAMENAME, game.getName());
 	    long insertId = database.insert(DatabaseHelper.TABLE_GAMES, null, values); 
 	    Cursor cursor = database.query(DatabaseHelper.TABLE_GAMES, allColumnsGame, DatabaseHelper.COLUMN_ID + " = " + insertId, null, null, null, null);
 	    cursor.moveToFirst();
@@ -85,7 +87,7 @@ public class DataSource {
 	public List<Round> getAllRounds(Game game){
 		List<Round> rounds = new ArrayList<Round>();
 
-		Cursor cursor = database.query(DatabaseHelper.TABLE_ROUNDS, allColumnsRound, null, null, null, null, null);
+		Cursor cursor = database.query(DatabaseHelper.TABLE_ROUNDS, allColumnsRound, null, null, null, null, "number_of_round ASC");
 		
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
