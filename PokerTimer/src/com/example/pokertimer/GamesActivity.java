@@ -14,10 +14,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class GamesActivity extends ListActivity implements AdapterView.OnItemClickListener {
-	private GamesDataSource datasource;
+	private DataSource datasource;
 
 	private List<Game> games;
 	private ArrayAdapter<Game> adapter;
@@ -36,7 +35,7 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
 	 * Shows list of games
 	 */
 	private void createGamesList(){
-		datasource = new GamesDataSource(this);
+		datasource = new DataSource(this);
 		datasource.open();
 		
 		games = datasource.getAllGames();
@@ -104,13 +103,15 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
 		startActivity(intent);
 	}
 	
-	protected void startCountdownActivity(){
+	protected void startCountdownActivity(Game game){
 		Intent intent = new Intent(this, GameCountdownActivity.class);
+		game.setRounds(datasource.getAllRounds(game));
+		intent.putExtra("Game", game);
 		startActivity(intent);
 	} 
 	
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id){
-		startCountdownActivity();
+		startCountdownActivity(games.get(position));
 	}
   
 	@Override

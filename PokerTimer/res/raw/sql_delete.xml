@@ -1,3 +1,4 @@
 <sql>
 	<statement>DROP TABLE IF EXISTS games</statement>
+	<statement>DROP TABLE IF EXISTS rounds</statement>
 </sql>

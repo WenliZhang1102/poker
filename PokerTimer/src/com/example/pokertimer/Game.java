@@ -1,28 +1,46 @@
 package com.example.pokertimer;
 
-public class Game {
-	  private long id;
-	  private String game;
+import java.io.Serializable;
+import java.util.List;
 
-	  public long getId() {
-	    return id;
-	  }
+public class Game implements Serializable{
+	private static final long serialVersionUID = -6553576877034389434L;
+	private long id;
+	private String name;
+	private List<Round> rounds;
 
-	  public void setId(long id) {
-	    this.id = id;
-	  }
+	public long getId() {
+		return id;
+	}
 
-	  public String getGame() {
-	    return game;
-	  }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-	  public void setGame(String game) {
-	    this.game = game;
-	  }
+	public String getName() {
+		return name;
+	}
 
-	  // Will be used by the ArrayAdapter in the ListView
-	  @Override
-	  public String toString() {
-	    return game;
-	  }
-	} 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	/**
+	 * @return the rounds
+	 */
+	public List<Round> getRounds() {
+		return rounds;
+	}
+
+	/**
+	 * @param rounds the rounds to set
+	 */
+	public void setRounds(List<Round> rounds) {
+		this.rounds = rounds;
+	}
+} 

@@ -18,8 +18,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final String DATABASE_NAME = "poker_blind_timer";
 	
 	public static final String TABLE_GAMES = "games";
+	public static final String TABLE_ROUNDS = "rounds";
 	public static final String COLUMN_ID = "_id";
 	public static final String COLUMN_GAMENAME = "name";
+	public static final String COLUMN_SB = "sb";
+	public static final String COLUMN_BB = "bb";
+	public static final String COLUMN_ANTE = "ante";
+	public static final String COLUMN_SECONDS = "seconds";
 
 	private static final int DATABASE_VERSION = 1;
 	
@@ -58,10 +63,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			Document doc = builder.parse(in, null);
 			NodeList statements = doc.getElementsByTagName("statement");
 			for (int i=0; i<statements.getLength(); i++) {
-			s = statements.item(i).getChildNodes().item(0).getNodeValue();//err
-			db.execSQL(s);
-		}
+				s = statements.item(i).getChildNodes().item(0).getNodeValue();//err
+				db.execSQL(s);
+			}
 		} catch (Throwable t) {
+			System.out.println("!");
 			// TODO: catch
 		}
 	}
