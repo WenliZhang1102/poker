@@ -2,22 +2,27 @@ package com.example.pokertimer;
 
 import java.util.List;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class GameCountdownActivity extends Activity {
 	
 	private int roundNumber = 1;
 	private Game game;
-	private TextView textName;
+	
 	private TextView textBlinds;
 	private TextView textAnte;
 	private TextView textNextBlinds;
 	private TextView textTime;
 	private List<Round> rounds;
+	
+	private boolean is_paused = true;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,14 +33,14 @@ public class GameCountdownActivity extends Activity {
 		this.game = (Game) countdownIntent.getSerializableExtra("Game");
 		this.rounds = game.getRounds();
 		
-		textName = (TextView) findViewById(R.id.tournament_name);
+		
 		textBlinds = (TextView) findViewById(R.id.blinds);
 		textAnte = (TextView) findViewById(R.id.ante);
 		textNextBlinds = (TextView) findViewById(R.id.next_blinds);
 		textTime = (TextView) findViewById(R.id.time);
 		
 		// Set name of tournament
-		textName.setText(game.getName());
+        setTitle(game.getName());
 		
 		refreshGameInfo();
 		
@@ -68,5 +73,23 @@ public class GameCountdownActivity extends Activity {
 		
 		textBlinds.setText(round.toString());
 		textAnte.setText(round.getAnte()+"");
+	}
+	
+	
+	public void onClick(View v) {
+		View button = findViewById(R.id.button_play_pause);
+		if(v == button) {
+			if(is_paused){
+				
+				button.setBackgroundResource(R.drawable.play);
+				is_paused = false;
+			}
+			else{
+				button.setBackgroundResource(R.drawable.pause);
+				is_paused = true;
+			}
+			
+		}
+	
 	}
 }

@@ -26,6 +26,7 @@
         <activity android:name="SettingsActivity"/>
         <activity android:name="AddGameActivity"/>
         <activity android:name="GameCountdownActivity"/>
+        <activity android:name="AboutActivity"/>
     </application>
 
 </manifest>
