@@ -17,6 +17,7 @@
     -->
 
     <FrameLayout
+        android:id="@+id/frameLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/edit_text" >
@@ -51,8 +52,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="80sp"
         android:typeface="sans" />
-    
-    
+
     <FrameLayout
         android:id="@+id/blinds_layout"
         android:layout_width="match_parent"
@@ -80,7 +80,7 @@
             android:text="blinds"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </FrameLayout>
-    
+
     <FrameLayout
         android:id="@+id/ante_layout"
         android:layout_width="match_parent"
@@ -98,54 +98,51 @@
             <requestFocus />
         </TextView>
 
-        
         <TextView
-        android:id="@+id/ante"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/blinds"
-        android:layout_marginTop="26dp"
-        android:text="ante"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:id="@+id/ante"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/blinds"
+            android:layout_marginTop="26dp"
+            android:text="ante"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
     </FrameLayout>
 
-     <RelativeLayout
-         android:id="@+id/button_layout"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_alignParentLeft="true"
-         android:layout_below="@+id/ante_layout"
-         android:background="@null" >
+    <RelativeLayout
+        android:id="@+id/button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/ante_layout"
+        android:background="@null" >
 
+        <ImageButton
+            android:id="@+id/button_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@null"
+            android:src="@drawable/forward" />
 
-         <ImageButton
-             android:id="@+id/button_next"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignParentRight="true"
-             android:layout_alignParentTop="true"
-             android:background="@null"
-             android:src="@drawable/forward" />
+        <ImageButton
+            android:id="@+id/button_forward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@null"
+            android:src="@drawable/back" />
 
-         <ImageButton
-             android:id="@+id/button_forward"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignParentLeft="true"
-             android:layout_alignParentTop="true"
-             android:background="@null"
-             android:src="@drawable/back" />
-
-         <Button
-             android:id="@+id/button_play_pause"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignParentTop="true"
-             android:layout_centerHorizontal="true"
-             android:background="@drawable/pause"
-             android:onClick="onClick" />
-
-     </RelativeLayout>
+        <Button
+            android:id="@+id/button_play_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/pause"
+            android:onClick="onClick" />
+    </RelativeLayout>
 
 </RelativeLayout>

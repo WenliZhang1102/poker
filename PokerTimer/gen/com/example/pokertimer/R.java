@@ -44,29 +44,30 @@ public final class R {
     }
     public static final class id {
         public static final int about_header=0x7f0b0000;
-        public static final int ante=0x7f0b000a;
-        public static final int ante_layout=0x7f0b0009;
-        public static final int blinds=0x7f0b0008;
-        public static final int blinds_layout=0x7f0b0006;
-        public static final int button_forward=0x7f0b000d;
-        public static final int button_layout=0x7f0b000b;
-        public static final int button_next=0x7f0b000c;
-        public static final int button_play_pause=0x7f0b000e;
+        public static final int ante=0x7f0b000b;
+        public static final int ante_layout=0x7f0b000a;
+        public static final int blinds=0x7f0b0009;
+        public static final int blinds_layout=0x7f0b0007;
+        public static final int button_forward=0x7f0b000e;
+        public static final int button_layout=0x7f0b000c;
+        public static final int button_next=0x7f0b000d;
+        public static final int button_play_pause=0x7f0b000f;
+        public static final int frameLayout1=0x7f0b0003;
         public static final int game_name_edit=0x7f0b0002;
         public static final int game_name_text=0x7f0b0001;
-        public static final int list=0x7f0b000f;
-        public static final int menu_about=0x7f0b0015;
-        public static final int menu_add=0x7f0b0012;
-        public static final int menu_cancel=0x7f0b0011;
-        public static final int menu_delete=0x7f0b0017;
-        public static final int menu_edit=0x7f0b0016;
-        public static final int menu_ok=0x7f0b0010;
-        public static final int menu_search=0x7f0b0014;
-        public static final int menu_settings=0x7f0b0013;
-        public static final int next_blinds=0x7f0b0004;
-        public static final int next_round=0x7f0b0003;
-        public static final int this_round=0x7f0b0007;
-        public static final int time=0x7f0b0005;
+        public static final int list=0x7f0b0010;
+        public static final int menu_about=0x7f0b0016;
+        public static final int menu_add=0x7f0b0013;
+        public static final int menu_cancel=0x7f0b0012;
+        public static final int menu_delete=0x7f0b0018;
+        public static final int menu_edit=0x7f0b0017;
+        public static final int menu_ok=0x7f0b0011;
+        public static final int menu_search=0x7f0b0015;
+        public static final int menu_settings=0x7f0b0014;
+        public static final int next_blinds=0x7f0b0005;
+        public static final int next_round=0x7f0b0004;
+        public static final int this_round=0x7f0b0008;
+        public static final int time=0x7f0b0006;
     }
     public static final class layout {
         public static final int about=0x7f030000;

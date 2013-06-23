@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,8 +24,9 @@ public class AddGameActivity extends Activity {
         
         
         ActionBar ab = getActionBar();
-        ab.setDisplayShowHomeEnabled(false);
+        //ab.setDisplayShowHomeEnabled(false);
         setTitle(getString(R.string.add_game_title));
+		ab.setDisplayHomeAsUpEnabled(true);
         //ab.setDisplayShowTitleEnabled(false);
         
         textGameName = (EditText) findViewById(R.id.game_name_edit); 
@@ -39,10 +41,16 @@ public class AddGameActivity extends Activity {
 	      return true;
 	  }
 	 
+     
+
 	 @Override
 	  public boolean onOptionsItemSelected(MenuItem item) {
 
 	      switch (item.getItemId()) {
+	    //When is back button in actionbar pressed
+	      	  case android.R.id.home:
+	      		  	startActivity(new Intent(AddGameActivity.this,GamesActivity.class));
+		            return true;
 		      case R.id.menu_ok:
 		    	  saveNewGame();
 		          break;

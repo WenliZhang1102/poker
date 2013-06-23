@@ -7,7 +7,9 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -82,9 +84,8 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
 	@Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        //getMenuInflater().inflate(R.menu.games_actions, menu);
-        
-        /*AdapterView.AdapterContextMenuInfo info;
+
+        AdapterView.AdapterContextMenuInfo info;
         try {
             // Casts the incoming data object into the type for AdapterView objects.
             info = (AdapterView.AdapterContextMenuInfo) menuInfo;
@@ -94,16 +95,13 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
             return;
         }
         ListAdapter listAdapter =  getListAdapter();
-        Cursor cursor = (Cursor) listAdapter.getItem(info.position);
+        Game cursor = (Game) listAdapter.getItem(info.position);
         if (cursor == null) {
             // For some reason the requested item isn't available, do nothing
             return;
         }
 
-        menu.setHeaderTitle(getString(cursor.getColumnIndex("name")));*/
-        //TODO: problem je v blbem adapteru, tery je nastaveny pomoci setListAdapter - vraci game a ten nejde prejebnout na cursor
-        //java.lang.ClassCastException: com.example.pokertimer.Game cannot be cast to android.database.Cursor
-        //http://stackoverflow.com/questions/9447565/set-title-of-context-menu-from-the-selected-listview-item
+        menu.setHeaderTitle(cursor.getName());
         getMenuInflater().inflate(R.menu.games_actions, menu);
     }
 	
