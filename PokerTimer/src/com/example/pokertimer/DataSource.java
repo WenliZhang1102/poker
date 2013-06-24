@@ -87,7 +87,7 @@ public class DataSource {
 	public List<Round> getAllRounds(Game game){
 		List<Round> rounds = new ArrayList<Round>();
 
-		Cursor cursor = database.query(DatabaseHelper.TABLE_ROUNDS, allColumnsRound, null, null, null, null, "number_of_round ASC");
+		Cursor cursor = database.query(DatabaseHelper.TABLE_ROUNDS, allColumnsRound, "_id_game = ?", new String[]{ Integer.toString((int) game.getId()) }, null, null, "number_of_round ASC");
 		
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {

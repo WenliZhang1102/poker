@@ -48,10 +48,10 @@ public final class R {
         public static final int ante_layout=0x7f0b000a;
         public static final int blinds=0x7f0b0009;
         public static final int blinds_layout=0x7f0b0007;
-        public static final int button_forward=0x7f0b000e;
         public static final int button_layout=0x7f0b000c;
         public static final int button_next=0x7f0b000d;
         public static final int button_play_pause=0x7f0b000f;
+        public static final int button_previous=0x7f0b000e;
         public static final int frameLayout1=0x7f0b0003;
         public static final int game_name_edit=0x7f0b0002;
         public static final int game_name_text=0x7f0b0001;
