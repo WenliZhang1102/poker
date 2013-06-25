@@ -117,15 +117,6 @@
         android:layout_below="@+id/ante_layout"
         android:background="@null" >
 
-        <ImageButton
-            android:id="@+id/button_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:onClick="onClick"
-            android:background="@null"
-            android:src="@drawable/forward" />
 
         <ImageButton
             android:id="@+id/button_previous"
@@ -145,6 +136,16 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/play"
             android:onClick="onClick" />
+        
+		<ImageButton
+            android:id="@+id/button_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@null"
+            android:onClick="onClick"
+            android:src="@drawable/forward" />
     </RelativeLayout>
 
 </RelativeLayout>

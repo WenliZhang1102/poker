@@ -23,7 +23,7 @@ public class GameCountdownActivity extends Activity {
 	private TextView textTime;
 	private List<Round> rounds;
 	
-	private int time;
+	private int time = -1; // stop timer
 	
 	private Round round;
 	private Round next_round;
@@ -31,6 +31,8 @@ public class GameCountdownActivity extends Activity {
 	private CountDownTimer countDownTimer = null;
 	
 	private boolean is_paused = true;
+	
+	View buttonPlayPause;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class GameCountdownActivity extends Activity {
 		textAnte = (TextView) findViewById(R.id.ante);
 		textNextBlinds = (TextView) findViewById(R.id.next_blinds);
 		textTime = (TextView) findViewById(R.id.time);
+		buttonPlayPause = findViewById(R.id.button_play_pause);;
 		
 		// Set name of tournament
         setTitle(game.getName());
@@ -65,36 +68,27 @@ public class GameCountdownActivity extends Activity {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 	}
 	
-	/**
-	 * Starts next round
-	 */
-	public void setNextRound(){
-		if(roundNumber < rounds.size()){
-			roundNumber++;
-			setRounds();
-			stopCountDown();
-		}
-		
-		refreshGameInfo();
-	}
-	
 	public void startCountDown(){
 		if(countDownTimer != null){
 			stopCountDown();
 		}
 		
-		countDownTimer = new CountDownTimer((this.time+1)*1000, 1000) {
-		     public void onTick(long millisUntilFinished) {
-		    	time = time-1;
-				refreshTimeInfo();
-		     }
-
-			@Override
-			public void onFinish() {
-				setNextRound();
-				startCountDown();
-			}
-		  }.start();
+		if(time != -1){
+			countDownTimer = new CountDownTimer((this.time+1)*1000, 1000) {
+				public void onTick(long millisUntilFinished) {
+					time = time-1;
+					refreshTimeInfo();
+				}
+				
+				@Override
+				public void onFinish() {
+					setNextRound();
+					startCountDown();
+				}
+			};
+					  
+			countDownTimer.start();
+		}
 	}
 	
 	public void stopCountDown(){
@@ -103,6 +97,24 @@ public class GameCountdownActivity extends Activity {
 		}
 		
 		countDownTimer = null;
+	}
+	
+	/**
+	 * Starts next round
+	 */
+	public void setNextRound(){
+		if(roundNumber < rounds.size()){
+			roundNumber++;
+			setRounds();
+			stopCountDown();
+		}else{
+			if(countDownTimer != null){
+				time = -1;
+				setToStop();
+			}
+		}
+		
+		refreshGameInfo();
 	}
 	
 	/**
@@ -125,6 +137,9 @@ public class GameCountdownActivity extends Activity {
         return true;
     }
 	
+	/**
+	 * Sets round and next_round
+	 */
 	private void setRounds(){
 		this.round = rounds.get(roundNumber-1);
 		
@@ -133,7 +148,7 @@ public class GameCountdownActivity extends Activity {
 		if(roundNumber < rounds.size()){
 			this.next_round = rounds.get(roundNumber);
 		}else{
-			this.next_round = null;			
+			this.next_round = null;		
 		}
 	}
 	
@@ -153,13 +168,15 @@ public class GameCountdownActivity extends Activity {
 		refreshTimeInfo();
 	}
 	
+	/**
+	 * Refresh time
+	 */
 	private void refreshTimeInfo(){
-		int minutes = this.time / 60;
-		int seconds = this.time % 60;
-		
-		
-		
-		textTime.setText(twoDigitString(minutes) + ":" + twoDigitString(seconds));
+		if(this.time >= 0){
+			int minutes = this.time / 60;
+			int seconds = this.time % 60;
+			textTime.setText(twoDigitString(minutes) + ":" + twoDigitString(seconds));
+		}
 	}
 	
 	/**
@@ -176,26 +193,31 @@ public class GameCountdownActivity extends Activity {
 	}
 	
 	public void onClick(View v) {
-		View button = findViewById(R.id.button_play_pause);
-		if(v == button) {
+		if(v == buttonPlayPause) {
 			if(is_paused){
-				button.setBackgroundResource(R.drawable.play);
-				is_paused = false;
-				startCountDown();
+				setToPlay();
 			} else {
-				button.setBackgroundResource(R.drawable.pause);
-				is_paused = true;
-				stopCountDown();
+				setToStop();
 			}
-		}
-		
-		if(v == findViewById(R.id.button_next)){
+		}else if(v == findViewById(R.id.button_next)){
 			setNextRound();
-		}
-		
-		if(v == findViewById(R.id.button_previous)){
+			setToStop();
+		}else if(v == findViewById(R.id.button_previous)){
 			setPreviousRound();
+			setToStop();
 		}
 	
+	}
+	
+	private void setToPlay(){
+		buttonPlayPause.setBackgroundResource(R.drawable.pause);
+		is_paused = false;
+		startCountDown();
+	}
+	
+	private void setToStop(){
+		buttonPlayPause.setBackgroundResource(R.drawable.play);
+		is_paused = true;
+		stopCountDown();
 	}
 }

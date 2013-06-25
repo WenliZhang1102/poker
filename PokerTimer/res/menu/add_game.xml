@@ -5,10 +5,4 @@
           android:icon="@drawable/check_mark"
           android:title="@string/ok"
           android:showAsAction="ifRoom|withText" />
- 
-      <item android:id="@+id/menu_cancel"
-          android:icon="@drawable/ic_menu_close_clear_cancel"
-          android:title="@string/cancel"
-          android:showAsAction="ifRoom|withText" />
-     
 </menu>

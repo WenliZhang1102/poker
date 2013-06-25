@@ -1,25 +1,14 @@
 package com.example.pokertimer;
-import java.util.List;
-
+import android.app.ActionBar;
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
-public class RoundsActivity extends ListActivity implements AdapterView.OnItemClickListener {
-	private DataSource datasource;
-
-	private List<Round> rounds;
-	private ArrayAdapter<Round> adapter;
+public class RoundsActivity extends ListActivity {
+	
+	private Round[] rounds;
 	
 	/**
 	 * Set Activity content
@@ -27,34 +16,34 @@ public class RoundsActivity extends ListActivity implements AdapterView.OnItemCl
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-		
-		this.datasource = datasource;
-		
-		createRoundsList(); 
+        setContentView(R.layout.blind_control);
+
+        setDefaultRounds();
+        
+		ArrayAdapter<Object> adp = new ArrayAdapter<Object>(this, android.R.layout.simple_list_item_1, rounds);
+        setListAdapter(adp);
+        
+        ActionBar ab = getActionBar();
+        setTitle(getString(R.string.modify_rounds));
+		ab.setDisplayHomeAsUpEnabled(true);
 	}
 
-	/**
-	 * Shows list of games
-	 */
-	private void createRoundsList(){
-		/*rounds = datasource.getAllRounds();
-		adapter = new ArrayAdapter<Round>(this, android.R.layout.simple_list_item_1, rounds);
-		setListAdapter(adapter);*/
+	private void setDefaultRounds() {
+		rounds = new Round[]{
+				new Round(1, 25, 50, 0, 1200),
+				new Round(2, 50, 100, 0, 1200),
+				new Round(3, 100, 200, 0, 1200),
+				new Round(4, 150, 300, 0, 1200),
+				new Round(5, 200, 400, 0, 1200),
+				new Round(6, 300, 600, 0, 1200),
+				new Round(7, 400, 800, 0, 1200),
+		};
 	}
 	
-	/**
-	 * Create context menu for list of games
-	 */
-	@Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        getMenuInflater().inflate(R.menu.games_actions, menu);
-    }
-
-	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		// TODO Auto-generated method stub
-		
-	}
+	private void saveModifiedBlinds(){
+		Intent resultIntent = new Intent();
+		setResult(Activity.RESULT_OK, resultIntent);		
+		resultIntent.putExtra("Rounds", rounds);
+		finish();
+	 }
 } 

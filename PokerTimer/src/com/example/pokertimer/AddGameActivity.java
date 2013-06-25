@@ -1,18 +1,21 @@
 package com.example.pokertimer;
 
+import java.util.Arrays;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class AddGameActivity extends Activity {
 	
+	private static final int ACTIVITY_CHANGE_BLINDS = 10;
+
 	private Game game;
 	
 	EditText textGameName; 
@@ -40,8 +43,6 @@ public class AddGameActivity extends Activity {
 	      inflater.inflate(R.menu.add_game, menu);
 	      return true;
 	  }
-	 
-     
 
 	 @Override
 	  public boolean onOptionsItemSelected(MenuItem item) {
@@ -54,14 +55,23 @@ public class AddGameActivity extends Activity {
 		      case R.id.menu_ok:
 		    	  saveNewGame();
 		          break;
-		      case R.id.menu_cancel:
-		    	  cancel();
-		    	  break;
 		      default:
+		    	  cancel();
 		          return super.onOptionsItemSelected(item);
 	      }
 	      return true;
 	  }
+	 
+	 public void onClick(View v){
+		 if(v == findViewById(R.id.modify_rounds)){
+			 startRoundsActivity();
+		 }
+	 }
+	 
+	 protected void startRoundsActivity(){
+			Intent intent = new Intent(this, RoundsActivity.class);
+			startActivityForResult(intent, ACTIVITY_CHANGE_BLINDS);
+	 }
 	 
 	 private void saveNewGame(){
 		Intent resultIntent = new Intent();
@@ -77,6 +87,20 @@ public class AddGameActivity extends Activity {
 		Intent resultIntent = new Intent();
 		setResult(Activity.RESULT_CANCELED, resultIntent);
 		finish();
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(requestCode) {
+			case (ACTIVITY_CHANGE_BLINDS) : {
+				if (resultCode == Activity.RESULT_OK) {
+					Round[] rounds = (Round[]) data.getSerializableExtra("Rounds");
+					game.setRounds(Arrays.asList(rounds));
+				}
+				break;
+			}
+		}
 	}
 
 }
