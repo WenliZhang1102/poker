@@ -123,7 +123,7 @@ public class DataSource {
 		round.setSB(cursor.getInt(1));
 		round.setBB(cursor.getInt(2));
 		round.setAnte(cursor.getInt(3));
-		round.setSeconds(cursor.getInt(4));
+		round.setTime(cursor.getInt(4));
 		return round;
 	}
 } 

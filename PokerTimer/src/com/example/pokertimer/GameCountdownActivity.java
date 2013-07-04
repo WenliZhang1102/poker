@@ -39,10 +39,7 @@ public class GameCountdownActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.countdown);
 		
-		Intent countdownIntent = getIntent();
-		this.game = (Game) countdownIntent.getSerializableExtra("Game");
-		this.rounds = game.getRounds();
-		
+		this.processIntent();
 		
 		textBlinds = (TextView) findViewById(R.id.blinds);
 		textAnte = (TextView) findViewById(R.id.ante);
@@ -68,6 +65,18 @@ public class GameCountdownActivity extends Activity {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 	}
 	
+	/**
+	 * Gets info from intent
+	 */
+	private void processIntent(){
+		Intent countdownIntent = getIntent();
+		this.game = (Game) countdownIntent.getSerializableExtra("Game");
+		this.rounds = game.getRounds();
+	}
+	
+	/**
+	 * Starts Countdown
+	 */
 	public void startCountDown(){
 		if(countDownTimer != null){
 			stopCountDown();
@@ -91,6 +100,9 @@ public class GameCountdownActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * Stops countDown
+	 */
 	public void stopCountDown(){
 		if(countDownTimer != null){
 			countDownTimer.cancel();
@@ -143,7 +155,7 @@ public class GameCountdownActivity extends Activity {
 	private void setRounds(){
 		this.round = rounds.get(roundNumber-1);
 		
-		this.time = round.getSeconds();
+		this.time = round.getTime();
 		
 		if(roundNumber < rounds.size()){
 			this.next_round = rounds.get(roundNumber);

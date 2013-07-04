@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/set_blind_sb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:ems="3"
+        android:inputType="number|phone"
+    	android:digits="1234567890"
+        android:layout_toLeftOf="@+id/set_blind_bb"
+        android:text="sb" >
+    </EditText>
+    
+	<EditText
+        android:id="@+id/set_blind_bb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:ems="3"
+        android:layout_toLeftOf="@+id/set_blind_ante"
+        android:inputType="number|phone"
+    	android:digits="1234567890"
+        android:text="bb" />
+
+    <EditText
+        android:id="@+id/set_blind_ante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/set_blind_minutes"
+        android:ems="2"
+        android:inputType="number|phone"
+    	android:digits="1234567890"
+        android:text="ante" >
+    </EditText>
+    
+    <EditText
+        android:id="@+id/set_blind_minutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/set_blind_seconds"
+        android:ems="3"
+        android:inputType="number|phone"
+    	android:digits="1234567890"
+        android:text="m" >
+    </EditText>
+    
+    <EditText
+        android:id="@+id/set_blind_seconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/set_blind_break_checkbox"
+        android:ems="2"
+        android:inputType="number|phone"
+    	android:digits="1234567890"
+        android:text="s" >
+    </EditText>
+    
+    <CheckBox
+        android:id="@+id/set_blind_break_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true" />
+</RelativeLayout>

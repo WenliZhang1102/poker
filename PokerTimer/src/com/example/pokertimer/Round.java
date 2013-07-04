@@ -3,12 +3,23 @@ package com.example.pokertimer;
 import java.io.Serializable;
 
 public class Round implements Serializable {
-	  private long id;
+	private static final long serialVersionUID = 2892861948011186607L;
+	private long id;
 	  private int number_of_round;
 	  private int sb;
 	  private int bb;
 	  private int ante;
-	  private int seconds;
+	  private int time;
+	  
+	  public Round(){}
+	  
+	  public Round(int number_of_round, int sb, int bb, int ante, int time){
+		  this.number_of_round = number_of_round;
+		  this.sb = sb;
+		  this.bb = bb;
+		  this.ante = ante;
+		  this.time = time;
+	  }
 
 	  public long getId() {
 	    return id;
@@ -46,14 +57,26 @@ public class Round implements Serializable {
 	 * @return the seconds
 	 */
 	public int getSeconds() {
-		return seconds;
+		return this.time % 60;
+	}
+	
+	/**
+	 * 
+	 * @return minutes
+	 */
+	public int getMinutes(){
+		return this.time / 60;
+	}
+	
+	public int getTime(){
+		return this.time;
 	}
 
 	/**
 	 * @param seconds the seconds to set
 	 */
-	public void setSeconds(int seconds) {
-		this.seconds = seconds;
+	public void setTime(int time) {
+		this.time = time;
 	}
 
 	/**

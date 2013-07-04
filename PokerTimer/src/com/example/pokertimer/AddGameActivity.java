@@ -25,16 +25,22 @@ public class AddGameActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_game);
         
-        
         ActionBar ab = getActionBar();
-        //ab.setDisplayShowHomeEnabled(false);
         setTitle(getString(R.string.add_game_title));
 		ab.setDisplayHomeAsUpEnabled(true);
-        //ab.setDisplayShowTitleEnabled(false);
         
         textGameName = (EditText) findViewById(R.id.game_name_edit); 
         
         game = new Game();
+        game.setRounds(Arrays.asList(
+				new Round(1, 25, 50, 0, 1200),
+				new Round(2, 50, 100, 0, 1200),
+				new Round(3, 100, 200, 0, 1200),
+				new Round(4, 150, 300, 0, 1200),
+				new Round(5, 200, 400, 0, 1200),
+				new Round(6, 300, 600, 0, 1200),
+				new Round(7, 400, 800, 0, 1200)
+		));
     }
 	
 	 @Override
@@ -70,6 +76,7 @@ public class AddGameActivity extends Activity {
 	 
 	 protected void startRoundsActivity(){
 			Intent intent = new Intent(this, RoundsActivity.class);
+			intent.putExtra("Game", game);
 			startActivityForResult(intent, ACTIVITY_CHANGE_BLINDS);
 	 }
 	 
