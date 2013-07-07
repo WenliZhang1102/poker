@@ -26,7 +26,7 @@
             android:id="@+id/next_round"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="40dp"
+            android:paddingLeft="0dp"
             android:text="Next round:" >
 
             <requestFocus />
@@ -42,17 +42,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="49dp"
-        android:text="12:36"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="80sp"
-        android:typeface="sans" />
-
     <FrameLayout
         android:id="@+id/blinds_layout"
         android:layout_width="match_parent"
@@ -64,7 +53,8 @@
             android:id="@+id/this_round"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="40dp"
+            android:paddingLeft="0dp"
+            android:textSize="20sp"
             android:text="Blinds:" >
 
             <requestFocus />
@@ -77,6 +67,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/time"
             android:layout_marginTop="29dp"
+            android:textSize="30sp"
             android:text="blinds"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </FrameLayout>
@@ -92,7 +83,8 @@
             android:id="@+id/this_round"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="40dp"
+            android:paddingLeft="0dp"
+            android:textSize="20sp"
             android:text="Ante:" >
 
             <requestFocus />
@@ -105,6 +97,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/blinds"
             android:layout_marginTop="26dp"
+            android:textSize="30sp"
             android:text="ante"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </FrameLayout>
@@ -147,5 +140,17 @@
             android:onClick="onClick"
             android:src="@drawable/forward" />
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/frameLayout1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:text="12:36"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="80sp"
+        android:typeface="sans" />
 
 </RelativeLayout>

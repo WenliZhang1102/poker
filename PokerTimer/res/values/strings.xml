@@ -58,7 +58,15 @@
 
 	
 	<!-- ABOUT_APP STRINGS -->
-	<string name="about_header">This app was created...</string>
+	<string name="about_header">App version: 1.0\n
+	    Programmed by Aleš Kajzar and Ondřej Komárek, two indenpendent developers from Czech republic.	    
+	    If you enjoy using this app you can support further development by donating us.
+	    
+</string>
+
+	<string name="about_email_us"> If you know about any bug or you think that you have great improvement idea for us, you can send e-mail at: someadress@somedomain.com
+</string>
+		   
 	
 	
    
