@@ -177,9 +177,9 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
 				startAddGameActivity();
 			break;
 			
-			case R.id.menu_search:
+			//case R.id.menu_search:
 				// TODO: menu_search
-			break;
+			//break;
 			
 			case R.id.menu_settings:
 				startSettingsActivity();

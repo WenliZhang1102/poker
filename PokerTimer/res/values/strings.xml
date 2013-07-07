@@ -53,6 +53,10 @@
 	<string name="next">Next</string>
 	<string name="modify_rounds">Modify rounds</string>
 	
+	<string name="delete_rounds">Delete rounds</string>
+	<string name="add_round">Add round</string>
+
+	
 	<!-- ABOUT_APP STRINGS -->
 	<string name="about_header">This app was created...</string>
 	
