@@ -4,40 +4,32 @@ import java.io.Serializable;
 
 public class Round implements Serializable {
 	private static final long serialVersionUID = 2892861948011186607L;
-	private long id;
-	  private int number_of_round;
-	  private int sb;
-	  private int bb;
-	  private int ante;
-	  private int time;
+	private int number_of_round;
+	private int sb;
+	private int bb;
+	private int ante;
+	private int time;
+	private boolean is_break = false;
 	  
-	  public Round(){}
+	public Round(){}
 	  
-	  public Round(int number_of_round, int sb, int bb, int ante, int time){
-		  this.number_of_round = number_of_round;
-		  this.sb = sb;
-		  this.bb = bb;
-		  this.ante = ante;
-		  this.time = time;
-	  }
+	public Round(int number_of_round, int sb, int bb, int ante, int time){
+		this.number_of_round = number_of_round;
+		this.sb = sb;
+		this.bb = bb;
+		this.ante = ante;
+		this.time = time;
+	}
 
-	  public long getId() {
-	    return id;
-	  }
-
-	  public void setId(long id) {
-	    this.id = id;
-	  }
-
-	  // Will be used by the ArrayAdapter in the ListView
-	  @Override
-	  public String toString() {
-	    return this.sb + "/" + this.bb + "/" + this.ante;
-	  }
+	// Will be used by the ArrayAdapter in the ListView
+	@Override
+	public String toString() {
+		return this.sb + "/" + this.bb + "/" + this.ante;
+	}
 	  
-	  public String toShortString(){
-		  return this.sb + "/" + this.bb;
-	  }
+	public String toShortString(){
+		return this.sb + "/" + this.bb;
+	}
 
 	/**
 	 * @return the number_of_round
@@ -120,4 +112,24 @@ public class Round implements Serializable {
 	public void setAnte(int ante) {
 		this.ante = ante;
 	}
-} 
+	
+	/**
+	 * @param is_break is this round a break?
+	 */
+	public void setBreak(boolean is_break){
+		this.is_break = is_break;
+		if(is_break == true){
+			setSB(0);
+			setBB(0);
+			setAnte(0);
+		}
+	}
+	
+	/**
+	 * Is this round a break?
+	 * @return
+	 */
+	public boolean isBreak(){
+		return is_break;
+	}
+}

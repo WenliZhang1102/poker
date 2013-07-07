@@ -17,14 +17,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	protected Context context;
 	public static final String DATABASE_NAME = "poker_blind_timer";
 	
+	// games
 	public static final String TABLE_GAMES = "games";
-	public static final String TABLE_ROUNDS = "rounds";
 	public static final String COLUMN_ID = "_id";
 	public static final String COLUMN_GAMENAME = "name";
+	
+	// rounds
+	public static final String TABLE_ROUNDS = "rounds";
 	public static final String COLUMN_SB = "sb";
 	public static final String COLUMN_BB = "bb";
 	public static final String COLUMN_ANTE = "ante";
 	public static final String COLUMN_SECONDS = "seconds";
+	public static final String COLUMN_NUMBER_OF_ROUND = "number_of_round";
+	public static final String COLUMN_BREAK = "break";
+	public static final String COLUMN_ID_GAME = "_id_game";
 
 	private static final int DATABASE_VERSION = 1;
 	

@@ -102,8 +102,9 @@ public class AddGameActivity extends Activity {
 		switch(requestCode) {
 			case (ACTIVITY_CHANGE_BLINDS) : {
 				if (resultCode == Activity.RESULT_OK) {
-					Round[] rounds = (Round[]) data.getSerializableExtra("Rounds");
-					game.setRounds(Arrays.asList(rounds));
+					// get all data about Game back from RoundsActivity
+					// TODO: BAD SOLUTION, edit in future
+					this.game = (Game) data.getSerializableExtra("Game"); 
 				}
 				break;
 			}

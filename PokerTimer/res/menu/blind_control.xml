@@ -3,6 +3,5 @@
     
  <item android:id="@+id/menu_ok"
           android:icon="@drawable/check_mark"
-          android:title="@string/ok"
-          android:showAsAction="ifRoom|withText" />
+          android:title="@string/ok" />
 </menu>
