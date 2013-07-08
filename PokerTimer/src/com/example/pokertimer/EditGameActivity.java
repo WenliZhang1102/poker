@@ -130,14 +130,13 @@ public class EditGameActivity extends ListActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
-		switch (item.getItemId()) {
-	    //When is back button in actionbar pressed
-	    	case android.R.id.home:
+		int itemId = item.getItemId();
+		
+		if(itemId == android.R.id.home){
 	    		return true;
-		    case R.id.menu_ok:
+		}else if(itemId == R.id.menu_ok){
 		    	this.saveModifiedBlinds();
-		        break;
-		    default:
+		}else{
 		    	return super.onOptionsItemSelected(item);
 	    }
 		
@@ -150,6 +149,7 @@ public class EditGameActivity extends ListActivity {
 	private void saveModifiedBlinds(){
 		Intent resultIntent = new Intent();
 		setResult(Activity.RESULT_OK, resultIntent);
+		game.setName(textGameName.getText().toString());
 		resultIntent.putExtra("Game", game);
 		finish();
 	}

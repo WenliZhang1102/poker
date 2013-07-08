@@ -109,13 +109,13 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
     public boolean onContextItemSelected(MenuItem item) {
         AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
  
-        switch(item.getItemId()){
-            case R.id.menu_edit:
-            break;
-            case R.id.menu_delete:
-                datasource.deleteGame(games.get(info.position));
-                adapter.remove(games.get(info.position));
-            break;
+        int itemId = item.getItemId();
+        
+        if(itemId == R.id.menu_edit){
+
+        }else if(itemId == R.id.menu_delete){
+            datasource.deleteGame(games.get(info.position));
+            adapter.remove(games.get(info.position));
         }
         
         adapter.notifyDataSetChanged();
@@ -189,23 +189,15 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
   
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case R.id.menu_add:    
+		int itemId = item.getItemId();
+		
+		if (itemId == R.id.menu_add) {    
 				startEditGameActivity();
-			break;
-			
-			//case R.id.menu_search:
-				// TODO: menu_search
-			//break;
-			
-			case R.id.menu_settings:
+		} else if(itemId == R.id.menu_settings) {
 				startSettingsActivity();
-			break;
-			case R.id.menu_about:
+		} else if(itemId == R.id.menu_about) {
 				startAboutActivity();
-			break;
-			
-			default:
+		} else {
 			return super.onOptionsItemSelected(item);
 		}
 		return true;
