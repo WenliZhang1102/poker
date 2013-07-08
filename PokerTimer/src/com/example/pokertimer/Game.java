@@ -1,13 +1,14 @@
 package com.example.pokertimer;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game implements Serializable{
 	private static final long serialVersionUID = -6553576877034389434L;
 	private long id;
 	private String name;
-	private List<Round> rounds;
+	private ArrayList<Round> rounds;
 
 	public long getId() {
 		return id;
@@ -33,14 +34,14 @@ public class Game implements Serializable{
 	/**
 	 * @return the rounds
 	 */
-	public List<Round> getRounds() {
+	public ArrayList<Round> getRounds() {
 		return rounds;
 	}
 
 	/**
 	 * @param rounds the rounds to set
 	 */
-	public void setRounds(List<Round> rounds) {
+	public void setRounds(ArrayList<Round> rounds) {
 		this.rounds = rounds;
 	}
 } 

@@ -1,5 +1,7 @@
 package com.example.pokertimer;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import android.app.Activity;
@@ -21,7 +23,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 public class GamesActivity extends ListActivity implements AdapterView.OnItemClickListener {
-	private static final int ACTIVITY_ADD_GAME = 0;
+	private static final int ACTIVITY_EDIT_GAME = 0;
 
 	private DataSource datasource;
 
@@ -37,7 +39,6 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
 		setContentView(R.layout.main);
 		createGamesList(); 
 		getOverflowMenu();
-	     
 	}
 	
 	/**
@@ -140,11 +141,27 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
 	}
   
 	/**
-	 * Switch to AddGameActivity
+	 * Switch to EditGameActivity
 	 */
-	protected void startAddGameActivity(){
-		Intent intent = new Intent(this, AddGameActivity.class);
-		startActivityForResult(intent, ACTIVITY_ADD_GAME);
+	protected void startEditGameActivity(){
+		Intent intent = new Intent(this, EditGameActivity.class);
+		
+		Game game;
+		
+		game = new Game();
+        game.setRounds(new ArrayList<Round>(Arrays.asList(
+				new Round(1, 25, 50, 0, 1200),
+				new Round(2, 50, 100, 0, 1200),
+				new Round(3, 100, 200, 0, 1200),
+				new Round(4, 150, 300, 0, 1200),
+				new Round(5, 200, 400, 0, 1200),
+				new Round(6, 300, 600, 0, 1200),
+				new Round(7, 400, 800, 0, 1200)
+		)));
+        
+        intent.putExtra("Game", game);
+		
+		startActivityForResult(intent, ACTIVITY_EDIT_GAME);
 	}
 	
 	/**
@@ -174,7 +191,7 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.menu_add:    
-				startAddGameActivity();
+				startEditGameActivity();
 			break;
 			
 			//case R.id.menu_search:
@@ -198,7 +215,7 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		switch(requestCode) {
-			case (ACTIVITY_ADD_GAME) : {
+			case (ACTIVITY_EDIT_GAME) : {
 				if (resultCode == Activity.RESULT_OK) {
 					Game newGame = (Game) data.getSerializableExtra("Game");
 					Game g = datasource.createGame(newGame);
@@ -220,4 +237,4 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
 		datasource.close();
 		super.onPause();
 	}
-} 
+}

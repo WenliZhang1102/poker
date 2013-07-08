@@ -4,11 +4,26 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:paddingTop="4px">
+    
+    <EditText
+        android:id="@+id/game_name_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true">
+	</EditText>
 
-	<ListView
+	<com.commonsware.cwac.tlv.TouchListView
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tlv="http://schemas.android.com/apk/res/com.example.pokertimer"
 	    android:id="@android:id/list"
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
+	    android:layout_below="@+id/game_name_edit"
+	    expanded_height="128dip"
+	    tlv:grabber="@+id/icon"
+	    tlv:normal_height="64dip"
+	    tlv:remove_mode="slideRight"
 	    android:drawSelectorOnTop="false" />
 
 </RelativeLayout>

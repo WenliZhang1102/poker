@@ -9,10 +9,57 @@ package com.example.pokertimer;
 
 public final class R {
     public static final class array {
-        public static final int backlight_time_list=0x7f080000;
-        public static final int backlight_time_list_values=0x7f080001;
+        public static final int backlight_time_list=0x7f090000;
+        public static final int backlight_time_list_values=0x7f090001;
     }
     public static final class attr {
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int dragndrop_background=0x7f010003;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int expanded_height=0x7f010001;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int grabber=0x7f010002;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int normal_height=0x7f010000;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>-1</td><td></td></tr>
+<tr><td><code>fling</code></td><td>0</td><td></td></tr>
+<tr><td><code>slide</code></td><td>1</td><td></td></tr>
+<tr><td><code>slideRight</code></td><td>1</td><td></td></tr>
+<tr><td><code>slideLeft</code></td><td>2</td><td></td></tr>
+</table>
+         */
+        public static final int remove_mode=0x7f010004;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -21,8 +68,8 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f060000;
-        public static final int activity_vertical_margin=0x7f060001;
+        public static final int activity_horizontal_margin=0x7f070000;
+        public static final int activity_vertical_margin=0x7f070001;
     }
     public static final class drawable {
         public static final int abs__ic_ab_back_holo_light=0x7f020000;
@@ -30,108 +77,107 @@ public final class R {
         public static final int check_mark=0x7f020002;
         public static final int donate=0x7f020003;
         public static final int forward=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int ic_menu_add=0x7f020006;
-        public static final int ic_menu_close_clear_cancel=0x7f020007;
-        public static final int ic_menu_help=0x7f020008;
-        public static final int ic_menu_menu=0x7f020009;
-        public static final int ic_menu_overflow_dark=0x7f02000a;
-        public static final int ic_menu_preferences=0x7f02000b;
-        public static final int ic_menu_save=0x7f02000c;
-        public static final int ic_menu_search=0x7f02000d;
-        public static final int pause=0x7f02000e;
-        public static final int play=0x7f02000f;
-        public static final int recycle_bin=0x7f020010;
-        public static final int settings=0x7f020011;
-        public static final int tick48=0x7f020012;
+        public static final int grabber=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int ic_menu_add=0x7f020007;
+        public static final int ic_menu_close_clear_cancel=0x7f020008;
+        public static final int ic_menu_help=0x7f020009;
+        public static final int ic_menu_menu=0x7f02000a;
+        public static final int ic_menu_overflow_dark=0x7f02000b;
+        public static final int ic_menu_preferences=0x7f02000c;
+        public static final int ic_menu_save=0x7f02000d;
+        public static final int ic_menu_search=0x7f02000e;
+        public static final int pause=0x7f02000f;
+        public static final int play=0x7f020010;
+        public static final int recycle_bin=0x7f020011;
+        public static final int settings=0x7f020012;
+        public static final int tick48=0x7f020013;
     }
     public static final class id {
-        public static final int about_email=0x7f0b0001;
-        public static final int about_header=0x7f0b0000;
-        public static final int ante=0x7f0b0014;
-        public static final int ante_layout=0x7f0b0013;
-        public static final int blinds=0x7f0b0012;
-        public static final int blinds_layout=0x7f0b000f;
-        public static final int button_layout=0x7f0b0015;
-        public static final int button_next=0x7f0b0018;
-        public static final int button_play_pause=0x7f0b0017;
-        public static final int button_previous=0x7f0b0016;
-        public static final int donate=0x7f0b0002;
-        public static final int frameLayout1=0x7f0b000c;
-        public static final int game_name_edit=0x7f0b0004;
-        public static final int game_name_text=0x7f0b0003;
-        public static final int list=0x7f0b001b;
-        public static final int menu_about=0x7f0b0020;
-        public static final int menu_add=0x7f0b001d;
-        public static final int menu_delete=0x7f0b001e;
-        public static final int menu_edit=0x7f0b0021;
-        public static final int menu_ok=0x7f0b001c;
-        public static final int menu_settings=0x7f0b001f;
-        public static final int modify_rounds=0x7f0b0005;
-        public static final int next_blinds=0x7f0b000e;
-        public static final int next_round=0x7f0b000d;
-        public static final int relativeLayout1=0x7f0b0019;
-        public static final int set_blind_ante=0x7f0b0008;
-        public static final int set_blind_bb=0x7f0b0007;
-        public static final int set_blind_break_checkbox=0x7f0b000b;
-        public static final int set_blind_minutes=0x7f0b0009;
-        public static final int set_blind_sb=0x7f0b0006;
-        public static final int set_blind_seconds=0x7f0b000a;
-        public static final int strut=0x7f0b001a;
-        public static final int this_round=0x7f0b0011;
-        public static final int time=0x7f0b0010;
+        public static final int about_email=0x7f060006;
+        public static final int about_header=0x7f060005;
+        public static final int ante=0x7f060013;
+        public static final int ante_layout=0x7f060012;
+        public static final int blinds=0x7f060011;
+        public static final int blinds_layout=0x7f06000e;
+        public static final int button_layout=0x7f060014;
+        public static final int button_next=0x7f060017;
+        public static final int button_play_pause=0x7f060016;
+        public static final int button_previous=0x7f060015;
+        public static final int donate=0x7f060007;
+        public static final int fling=0x7f060001;
+        public static final int frameLayout1=0x7f06000b;
+        public static final int game_name_edit=0x7f060008;
+        public static final int icon=0x7f060009;
+        public static final int label=0x7f06000a;
+        public static final int list=0x7f06001a;
+        public static final int menu_about=0x7f06001f;
+        public static final int menu_add=0x7f06001c;
+        public static final int menu_delete=0x7f06001d;
+        public static final int menu_edit=0x7f060020;
+        public static final int menu_ok=0x7f06001b;
+        public static final int menu_settings=0x7f06001e;
+        public static final int next_blinds=0x7f06000d;
+        public static final int next_round=0x7f06000c;
+        public static final int none=0x7f060000;
+        public static final int relativeLayout1=0x7f060018;
+        public static final int slide=0x7f060002;
+        public static final int slideLeft=0x7f060004;
+        public static final int slideRight=0x7f060003;
+        public static final int strut=0x7f060019;
+        public static final int this_round=0x7f060010;
+        public static final int time=0x7f06000f;
     }
     public static final class layout {
         public static final int about=0x7f030000;
-        public static final int add_game=0x7f030001;
-        public static final int blind_control=0x7f030002;
-        public static final int blind_row=0x7f030003;
-        public static final int countdown=0x7f030004;
-        public static final int games=0x7f030005;
-        public static final int main=0x7f030006;
+        public static final int blind_control=0x7f030001;
+        public static final int blind_row=0x7f030002;
+        public static final int countdown=0x7f030003;
+        public static final int games=0x7f030004;
+        public static final int main=0x7f030005;
+        public static final int row2=0x7f030006;
     }
     public static final class menu {
-        public static final int add_game=0x7f0a0000;
-        public static final int blind_control=0x7f0a0001;
-        public static final int games=0x7f0a0002;
-        public static final int games_actions=0x7f0a0003;
+        public static final int blind_control=0x7f0b0000;
+        public static final int games=0x7f0b0001;
+        public static final int games_actions=0x7f0b0002;
     }
     public static final class raw {
         public static final int sql=0x7f050000;
         public static final int sql_delete=0x7f050001;
     }
     public static final class string {
-        public static final int about=0x7f070004;
-        public static final int about_email_us=0x7f070016;
+        public static final int about=0x7f080004;
+        public static final int about_email_us=0x7f080016;
         /**  ABOUT_APP STRINGS 
          */
-        public static final int about_header=0x7f070015;
-        public static final int add_game=0x7f070002;
+        public static final int about_header=0x7f080015;
+        public static final int add_game=0x7f080002;
         /**  ADD_GAME STRINGS 
          */
-        public static final int add_game_title=0x7f07000d;
-        public static final int add_round=0x7f070014;
-        public static final int app_name=0x7f070000;
-        public static final int cancel=0x7f070008;
-        public static final int delete_rounds=0x7f070013;
-        public static final int enter_gamename=0x7f07000e;
-        public static final int enter_roundlength=0x7f070010;
-        public static final int enter_rounds_number=0x7f07000f;
-        public static final int menu_delete=0x7f070006;
-        public static final int menu_edit=0x7f070005;
-        public static final int modify_rounds=0x7f070012;
-        public static final int next=0x7f070011;
-        public static final int ok=0x7f070007;
+        public static final int add_game_title=0x7f08000d;
+        public static final int add_round=0x7f080014;
+        public static final int app_name=0x7f080000;
+        public static final int cancel=0x7f080008;
+        public static final int delete_rounds=0x7f080013;
+        public static final int enter_gamename=0x7f08000e;
+        public static final int enter_roundlength=0x7f080010;
+        public static final int enter_rounds_number=0x7f08000f;
+        public static final int menu_delete=0x7f080006;
+        public static final int menu_edit=0x7f080005;
+        public static final int modify_rounds=0x7f080012;
+        public static final int next=0x7f080011;
+        public static final int ok=0x7f080007;
         /**  MAIN MENU STRINGS 
          */
-        public static final int search=0x7f070001;
-        public static final int settings=0x7f070003;
-        public static final int time_of_backlight=0x7f07000c;
-        public static final int warn_1_minute=0x7f07000a;
+        public static final int search=0x7f080001;
+        public static final int settings=0x7f080003;
+        public static final int time_of_backlight=0x7f08000c;
+        public static final int warn_1_minute=0x7f08000a;
         /**  SETTINGS STRINGS 
          */
-        public static final int warn_before_round_ends=0x7f070009;
-        public static final int warn_on_round_ends=0x7f07000b;
+        public static final int warn_before_round_ends=0x7f080009;
+        public static final int warn_on_round_ends=0x7f08000b;
     }
     public static final class style {
         /** 
@@ -155,13 +201,114 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f090000;
+        public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
+        public static final int AppTheme=0x7f0a0001;
     }
     public static final class xml {
         public static final int preferences=0x7f040000;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a TouchListView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #TouchListView_dragndrop_background com.example.pokertimer:dragndrop_background}</code></td><td></td></tr>
+           <tr><td><code>{@link #TouchListView_expanded_height com.example.pokertimer:expanded_height}</code></td><td></td></tr>
+           <tr><td><code>{@link #TouchListView_grabber com.example.pokertimer:grabber}</code></td><td></td></tr>
+           <tr><td><code>{@link #TouchListView_normal_height com.example.pokertimer:normal_height}</code></td><td></td></tr>
+           <tr><td><code>{@link #TouchListView_remove_mode com.example.pokertimer:remove_mode}</code></td><td></td></tr>
+           </table>
+           @see #TouchListView_dragndrop_background
+           @see #TouchListView_expanded_height
+           @see #TouchListView_grabber
+           @see #TouchListView_normal_height
+           @see #TouchListView_remove_mode
+         */
+        public static final int[] TouchListView = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.example.pokertimer.R.attr#dragndrop_background}
+          attribute's value can be found in the {@link #TouchListView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:dragndrop_background
+        */
+        public static final int TouchListView_dragndrop_background = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.example.pokertimer.R.attr#expanded_height}
+          attribute's value can be found in the {@link #TouchListView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:expanded_height
+        */
+        public static final int TouchListView_expanded_height = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.example.pokertimer.R.attr#grabber}
+          attribute's value can be found in the {@link #TouchListView} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:grabber
+        */
+        public static final int TouchListView_grabber = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.example.pokertimer.R.attr#normal_height}
+          attribute's value can be found in the {@link #TouchListView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:normal_height
+        */
+        public static final int TouchListView_normal_height = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.example.pokertimer.R.attr#remove_mode}
+          attribute's value can be found in the {@link #TouchListView} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>-1</td><td></td></tr>
+<tr><td><code>fling</code></td><td>0</td><td></td></tr>
+<tr><td><code>slide</code></td><td>1</td><td></td></tr>
+<tr><td><code>slideRight</code></td><td>1</td><td></td></tr>
+<tr><td><code>slideLeft</code></td><td>2</td><td></td></tr>
+</table>
+          @attr name android:remove_mode
+        */
+        public static final int TouchListView_remove_mode = 4;
+    };
 }

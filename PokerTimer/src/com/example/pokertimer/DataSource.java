@@ -103,8 +103,8 @@ public class DataSource {
 	 * @param game 
 	 * @return
 	 */
-	public List<Round> getAllRounds(Game game){
-		List<Round> rounds = new ArrayList<Round>();
+	public ArrayList<Round> getAllRounds(Game game){
+		ArrayList<Round> rounds = new ArrayList<Round>();
 
 		Cursor cursor = database.query(DatabaseHelper.TABLE_ROUNDS, allColumnsRound, "_id_game = ?", new String[]{ Integer.toString((int) game.getId()) }, null, null, "number_of_round ASC");
 		
