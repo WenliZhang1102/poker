@@ -9,6 +9,7 @@ public class Round implements Serializable {
 	private int bb;
 	private int ante;
 	private int time;
+	private boolean is_new = false;
 	private boolean is_break = false;
 	  
 	public Round(){}
@@ -131,5 +132,20 @@ public class Round implements Serializable {
 	 */
 	public boolean isBreak(){
 		return is_break;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean isNew(){
+		return this.is_new;
+	}
+	/**
+	 * 
+	 * @param is_new
+	 */
+	public void setNew(boolean is_new){
+		this.is_new = is_new;
 	}
 }

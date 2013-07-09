@@ -22,6 +22,7 @@ import com.commonsware.cwac.tlv.TouchListView;
 
 public class EditGameActivity extends ListActivity implements AdapterView.OnItemClickListener {
 	
+	private static final int ACTIVITY_EDIT_ROUND = 3;
 	private Game game;
 	private ArrayList<Round> rounds = null;
 	
@@ -141,12 +142,16 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		int itemId = item.getItemId();
 		
 		if(itemId == android.R.id.home){
-				super.onBackPressed();
-	    		return true;
+			super.onBackPressed();
+	    	return true;
+	    	
 		}else if(itemId == R.id.menu_ok){
-		    	this.saveModifiedBlinds();
+		    this.saveModifiedBlinds();
+		    
+		}else if(itemId == R.id.menu_add){
+			startAddBlind();
 		}else{
-		    	return super.onOptionsItemSelected(item);
+		    return super.onOptionsItemSelected(item);
 	    }
 		
 		return true;
@@ -163,11 +168,52 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		finish();
 	}
 	
+	/**
+	 * Start add blind activity
+	 */
+	private void startAddBlind(){
+		Intent intent = new Intent(this, EditRoundActivity.class);
+		Round r = new Round();
+		Round lastRound = rounds.get(adapter.getCount()-1);
+		r.setTime(lastRound.getTime());
+		r.setSB(lastRound.getSB()*2);
+		r.setBB(lastRound.getBB()*2);
+		r.setAnte(lastRound.getAnte()*2);
+		r.setNumberOfRound(lastRound.getNumerOfRound()+1);
+		r.setNew(true);
+		intent.putExtra("Round", r);
+		startActivityForResult(intent, ACTIVITY_EDIT_ROUND);
+	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id){
 		Intent intent = new Intent(this, EditRoundActivity.class);
 		intent.putExtra("Round", rounds.get(position));
-		startActivity(intent);
+		startActivityForResult(intent, ACTIVITY_EDIT_ROUND);
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(requestCode) {
+			case (ACTIVITY_EDIT_ROUND) : {
+				if (resultCode == Activity.RESULT_OK) {
+					Round newRound = (Round) data.getSerializableExtra("Round");
+					if(newRound.isNew()){
+						newRound.setNew(false);
+						adapter.add(newRound);
+					}else{
+						Round r = adapter.getItem(newRound.getNumerOfRound()-1);
+						r.setSB(newRound.getSB());
+						r.setBB(newRound.getBB());
+						r.setAnte(newRound.getAnte());
+						r.setTime(newRound.getTime());
+						r.setBreak(newRound.isBreak());
+					}
+					adapter.notifyDataSetChanged();
+				}
+				break;
+			}
+		}
 	}
 }
