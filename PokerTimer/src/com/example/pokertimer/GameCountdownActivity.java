@@ -145,8 +145,10 @@ public class GameCountdownActivity extends Activity {
 	@Override
     public boolean onOptionsItemSelected(MenuItem menuItem)
     {       
-        startActivity(new Intent(GameCountdownActivity.this,GamesActivity.class)); 
-        return true;
+        //startActivity(new Intent(GameCountdownActivity.this,GamesActivity.class)); 
+       // return true;
+		super.onBackPressed();
+		return true;
     }
 	
 	/**

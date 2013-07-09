@@ -2,19 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     
  <item android:id="@+id/menu_ok"
-          android:icon="@drawable/tick48"
+          android:icon="@drawable/my_tick"
           android:title="@string/ok"
           android:showAsAction="always" />
- 
-
-   
+    
   <item android:id="@+id/menu_add"
-          android:icon="@drawable/ic_menu_add"
+          android:icon="@drawable/my_cross"
           android:title="@string/add_round"
           android:showAsAction="always" />
   
    <item android:id="@+id/menu_delete"
-          android:icon="@drawable/recycle_bin"
+          android:icon="@drawable/my_bin"
           android:title="@string/delete_rounds" 
           android:showAsAction="always"/>
 </menu>

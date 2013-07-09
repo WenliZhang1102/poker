@@ -2,6 +2,7 @@ package com.example.pokertimer;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -36,6 +37,9 @@ public class EditRoundActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.round_activity);
+        
+        ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
         
         textSBEdit = (EditText) findViewById(R.id.sb_edit);
         textBBEdit = (EditText) findViewById(R.id.bb_edit);
@@ -96,5 +100,28 @@ public class EditRoundActivity extends Activity {
 		round.setBreak(chckBreakEdit.isChecked());
 		resultIntent.putExtra("Round", round);
 		finish();
+	}
+	
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.edit_round, menu);
+	    return true;
+	}
+	
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+	
+	    		
+	    		int itemId = item.getItemId();
+	    		
+	    		if(itemId == android.R.id.home){
+	    				super.onBackPressed();
+	    	    		return true;
+	    		}else if(itemId == R.id.menu_round_ok){
+	    		    	this.saveModifiedBlind();
+	    		}
+	    		return true;
 	}
 }

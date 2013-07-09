@@ -9,7 +9,7 @@
         -->
     
      <item android:id="@+id/menu_add"
-          android:icon="@drawable/ic_menu_add"
+          android:icon="@drawable/my_cross"
           android:title="@string/add_game"
           android:showAsAction="ifRoom" />
      

@@ -24,8 +24,8 @@ public class SettingsActivity extends PreferenceActivity {
 	//When is back button in actionbar pressed
 	 public boolean onOptionsItemSelected(MenuItem menuItem)
 	    {       
-	        startActivity(new Intent(SettingsActivity.this,GamesActivity.class)); 
-	        return true;
+			 super.onBackPressed();
+	 		return true;
 	    }
 
     public static class MyPreferenceFragment extends PreferenceFragment

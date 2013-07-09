@@ -2,6 +2,7 @@ package com.example.pokertimer;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -49,6 +50,9 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		tlv.setDropListener(onDrop);
 		tlv.setRemoveListener(onRemove);
 		tlv.setOnItemClickListener(this);
+		
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
 	}
 	
 	private TouchListView.DropListener onDrop=new TouchListView.DropListener() {
@@ -137,6 +141,7 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		int itemId = item.getItemId();
 		
 		if(itemId == android.R.id.home){
+				super.onBackPressed();
 	    		return true;
 		}else if(itemId == R.id.menu_ok){
 		    	this.saveModifiedBlinds();
@@ -157,6 +162,7 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		resultIntent.putExtra("Game", game);
 		finish();
 	}
+	
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id){

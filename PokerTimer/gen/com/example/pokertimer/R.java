@@ -87,11 +87,14 @@ containing a value of this type.
         public static final int ic_menu_preferences=0x7f02000c;
         public static final int ic_menu_save=0x7f02000d;
         public static final int ic_menu_search=0x7f02000e;
-        public static final int pause=0x7f02000f;
-        public static final int play=0x7f020010;
-        public static final int recycle_bin=0x7f020011;
-        public static final int settings=0x7f020012;
-        public static final int tick48=0x7f020013;
+        public static final int my_bin=0x7f02000f;
+        public static final int my_cross=0x7f020010;
+        public static final int my_tick=0x7f020011;
+        public static final int pause=0x7f020012;
+        public static final int play=0x7f020013;
+        public static final int recycle_bin=0x7f020014;
+        public static final int settings=0x7f020015;
+        public static final int tick48=0x7f020016;
     }
     public static final class id {
         public static final int about_email=0x7f060006;
@@ -114,14 +117,15 @@ containing a value of this type.
         public static final int icon=0x7f060009;
         public static final int label=0x7f06000a;
         public static final int list=0x7f06001a;
-        public static final int menu_about=0x7f060024;
+        public static final int menu_about=0x7f060025;
         public static final int menu_add=0x7f060021;
-        public static final int menu_context_delete=0x7f060027;
-        public static final int menu_context_edit=0x7f060026;
+        public static final int menu_context_delete=0x7f060028;
+        public static final int menu_context_edit=0x7f060027;
         public static final int menu_delete=0x7f060022;
-        public static final int menu_edit=0x7f060025;
+        public static final int menu_edit=0x7f060026;
         public static final int menu_ok=0x7f060020;
-        public static final int menu_settings=0x7f060023;
+        public static final int menu_round_ok=0x7f060023;
+        public static final int menu_settings=0x7f060024;
         public static final int next_blinds=0x7f06000d;
         public static final int next_round=0x7f06000c;
         public static final int none=0x7f060000;
@@ -147,10 +151,11 @@ containing a value of this type.
     }
     public static final class menu {
         public static final int blind_control=0x7f0b0000;
-        public static final int games=0x7f0b0001;
-        public static final int games_actions=0x7f0b0002;
-        public static final int games_context=0x7f0b0003;
-        public static final int round_activity=0x7f0b0004;
+        public static final int edit_round=0x7f0b0001;
+        public static final int games=0x7f0b0002;
+        public static final int games_actions=0x7f0b0003;
+        public static final int games_context=0x7f0b0004;
+        public static final int round_activity=0x7f0b0005;
     }
     public static final class raw {
         public static final int sql=0x7f050000;
