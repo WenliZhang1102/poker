@@ -46,6 +46,8 @@ int id label 0x7f06000a
 int id list 0x7f06001a
 int id menu_about 0x7f06001f
 int id menu_add 0x7f06001c
+int id menu_context_delete 0x7f060022
+int id menu_context_edit 0x7f060021
 int id menu_delete 0x7f06001d
 int id menu_edit 0x7f060020
 int id menu_ok 0x7f06001b
@@ -70,6 +72,7 @@ int layout row2 0x7f030006
 int menu blind_control 0x7f0b0000
 int menu games 0x7f0b0001
 int menu games_actions 0x7f0b0002
+int menu games_context 0x7f0b0003
 int raw sql 0x7f050000
 int raw sql_delete 0x7f050001
 int string about 0x7f080004

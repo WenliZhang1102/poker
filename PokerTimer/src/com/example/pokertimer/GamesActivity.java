@@ -112,7 +112,11 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
         int itemId = item.getItemId();
         
         if(itemId == R.id.menu_edit){
-
+        	Intent intent = new Intent(this, EditGameActivity.class);
+        	Game g = games.get(info.position);
+        	g.setRounds(datasource.getAllRounds(g));
+            intent.putExtra("Game", g);
+    		startActivityForResult(intent, ACTIVITY_EDIT_GAME);
         }else if(itemId == R.id.menu_delete){
             datasource.deleteGame(games.get(info.position));
             adapter.remove(games.get(info.position));
@@ -210,8 +214,28 @@ public class GamesActivity extends ListActivity implements AdapterView.OnItemCli
 			case (ACTIVITY_EDIT_GAME) : {
 				if (resultCode == Activity.RESULT_OK) {
 					Game newGame = (Game) data.getSerializableExtra("Game");
-					Game g = datasource.createGame(newGame);
-				    adapter.add(g);
+					
+					if(newGame.getId() == -1){
+						Game g = datasource.createGame(newGame);
+					    adapter.add(g);
+					}else{
+						
+						// find item in adapter
+						for(int i = 0; i < adapter.getCount(); i++){
+							Game g = adapter.getItem(i);
+							if(g.getId() == newGame.getId()){
+								
+								// save edited data
+								datasource.updateGame(newGame);
+								
+								// refresh info
+								g.setName(newGame.getName());
+								g.setRounds(datasource.getAllRounds(newGame));
+								adapter.notifyDataSetChanged();
+								break;
+							}
+						}
+					}
 				}
 				break;
 			}

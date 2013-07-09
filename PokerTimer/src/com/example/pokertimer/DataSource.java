@@ -51,7 +51,13 @@ public class DataSource {
 	    Game newGame = cursorToGame(cursor);
 	    cursor.close();
 	    
-	    // save blinds
+	    saveBlinds(game, insertId);
+	    
+	    return newGame;
+	}
+	
+	public void saveBlinds(Game game, long insertId){
+		ContentValues values = new ContentValues();
 	    List<Round> rounds = game.getRounds();
 	    for(Round round : rounds){
 	    	values.clear();
@@ -66,8 +72,22 @@ public class DataSource {
 	    	values.put(DatabaseHelper.COLUMN_BREAK, round.isBreak() ? 1 : 0);
 	    	database.insert(DatabaseHelper.TABLE_ROUNDS, null, values);
 	    }
-	    
-	    return newGame;
+	}
+	
+	public void updateGame(Game game){
+		this.open();
+		
+		long game_id;
+		game_id = game.getId();
+		ContentValues values = new ContentValues();
+		values.put(DatabaseHelper.COLUMN_GAMENAME, game.getName());
+		database.update(DatabaseHelper.TABLE_GAMES, values, DatabaseHelper.COLUMN_ID + "=" + game_id, null);
+		
+		// delete blinds
+		deleteBlinds(game_id);
+		
+		// save blinds
+		saveBlinds(game, game_id);
 	}
 
 	/**
@@ -76,8 +96,12 @@ public class DataSource {
 	 */
 	public void deleteGame(Game game) {
 		long id = game.getId();
-		database.delete(DatabaseHelper.TABLE_ROUNDS, DatabaseHelper.COLUMN_ID_GAME + " = " + id, null);
+		deleteBlinds(id);
 		database.delete(DatabaseHelper.TABLE_GAMES, DatabaseHelper.COLUMN_ID + " = " + id, null);
+	}
+	
+	public void deleteBlinds(long game_id){
+		database.delete(DatabaseHelper.TABLE_ROUNDS, DatabaseHelper.COLUMN_ID_GAME + " = " + game_id, null);
 	}
 
 	/**

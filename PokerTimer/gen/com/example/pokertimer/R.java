@@ -9,8 +9,8 @@ package com.example.pokertimer;
 
 public final class R {
     public static final class array {
-        public static int backlight_time_list=0x7f090000;
-        public static int backlight_time_list_values=0x7f090001;
+        public static final int backlight_time_list=0x7f090000;
+        public static final int backlight_time_list_values=0x7f090001;
     }
     public static final class attr {
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
@@ -21,7 +21,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int dragndrop_background=0x7f010003;
+        public static final int dragndrop_background=0x7f010003;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -31,11 +31,11 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int expanded_height=0x7f010001;
+        public static final int expanded_height=0x7f010001;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static int grabber=0x7f010002;
+        public static final int grabber=0x7f010002;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -45,7 +45,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int normal_height=0x7f010000;
+        public static final int normal_height=0x7f010000;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -59,7 +59,7 @@ containing a value of this type.
 <tr><td><code>slideLeft</code></td><td>2</td><td></td></tr>
 </table>
          */
-        public static int remove_mode=0x7f010004;
+        public static final int remove_mode=0x7f010004;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -68,116 +68,119 @@ containing a value of this type.
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static int activity_horizontal_margin=0x7f070000;
-        public static int activity_vertical_margin=0x7f070001;
+        public static final int activity_horizontal_margin=0x7f070000;
+        public static final int activity_vertical_margin=0x7f070001;
     }
     public static final class drawable {
-        public static int abs__ic_ab_back_holo_light=0x7f020000;
-        public static int back=0x7f020001;
-        public static int check_mark=0x7f020002;
-        public static int donate=0x7f020003;
-        public static int forward=0x7f020004;
-        public static int grabber=0x7f020005;
-        public static int ic_launcher=0x7f020006;
-        public static int ic_menu_add=0x7f020007;
-        public static int ic_menu_close_clear_cancel=0x7f020008;
-        public static int ic_menu_help=0x7f020009;
-        public static int ic_menu_menu=0x7f02000a;
-        public static int ic_menu_overflow_dark=0x7f02000b;
-        public static int ic_menu_preferences=0x7f02000c;
-        public static int ic_menu_save=0x7f02000d;
-        public static int ic_menu_search=0x7f02000e;
-        public static int pause=0x7f02000f;
-        public static int play=0x7f020010;
-        public static int recycle_bin=0x7f020011;
-        public static int settings=0x7f020012;
-        public static int tick48=0x7f020013;
+        public static final int abs__ic_ab_back_holo_light=0x7f020000;
+        public static final int back=0x7f020001;
+        public static final int check_mark=0x7f020002;
+        public static final int donate=0x7f020003;
+        public static final int forward=0x7f020004;
+        public static final int grabber=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int ic_menu_add=0x7f020007;
+        public static final int ic_menu_close_clear_cancel=0x7f020008;
+        public static final int ic_menu_help=0x7f020009;
+        public static final int ic_menu_menu=0x7f02000a;
+        public static final int ic_menu_overflow_dark=0x7f02000b;
+        public static final int ic_menu_preferences=0x7f02000c;
+        public static final int ic_menu_save=0x7f02000d;
+        public static final int ic_menu_search=0x7f02000e;
+        public static final int pause=0x7f02000f;
+        public static final int play=0x7f020010;
+        public static final int recycle_bin=0x7f020011;
+        public static final int settings=0x7f020012;
+        public static final int tick48=0x7f020013;
     }
     public static final class id {
-        public static int about_email=0x7f060006;
-        public static int about_header=0x7f060005;
-        public static int ante=0x7f060013;
-        public static int ante_layout=0x7f060012;
-        public static int blinds=0x7f060011;
-        public static int blinds_layout=0x7f06000e;
-        public static int button_layout=0x7f060014;
-        public static int button_next=0x7f060017;
-        public static int button_play_pause=0x7f060016;
-        public static int button_previous=0x7f060015;
-        public static int donate=0x7f060007;
-        public static int fling=0x7f060001;
-        public static int frameLayout1=0x7f06000b;
-        public static int game_name_edit=0x7f060008;
-        public static int icon=0x7f060009;
-        public static int label=0x7f06000a;
-        public static int list=0x7f06001a;
-        public static int menu_about=0x7f06001f;
-        public static int menu_add=0x7f06001c;
-        public static int menu_delete=0x7f06001d;
-        public static int menu_edit=0x7f060020;
-        public static int menu_ok=0x7f06001b;
-        public static int menu_settings=0x7f06001e;
-        public static int next_blinds=0x7f06000d;
-        public static int next_round=0x7f06000c;
-        public static int none=0x7f060000;
-        public static int relativeLayout1=0x7f060018;
-        public static int slide=0x7f060002;
-        public static int slideLeft=0x7f060004;
-        public static int slideRight=0x7f060003;
-        public static int strut=0x7f060019;
-        public static int this_round=0x7f060010;
-        public static int time=0x7f06000f;
+        public static final int about_email=0x7f060006;
+        public static final int about_header=0x7f060005;
+        public static final int ante=0x7f060013;
+        public static final int ante_layout=0x7f060012;
+        public static final int blinds=0x7f060011;
+        public static final int blinds_layout=0x7f06000e;
+        public static final int button_layout=0x7f060014;
+        public static final int button_next=0x7f060017;
+        public static final int button_play_pause=0x7f060016;
+        public static final int button_previous=0x7f060015;
+        public static final int donate=0x7f060007;
+        public static final int fling=0x7f060001;
+        public static final int frameLayout1=0x7f06000b;
+        public static final int game_name_edit=0x7f060008;
+        public static final int icon=0x7f060009;
+        public static final int label=0x7f06000a;
+        public static final int list=0x7f06001a;
+        public static final int menu_about=0x7f06001f;
+        public static final int menu_add=0x7f06001c;
+        public static final int menu_context_delete=0x7f060022;
+        public static final int menu_context_edit=0x7f060021;
+        public static final int menu_delete=0x7f06001d;
+        public static final int menu_edit=0x7f060020;
+        public static final int menu_ok=0x7f06001b;
+        public static final int menu_settings=0x7f06001e;
+        public static final int next_blinds=0x7f06000d;
+        public static final int next_round=0x7f06000c;
+        public static final int none=0x7f060000;
+        public static final int relativeLayout1=0x7f060018;
+        public static final int slide=0x7f060002;
+        public static final int slideLeft=0x7f060004;
+        public static final int slideRight=0x7f060003;
+        public static final int strut=0x7f060019;
+        public static final int this_round=0x7f060010;
+        public static final int time=0x7f06000f;
     }
     public static final class layout {
-        public static int about=0x7f030000;
-        public static int blind_control=0x7f030001;
-        public static int blind_row=0x7f030002;
-        public static int countdown=0x7f030003;
-        public static int games=0x7f030004;
-        public static int main=0x7f030005;
-        public static int row2=0x7f030006;
+        public static final int about=0x7f030000;
+        public static final int blind_control=0x7f030001;
+        public static final int blind_row=0x7f030002;
+        public static final int countdown=0x7f030003;
+        public static final int games=0x7f030004;
+        public static final int main=0x7f030005;
+        public static final int row2=0x7f030006;
     }
     public static final class menu {
-        public static int blind_control=0x7f0b0000;
-        public static int games=0x7f0b0001;
-        public static int games_actions=0x7f0b0002;
+        public static final int blind_control=0x7f0b0000;
+        public static final int games=0x7f0b0001;
+        public static final int games_actions=0x7f0b0002;
+        public static final int games_context=0x7f0b0003;
     }
     public static final class raw {
-        public static int sql=0x7f050000;
-        public static int sql_delete=0x7f050001;
+        public static final int sql=0x7f050000;
+        public static final int sql_delete=0x7f050001;
     }
     public static final class string {
-        public static int about=0x7f080004;
-        public static int about_email_us=0x7f080016;
+        public static final int about=0x7f080004;
+        public static final int about_email_us=0x7f080016;
         /**  ABOUT_APP STRINGS 
          */
-        public static int about_header=0x7f080015;
-        public static int add_game=0x7f080002;
+        public static final int about_header=0x7f080015;
+        public static final int add_game=0x7f080002;
         /**  ADD_GAME STRINGS 
          */
-        public static int add_game_title=0x7f08000d;
-        public static int add_round=0x7f080014;
-        public static int app_name=0x7f080000;
-        public static int cancel=0x7f080008;
-        public static int delete_rounds=0x7f080013;
-        public static int enter_gamename=0x7f08000e;
-        public static int enter_roundlength=0x7f080010;
-        public static int enter_rounds_number=0x7f08000f;
-        public static int menu_delete=0x7f080006;
-        public static int menu_edit=0x7f080005;
-        public static int modify_rounds=0x7f080012;
-        public static int next=0x7f080011;
-        public static int ok=0x7f080007;
+        public static final int add_game_title=0x7f08000d;
+        public static final int add_round=0x7f080014;
+        public static final int app_name=0x7f080000;
+        public static final int cancel=0x7f080008;
+        public static final int delete_rounds=0x7f080013;
+        public static final int enter_gamename=0x7f08000e;
+        public static final int enter_roundlength=0x7f080010;
+        public static final int enter_rounds_number=0x7f08000f;
+        public static final int menu_delete=0x7f080006;
+        public static final int menu_edit=0x7f080005;
+        public static final int modify_rounds=0x7f080012;
+        public static final int next=0x7f080011;
+        public static final int ok=0x7f080007;
         /**  MAIN MENU STRINGS 
          */
-        public static int search=0x7f080001;
-        public static int settings=0x7f080003;
-        public static int time_of_backlight=0x7f08000c;
-        public static int warn_1_minute=0x7f08000a;
+        public static final int search=0x7f080001;
+        public static final int settings=0x7f080003;
+        public static final int time_of_backlight=0x7f08000c;
+        public static final int warn_1_minute=0x7f08000a;
         /**  SETTINGS STRINGS 
          */
-        public static int warn_before_round_ends=0x7f080009;
-        public static int warn_on_round_ends=0x7f08000b;
+        public static final int warn_before_round_ends=0x7f080009;
+        public static final int warn_on_round_ends=0x7f08000b;
     }
     public static final class style {
         /** 
@@ -201,14 +204,14 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static int AppBaseTheme=0x7f0a0000;
+        public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static int AppTheme=0x7f0a0001;
+        public static final int AppTheme=0x7f0a0001;
     }
     public static final class xml {
-        public static int preferences=0x7f040000;
+        public static final int preferences=0x7f040000;
     }
     public static final class styleable {
         /** Attributes that can be used with a TouchListView.
