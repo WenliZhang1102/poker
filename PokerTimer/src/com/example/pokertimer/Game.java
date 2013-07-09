@@ -7,7 +7,7 @@ import java.util.List;
 public class Game implements Serializable{
 	private static final long serialVersionUID = -6553576877034389434L;
 	private long id = -1;
-	private String name;
+	private String name = "";
 	private ArrayList<Round> rounds;
 
 	public long getId() {

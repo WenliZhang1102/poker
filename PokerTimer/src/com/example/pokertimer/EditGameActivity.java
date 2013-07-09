@@ -37,9 +37,9 @@ public class EditGameActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.blind_control);
 
-        processIntent();
-        
         textGameName = (EditText) findViewById(R.id.game_name_edit);
+        
+        processIntent();
         
         TouchListView tlv=(TouchListView)getListView();
 		adapter=new IconicAdapter();
@@ -118,6 +118,8 @@ public class EditGameActivity extends ListActivity {
 		for(Round r : this.rounds){
 			array.add(r.toString());
 		}
+		
+		textGameName.setText(this.game.getName()+"");
 	}
 	
 	@Override
