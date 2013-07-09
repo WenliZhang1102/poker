@@ -12,13 +12,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.commonsware.cwac.tlv.TouchListView;
 
-public class EditGameActivity extends ListActivity {
+public class EditGameActivity extends ListActivity implements AdapterView.OnItemClickListener {
 	
 	private Game game;
 	private ArrayList<Round> rounds = null;
@@ -47,6 +48,7 @@ public class EditGameActivity extends ListActivity {
 		
 		tlv.setDropListener(onDrop);
 		tlv.setRemoveListener(onRemove);
+		tlv.setOnItemClickListener(this);
 	}
 	
 	private TouchListView.DropListener onDrop=new TouchListView.DropListener() {
@@ -154,5 +156,12 @@ public class EditGameActivity extends ListActivity {
 		game.setName(textGameName.getText().toString());
 		resultIntent.putExtra("Game", game);
 		finish();
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View v, int position, long id){
+		Intent intent = new Intent(this, EditRoundActivity.class);
+		intent.putExtra("Round", rounds.get(position));
+		startActivity(intent);
 	}
 }

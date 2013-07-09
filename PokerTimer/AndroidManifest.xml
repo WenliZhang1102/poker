@@ -24,6 +24,7 @@
         </activity>
         
         <activity android:name="SettingsActivity"/>
+        <activity android:name="EditRoundActivity"/>
         <activity android:name="EditGameActivity"/>
         <activity android:name="GameCountdownActivity"/>
         <activity android:name="AboutActivity"/>

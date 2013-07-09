@@ -97,9 +97,12 @@ containing a value of this type.
         public static final int about_email=0x7f060006;
         public static final int about_header=0x7f060005;
         public static final int ante=0x7f060013;
+        public static final int ante_edit=0x7f06001d;
         public static final int ante_layout=0x7f060012;
+        public static final int bb_edit=0x7f06001e;
         public static final int blinds=0x7f060011;
         public static final int blinds_layout=0x7f06000e;
+        public static final int break_edit=0x7f06001b;
         public static final int button_layout=0x7f060014;
         public static final int button_next=0x7f060017;
         public static final int button_play_pause=0x7f060016;
@@ -111,24 +114,26 @@ containing a value of this type.
         public static final int icon=0x7f060009;
         public static final int label=0x7f06000a;
         public static final int list=0x7f06001a;
-        public static final int menu_about=0x7f06001f;
-        public static final int menu_add=0x7f06001c;
-        public static final int menu_context_delete=0x7f060022;
-        public static final int menu_context_edit=0x7f060021;
-        public static final int menu_delete=0x7f06001d;
-        public static final int menu_edit=0x7f060020;
-        public static final int menu_ok=0x7f06001b;
-        public static final int menu_settings=0x7f06001e;
+        public static final int menu_about=0x7f060024;
+        public static final int menu_add=0x7f060021;
+        public static final int menu_context_delete=0x7f060027;
+        public static final int menu_context_edit=0x7f060026;
+        public static final int menu_delete=0x7f060022;
+        public static final int menu_edit=0x7f060025;
+        public static final int menu_ok=0x7f060020;
+        public static final int menu_settings=0x7f060023;
         public static final int next_blinds=0x7f06000d;
         public static final int next_round=0x7f06000c;
         public static final int none=0x7f060000;
         public static final int relativeLayout1=0x7f060018;
+        public static final int sb_edit=0x7f06001c;
         public static final int slide=0x7f060002;
         public static final int slideLeft=0x7f060004;
         public static final int slideRight=0x7f060003;
         public static final int strut=0x7f060019;
         public static final int this_round=0x7f060010;
         public static final int time=0x7f06000f;
+        public static final int time_show=0x7f06001f;
     }
     public static final class layout {
         public static final int about=0x7f030000;
@@ -137,13 +142,15 @@ containing a value of this type.
         public static final int countdown=0x7f030003;
         public static final int games=0x7f030004;
         public static final int main=0x7f030005;
-        public static final int row2=0x7f030006;
+        public static final int round_activity=0x7f030006;
+        public static final int row2=0x7f030007;
     }
     public static final class menu {
         public static final int blind_control=0x7f0b0000;
         public static final int games=0x7f0b0001;
         public static final int games_actions=0x7f0b0002;
         public static final int games_context=0x7f0b0003;
+        public static final int round_activity=0x7f0b0004;
     }
     public static final class raw {
         public static final int sql=0x7f050000;
