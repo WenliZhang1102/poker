@@ -23,7 +23,78 @@
 	    expanded_height="128dip"
 	    tlv:grabber="@+id/icon"
 	    tlv:normal_height="64dip"
-	    tlv:remove_mode="slideRight"
+	    
 	    android:drawSelectorOnTop="false" />
+	
+	
+	<TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_weight="1.0"
+        android:textSize="14sp"
+        android:text="borderless" />
+
+  
+    <View
+        android:id="@+id/horizontal_divider1"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+         android:layout_alignParentBottom="true"
+         android:layout_marginBottom="0sp"
+         android:visibility="invisible" />
+
+    <LinearLayout
+        android:id="@+id/button_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:visibility="invisible" >
+
+        <Button
+            android:id="@+id/button_cancel_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/borderless_background"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:text="Cancel"
+            android:onClick="cancel"
+            android:visibility="invisible" />
+
+        <View
+            android:id="@+id/vertical_divider"
+            android:layout_width="1dip"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_height="fill_parent"
+            android:background="@android:color/darker_gray"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/button_delete_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/borderless_background"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:text="Delete selected"
+            android:onClick="delete"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/horizontal_divider2"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" 
+        
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="48sp"
+        android:visibility="invisible" />
+	
 
 </RelativeLayout>
