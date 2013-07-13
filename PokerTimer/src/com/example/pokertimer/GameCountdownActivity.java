@@ -224,13 +224,13 @@ public class GameCountdownActivity extends Activity {
 	}
 	
 	private void setToPlay(){
-		buttonPlayPause.setBackgroundResource(R.drawable.pause);
+		buttonPlayPause.setBackgroundResource(R.drawable.pause_button);
 		is_paused = false;
 		startCountDown();
 	}
 	
 	private void setToStop(){
-		buttonPlayPause.setBackgroundResource(R.drawable.play);
+		buttonPlayPause.setBackgroundResource(R.drawable.play_button);
 		is_paused = true;
 		stopCountDown();
 	}

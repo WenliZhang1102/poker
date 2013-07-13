@@ -6,7 +6,11 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.commonsware.cwac.tlv.TouchListView;
 
@@ -28,6 +33,7 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	private IconicAdapter adapter=null;
 	
 	private Boolean delete_visibility = false;
+	private int stored_height;
 	
 	EditText textGameName;
 	
@@ -156,6 +162,40 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		findViewById(R.id.horizontal_divider2).setVisibility(View.INVISIBLE);
 		}
 	
+	private void enlargeListView(){
+		View view = findViewById(android.R.id.list);
+		android.view.ViewGroup.LayoutParams params = view.getLayoutParams();
+		params.height = this.stored_height;
+		view.setLayoutParams(params);
+		
+	}
+	private void scaleDownListView(){
+		View view = findViewById(android.R.id.list);
+		android.view.ViewGroup.LayoutParams params = view.getLayoutParams();
+		this.stored_height = params.height;
+		
+		Display display = getWindowManager().getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		int display_height = size.y;
+		
+		int height;
+		int [] coordinates = new int [2];
+		view.getLocationOnScreen(coordinates);
+		
+		
+		DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+		int pixels = (int)((50 * displayMetrics.density) + 0.5); //50 dp of margin - size of buttons
+		
+		height = display_height - (pixels + coordinates[1] + 3); //last magic number is margin value
+	
+		params.height = height;
+		view.setLayoutParams(params);
+
+		
+		
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
@@ -178,11 +218,13 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 			if(delete_visibility == true){
 		    	this.hideDeleteCheckbox();
 		    	this.hideDeleteButtons();
+		    	enlargeListView();
 		    	delete_visibility = false;
 			}
 			else{
 		    	this.showDeleteCheckbox();
 		    	this.showDeleteButtons();
+		    	scaleDownListView();
 		    	delete_visibility = true;
 			}
 
