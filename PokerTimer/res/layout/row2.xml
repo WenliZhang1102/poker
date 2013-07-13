@@ -9,7 +9,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="150sp"
+        android:layout_marginLeft="170sp"
         android:layout_marginTop="10sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
 		<TextView android:id="@+id/label"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
-        android:paddingLeft="50sp"
+        android:paddingLeft="70sp"
         android:layout_height="wrap_content"
         android:layout_alignWithParentIfMissing="true"
         
@@ -30,6 +30,24 @@
 				android:layout_centerVertical="true"
         android:ellipsize="marquee"
         android:singleLine="true"
+		/>
+		
+		<TextView android:id="@+id/round_number"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:paddingLeft="10sp"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="true"
+        
+         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20sp"
+     
+		android:layout_centerVertical="true"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text=""
 		/>
 		
 <CheckBox

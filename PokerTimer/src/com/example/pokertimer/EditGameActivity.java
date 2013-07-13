@@ -5,8 +5,11 @@ import java.util.Arrays;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Point;
+import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -15,11 +18,15 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.OrientationEventListener;
+import android.view.OrientationListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,8 +40,7 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	private IconicAdapter adapter=null;
 	
 	private Boolean delete_visibility = false;
-	private int stored_height;
-	
+
 	EditText textGameName;
 	
 	private ArrayList<String> array;
@@ -58,6 +64,8 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		tlv.setDropListener(onDrop);
 		tlv.setRemoveListener(onRemove);
 		tlv.setOnItemClickListener(this);
+		
+		
 		
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -136,12 +144,81 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		textGameName.setText(this.game.getName()+"");
 	}
 	
+	
+	/*private class myOrientationEventListener extends OrientationEventListener{
+		public myOrientationEventListener(Context context) {
+			super(context);
+			// TODO Auto-generated constructor stub
+		}
+
+		/*myOrientationEventListener(){
+			
+		}
+
+		@Override
+		public void onOrientationChanged(int arg0) {
+			// TODO Auto-generated method stub
+			redrawRoundNumber();
+		}
+		
+	}*/
+	
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+
+	    // Checks the orientation of the screen
+	    
+	    /*if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+	        Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+	    } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+	        Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+	    }*/
+	    
+	    if(delete_visibility == true)
+	    	scaleDownListView();
+	    
+	    redrawRoundNumber();
+
+	  }
+	
+	
+	private void redrawRoundNumber(){
+		ViewGroup round_list = (ViewGroup) findViewById(android.R.id.list);
+		int childCount = round_list.getChildCount();
+
+		for(int i = 0; i < childCount; i++){
+			View view = round_list.getChildAt(i);
+			TextView tv = (TextView) view.findViewById(R.id.round_number);
+			tv.setText(String.valueOf(i+1)+".");
+		}
+	}
+	
 	private void showDeleteCheckbox(){
-		findViewById(R.id.delete_checkbox).setVisibility(View.VISIBLE);
+		
+		//ViewGroup round_list = (ViewGroup) getLayoutInflater().inflate(android.R.id.list, null);
+		ViewGroup round_list = (ViewGroup) findViewById(android.R.id.list);
+		int childCount = round_list.getChildCount();
+
+		for(int i = 0; i < childCount; i++){
+			View view = round_list.getChildAt(i);
+			view.findViewById(R.id.delete_checkbox).setVisibility(View.VISIBLE);
+		}
+
+			
+		//findViewById(R.id.delete_checkbox).setVisibility(View.VISIBLE);
 	}
 	
 	private void hideDeleteCheckbox(){
-		findViewById(R.id.delete_checkbox).setVisibility(View.INVISIBLE);
+		
+		ViewGroup round_list = (ViewGroup) findViewById(android.R.id.list);
+		int childCount = round_list.getChildCount();
+
+		for(int i = 0; i < childCount; i++){
+			View view = round_list.getChildAt(i);
+			view.findViewById(R.id.delete_checkbox).setVisibility(View.INVISIBLE);
+		}
+		
+		//findViewById(R.id.delete_checkbox).setVisibility(View.INVISIBLE);
 	}
 	
 	private void showDeleteButtons(){
@@ -165,15 +242,15 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	private void enlargeListView(){
 		View view = findViewById(android.R.id.list);
 		android.view.ViewGroup.LayoutParams params = view.getLayoutParams();
-		params.height = this.stored_height;
+		params.height = LayoutParams.FILL_PARENT;
 		view.setLayoutParams(params);
 		
 	}
 	private void scaleDownListView(){
 		View view = findViewById(android.R.id.list);
 		android.view.ViewGroup.LayoutParams params = view.getLayoutParams();
-		this.stored_height = params.height;
-		
+		/*this.stored_height = params.height;
+		Toast.makeText(this, String.valueOf(params.height), Toast.LENGTH_SHORT).show();*/
 		Display display = getWindowManager().getDefaultDisplay();
 		Point size = new Point();
 		display.getSize(size);
@@ -192,14 +269,13 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		params.height = height;
 		view.setLayoutParams(params);
 
-		
-		
 	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.blind_control, menu);
+	    redrawRoundNumber();//not for menu, but did not work in onCreate
 	    return true;
 	}
 	
