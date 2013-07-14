@@ -72,6 +72,7 @@ public class GameCountdownActivity extends Activity {
 		
 		 mViewFlipper = (ViewFlipper) findViewById(R.id.view_flipper);
 	        mViewFlipper.setDisplayedChild(0);
+	        mViewFlipper.setAnimateFirstView(true);
 	        initAnimations();
 		
 		
@@ -224,11 +225,15 @@ public class GameCountdownActivity extends Activity {
 	                mViewFlipper.setInAnimation(mInFromRight);
 	                mViewFlipper.setOutAnimation(mOutToLeft);
 	                mViewFlipper.showNext();
+	                setNextRound();
+	    			setToStop();
 	            } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
 	                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
 	                mViewFlipper.setInAnimation(mInFromLeft);
 	                mViewFlipper.setOutAnimation(mOutToRight);
 	                mViewFlipper.showPrevious();
+	                setPreviousRound();
+	    			setToStop();
 	            }
 	            return super.onFling(e1, e2, velocityX, velocityY);
 	        }
