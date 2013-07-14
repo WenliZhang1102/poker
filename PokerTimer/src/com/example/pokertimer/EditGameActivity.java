@@ -57,6 +57,7 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		}
 	};
 	
+	
 	/**
 	 * Set Activity content
 	 */
@@ -78,7 +79,7 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		setTitle("New game");
+		setTitle("Edit game");
 	}
 	
 	/**

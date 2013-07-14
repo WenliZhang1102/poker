@@ -114,6 +114,16 @@ public class GameCountdownActivity extends Activity {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 	}
 	
+	@Override
+	public void onBackPressed() {
+		if(is_paused == true)
+			super.onBackPressed();
+		else
+			moveTaskToBack(true);
+		
+	}
+	
+	
 	private void setLandscape(){
 		
 		RelativeLayout.LayoutParams blinds_params = (RelativeLayout.LayoutParams)blinds_layout.getLayoutParams();
@@ -247,6 +257,8 @@ public class GameCountdownActivity extends Activity {
 		this.game = (Game) countdownIntent.getSerializableExtra("Game");
 		this.rounds = game.getRounds();
 	}
+	
+	
 	private void notifyNewRound(){
 		String text = new String();
 		String title = new String();
@@ -369,8 +381,18 @@ public class GameCountdownActivity extends Activity {
 	@Override
     public boolean onOptionsItemSelected(MenuItem menuItem)
     {
-		super.onBackPressed();
+		int itemId = menuItem.getItemId();
+		
+		if(itemId == android.R.id.home){
+			
+			if(is_paused == true)
+				super.onBackPressed();
+			else
+				moveTaskToBack(true);	
+		}
+		
 		return true;
+		
     }
 	
 	/**
