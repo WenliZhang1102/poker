@@ -168,20 +168,6 @@ public class GameCountdownActivity extends Activity {
 	        }
 	    }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/**
 	 * Gets info from intent
 	 */
@@ -201,14 +187,19 @@ public class GameCountdownActivity extends Activity {
 		
 		if(time != -1){
 			countDownTimer = new CountDownTimer((this.time+1)*1000, 1000) {
+				
+				@Override
 				public void onTick(long millisUntilFinished) {
 					time = time-1;
-					refreshTimeInfo();
+					if(time >= 0){
+						refreshTimeInfo();
+					}else{
+						setNextRound();
+					}
 				}
 				
 				@Override
 				public void onFinish() {
-					setNextRound();
 					startCountDown();
 				}
 			};
@@ -261,9 +252,7 @@ public class GameCountdownActivity extends Activity {
 	
 	@Override
     public boolean onOptionsItemSelected(MenuItem menuItem)
-    {       
-        //startActivity(new Intent(GameCountdownActivity.this,GamesActivity.class)); 
-       // return true;
+    {
 		super.onBackPressed();
 		return true;
     }
