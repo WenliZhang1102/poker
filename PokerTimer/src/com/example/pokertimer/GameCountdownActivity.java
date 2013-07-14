@@ -185,16 +185,25 @@ public class GameCountdownActivity extends Activity {
 		this.rounds = game.getRounds();
 	}
 	private void notifyNewRound(){
-		String ns = Context.NOTIFICATION_SERVICE;
-		NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
-
+		String text = new String();
+		String title = new String();
+		
+		if(next_round != null){
+			title = "Next round:";
+			text = "Blinds:  " + this.next_round.toString() + ",  Duration:  " 
+			        + String.format("%02d", next_round.getMinutes()) +":"
+			        + String.format("%02d", next_round.getSeconds());
+		}	
+		else{
+			title = "Game finished!";
+			text = "";
+		}
+		
 		NotificationCompat.Builder builder =  
 		        new NotificationCompat.Builder(this)  
 		        .setSmallIcon(R.drawable.forward)  
-		        .setContentTitle("Next round:")  
-		        .setContentText("Blinds:  " + this.next_round.toString() + ",  Duration:  " 
-		        + String.format("%02d", next_round.getMinutes()) +":"
-		        + String.format("%02d", next_round.getSeconds()));  
+		        .setContentTitle(title)  
+		        .setContentText(text);  
 
 
 		Intent notificationIntent = new Intent(this, GameCountdownActivity.class);  
