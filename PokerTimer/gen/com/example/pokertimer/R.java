@@ -201,6 +201,7 @@ containing a value of this type.
         public static final int app_name=0x7f080000;
         public static final int cancel=0x7f080008;
         public static final int delete_rounds=0x7f080013;
+        public static final int empty=0x7f080017;
         public static final int enter_gamename=0x7f08000e;
         public static final int enter_roundlength=0x7f080010;
         public static final int enter_rounds_number=0x7f08000f;

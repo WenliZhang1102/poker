@@ -122,6 +122,7 @@ int string add_round 0x7f080014
 int string app_name 0x7f080000
 int string cancel 0x7f080008
 int string delete_rounds 0x7f080013
+int string empty 0x7f080017
 int string enter_gamename 0x7f08000e
 int string enter_roundlength 0x7f080010
 int string enter_rounds_number 0x7f08000f

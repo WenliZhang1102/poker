@@ -36,6 +36,14 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	private IconicAdapter adapter=null;
 	
 	private Boolean delete_visibility = false;
+	
+	private OnClickListener removeError = new OnClickListener(){
+
+		@Override
+		public void onClick(View v) {
+			textGameName.setError(null);
+		}
+	};
 
 	EditText textGameName;
 	
@@ -320,11 +328,16 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	 * Send modified blinds back to the AddGameActivity
 	 */
 	private void saveModifiedBlinds(){
-		Intent resultIntent = new Intent();
-		setResult(Activity.RESULT_OK, resultIntent);
-		game.setName(textGameName.getText().toString());
-		resultIntent.putExtra("Game", game);
-		finish();
+		if(textGameName.getText().toString().equals("")){
+			textGameName.setError(getString(R.string.empty));
+			textGameName.setOnClickListener(removeError);
+		}else{
+			Intent resultIntent = new Intent();
+			setResult(Activity.RESULT_OK, resultIntent);
+			game.setName(textGameName.getText().toString());
+			resultIntent.putExtra("Game", game);
+			finish();
+		}
 	}
 	
 

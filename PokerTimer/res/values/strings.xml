@@ -64,11 +64,11 @@
 	    
 </string>
 
-	<string name="about_email_us"> If you know about any bug or you think that you have great improvement idea for us, you can send e-mail at: someadress@somedomain.com
+	<string name="about_email_us">If you know about any bug or you think that you have great improvement idea for us, you can send e-mail at: someadress@somedomain.com
 </string>
 		   
 	
-	
+	<string name="empty">This field cannot be empty.</string>
    
 	
 </resources>
