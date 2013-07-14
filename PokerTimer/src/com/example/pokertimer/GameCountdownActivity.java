@@ -9,6 +9,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.RingtoneManager;
@@ -25,6 +26,9 @@ import android.view.View.OnTouchListener;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.FrameLayout;
+import android.widget.FrameLayout.LayoutParams;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -39,6 +43,9 @@ public class GameCountdownActivity extends Activity {
 	private TextView textNextBlinds;
 	private TextView textTime;
 	private List<Round> rounds;
+	
+	private RelativeLayout blinds_layout;
+	private RelativeLayout ante_layout;
 	
 	private int time = -1; // stop timer
 	
@@ -74,7 +81,19 @@ public class GameCountdownActivity extends Activity {
 		textAnte = (TextView) findViewById(R.id.ante);
 		textNextBlinds = (TextView) findViewById(R.id.next_blinds);
 		textTime = (TextView) findViewById(R.id.time);
-		buttonPlayPause = findViewById(R.id.button_play_pause);;
+		buttonPlayPause = findViewById(R.id.button_play_pause);
+		
+		blinds_layout = (RelativeLayout) findViewById(R.id.blinds_layout);
+		ante_layout = (RelativeLayout) findViewById(R.id.ante_layout);
+		
+		//Landscape transformation inicialization
+		//SetLayoutParams();
+		
+		//if is landscape now, set this layout transformation. If not, let it be (portrait is default)
+		if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+			setLandscape();
+		//else
+			//setPortrait();
 		
 		// Set name of tournament
         setTitle(game.getName());
@@ -94,16 +113,55 @@ public class GameCountdownActivity extends Activity {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 	}
 	
-	/*public void onConfigurationChanged(Configuration newConfig) {
+	private void setLandscape(){
+		
+		RelativeLayout.LayoutParams blinds_params = (RelativeLayout.LayoutParams)blinds_layout.getLayoutParams();
+		//landscape transformations
+    	blinds_params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+    	blinds_params.addRule(RelativeLayout.LEFT_OF, R.id.strut);
+    	blinds_params.addRule(RelativeLayout.BELOW, R.id.time);
+    	
+    	RelativeLayout.LayoutParams ante_params = (RelativeLayout.LayoutParams)ante_layout.getLayoutParams();
+    	//landscape transformations
+    	ante_params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+    	ante_params.addRule(RelativeLayout.RIGHT_OF, R.id.strut);
+    	ante_params.addRule(RelativeLayout.BELOW, R.id.time);
+    	
+		
+    	this.blinds_layout.setLayoutParams(blinds_params);
+    	this.ante_layout.setLayoutParams(ante_params);
+		
+	}
+	
+	private void setPortrait(){
+		
+		RelativeLayout.LayoutParams blinds_params = (RelativeLayout.LayoutParams)blinds_layout.getLayoutParams();
+		//portrait transformations
+    	blinds_params.addRule(RelativeLayout.LEFT_OF, 0);
+    	blinds_params.addRule(RelativeLayout.BELOW, R.id.time);
+    	
+    	RelativeLayout.LayoutParams ante_params = (RelativeLayout.LayoutParams)ante_layout.getLayoutParams();
+    	//portrait transformations
+    	ante_params.addRule(RelativeLayout.RIGHT_OF, 0);
+    	ante_params.addRule(RelativeLayout.BELOW, R.id.blinds_layout);
+
+    	this.blinds_layout.setLayoutParams(blinds_params);
+    	this.ante_layout.setLayoutParams(ante_params);
+		
+	}
+	
+	
+	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-
-
-	    	setContentView(R.layout.countdown);
-
-
+		
+		 if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+			 setLandscape();
+	    } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+	    	setPortrait();
+	    }
 	  }
 	
-	*/
+	
 	
 	 private void initAnimations() {
 	        mInFromRight = new TranslateAnimation(Animation.RELATIVE_TO_PARENT,
