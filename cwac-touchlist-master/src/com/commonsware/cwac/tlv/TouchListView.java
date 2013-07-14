@@ -193,7 +193,8 @@ public class TouchListView extends ListView {
 	}
 	
 	protected boolean isDraggableRow(View view) {
-    return(view.findViewById(grabberId)!=null);
+		View grabber = view.findViewById(grabberId);
+		return(grabber != null && grabber.getVisibility() == View.VISIBLE);
 	}
 	
 	/*
