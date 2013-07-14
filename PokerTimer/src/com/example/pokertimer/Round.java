@@ -11,6 +11,7 @@ public class Round implements Serializable {
 	private int time;
 	private boolean is_new = false;
 	private boolean is_break = false;
+	private boolean for_delete = false; // for listView 
 	  
 	public Round(){}
 	  
@@ -147,5 +148,19 @@ public class Round implements Serializable {
 	 */
 	public void setNew(boolean is_new){
 		this.is_new = is_new;
+	}
+
+	/**
+	 * @return the for_delete
+	 */
+	public boolean isForDelete() {
+		return for_delete;
+	}
+
+	/**
+	 * @param for_delete the for_delete to set
+	 */
+	public void setForDelete(boolean for_delete) {
+		this.for_delete = for_delete;
 	}
 }

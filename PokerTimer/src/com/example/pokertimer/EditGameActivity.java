@@ -1,26 +1,21 @@
 package com.example.pokertimer;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Point;
-import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.OrientationEventListener;
-import android.view.OrientationListener;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,7 +23,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.commonsware.cwac.tlv.TouchListView;
 
@@ -45,6 +39,14 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	EditText textGameName;
 	
 	private ArrayList<String> array;
+	
+	private OnClickListener checkboxclick = new View.OnClickListener() {  
+		public void onClick(View v) {  
+			CheckBox checkbox = (CheckBox) v;
+			Round round = (Round) checkbox.getTag();  
+			round.setForDelete(checkbox.isChecked());  
+		}
+	};
 	
 	/**
 	 * Set Activity content
@@ -115,13 +117,27 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 				row = inflater.inflate(R.layout.row2, parent, false);
 			}
 			
+			Round round = rounds.get(position);
+			
 			// set round number
 			TextView round_number = (TextView)row.findViewById(R.id.round_number);
-			round_number.setText(rounds.get(position).getNumerOfRound() + ".");
+			round_number.setText(round.getNumerOfRound() + ".");
 			
 			// set round info
 			TextView label = (TextView)row.findViewById(R.id.label);
-			label.setText(rounds.get(position).toString());
+			label.setText(round.toString());
+			
+			// set checkbox
+			CheckBox checkbox = (CheckBox) row.findViewById(R.id.delete_checkbox);
+			
+			if(delete_visibility){
+				checkbox.setVisibility(View.VISIBLE);
+				checkbox.setChecked(round.isForDelete());
+			}else{
+				checkbox.setVisibility(View.INVISIBLE);
+			}
+			checkbox.setTag(round);
+			checkbox.setOnClickListener(checkboxclick);
 			
 			return(row);
 		}
@@ -146,57 +162,10 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-
-	    // Checks the orientation of the screen
-	    
-	    /*if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-	        Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
-	    } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-	        Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
-	    }*/
 	    
 	    if(delete_visibility == true)
 	    	scaleDownListView();
 	  }
-	
-	/**
-	 * Shows delete checkboxes
-	 */
-	private void showDeleteCheckbox(){
-		ViewGroup round_list = (ViewGroup) findViewById(android.R.id.list);
-		int childCount = round_list.getChildCount();
-
-		for(int i = 0; i < childCount; i++){
-			View view = round_list.getChildAt(i);
-			view.findViewById(R.id.delete_checkbox).setVisibility(View.VISIBLE);
-		}
-	}
-	
-	/**
-	 * Hides delete checkboxes
-	 * @param	boolean	Delete rounds with checked checkbox
-	 */
-	private void hideDeleteCheckbox(boolean delete){
-		ViewGroup round_list = (ViewGroup) findViewById(android.R.id.list);
-		round_list.invalidate();
-		int childCount = round_list.getChildCount();
-
-		int number = 0;
-		for(int i = 0; i < childCount; i++){
-			View view = round_list.getChildAt(i);
-			CheckBox checkbox = (CheckBox) view.findViewById(R.id.delete_checkbox);
-			
-			if(checkbox.isChecked() && delete == true){
-				adapter.remove(adapter.getItem(number));
-			}else{
-				adapter.getItem(number).setNumberOfRound(number + 1);
-				number++;
-			}
-			
-			checkbox.setVisibility(View.INVISIBLE);
-	        checkbox.setChecked(false);
-		}
-	}
 	
 	private void showDeleteButtons(){
 		findViewById(R.id.button_layout).setVisibility(View.VISIBLE);
@@ -238,7 +207,6 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	
 		params.height = height;
 		view.setLayoutParams(params);
-
 	}
 	
 	@Override
@@ -261,16 +229,16 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		    	
 		}else if(itemId == R.id.menu_delete){
 			if (delete_visibility == true) {
-		    	this.hideDeleteCheckbox(false);
 		    	this.hideDeleteButtons();
 		    	enlargeListView();
 		    	delete_visibility = false;
 			} else {
-				this.showDeleteCheckbox();
 		    	this.showDeleteButtons();
 		    	scaleDownListView();
 		    	delete_visibility = true;
 			}
+			
+			adapter.notifyDataSetChanged();
 			
 		// add new round
 		}else if(itemId == R.id.menu_add){
@@ -300,13 +268,29 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	}
 	
 	/**
+	 * Deletes checked rounds
+	 */
+	private void deleteCheckedRounds(){
+		int number = 1;
+		for(int i = 0; i < adapter.getCount(); i++){
+			Round r = adapter.getItem(i);
+			if(r.isForDelete() == true){
+				adapter.remove(r);
+			}else{
+				r.setNumberOfRound(number);
+				number++;
+			}
+		}
+	}
+	
+	/**
 	 * Delete items from adapter
 	 */
 	public void delete(View view){
-		this.hideDeleteCheckbox(true);
+		delete_visibility = false;
+		this.deleteCheckedRounds();
 		this.hideDeleteButtons();
 		adapter.notifyDataSetChanged();
-		delete_visibility = false;
 	}
 	
 	/**
@@ -314,9 +298,14 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	 * @param v
 	 */
 	public void cancel(View view){
-		this.hideDeleteCheckbox(false);
-		this.hideDeleteButtons();
 		delete_visibility = false;
+		this.hideDeleteButtons();
+		
+		for(int i = 0; i < adapter.getCount(); i++){
+			adapter.getItem(i).setForDelete(false);
+		}
+		
+		adapter.notifyDataSetChanged();
 	}
 	
 	/**
