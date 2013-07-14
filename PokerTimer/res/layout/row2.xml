@@ -4,17 +4,6 @@
     android:layout_height="64dip"
     android:gravity="center_vertical"
     android:ignoreGravity="@+id/icon">
-    
-    <ImageView android:id="@+id/icon"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="170sp"
-        android:layout_marginTop="10sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-				android:src="@drawable/grabber"
-		/>
 		<TextView android:id="@+id/label"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
@@ -59,10 +48,16 @@
 	        android:layout_alignParentTop="true"
 	        android:layout_alignParentBottom="true"
 	        android:layout_marginRight="20sp"
-	        android:layout_marginTop="10sp"
-	        android:text="Delete?"
-	        android:visibility="invisible"
+	        android:visibility="gone"
 	         />
-		
+
+<ImageView
+    android:id="@+id/icon"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:layout_marginRight="20sp"
+    android:src="@drawable/grabber" />
 
 </RelativeLayout>

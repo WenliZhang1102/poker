@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
@@ -44,7 +45,7 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		public void onClick(View v) {  
 			CheckBox checkbox = (CheckBox) v;
 			Round round = (Round) checkbox.getTag();  
-			round.setForDelete(checkbox.isChecked());  
+			round.setForDelete(checkbox.isChecked()); 
 		}
 	};
 	
@@ -130,12 +131,18 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 			// set checkbox
 			CheckBox checkbox = (CheckBox) row.findViewById(R.id.delete_checkbox);
 			
+			// image
+			ImageView icon = (ImageView) row.findViewById(R.id.icon);
+			
 			if(delete_visibility){
 				checkbox.setVisibility(View.VISIBLE);
+				icon.setVisibility(View.GONE);
 				checkbox.setChecked(round.isForDelete());
 			}else{
-				checkbox.setVisibility(View.INVISIBLE);
+				checkbox.setVisibility(View.GONE);
+				icon.setVisibility(View.VISIBLE);
 			}
+			
 			checkbox.setTag(round);
 			checkbox.setOnClickListener(checkboxclick);
 			
@@ -276,6 +283,7 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 			Round r = adapter.getItem(i);
 			if(r.isForDelete() == true){
 				adapter.remove(r);
+				i--;
 			}else{
 				r.setNumberOfRound(number);
 				number++;

@@ -2,7 +2,6 @@ package com.example.pokertimer;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Game implements Serializable{
 	private static final long serialVersionUID = -6553576877034389434L;

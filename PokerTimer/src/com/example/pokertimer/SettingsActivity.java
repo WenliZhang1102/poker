@@ -1,7 +1,6 @@
 package com.example.pokertimer;
 
 import android.app.ActionBar;
-import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
