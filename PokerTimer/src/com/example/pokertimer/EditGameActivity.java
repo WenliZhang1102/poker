@@ -69,6 +69,7 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		setTitle("New game");
 	}
 	
 	private TouchListView.DropListener onDrop=new TouchListView.DropListener() {
@@ -145,24 +146,6 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	}
 	
 	
-	/*private class myOrientationEventListener extends OrientationEventListener{
-		public myOrientationEventListener(Context context) {
-			super(context);
-			// TODO Auto-generated constructor stub
-		}
-
-		/*myOrientationEventListener(){
-			
-		}
-
-		@Override
-		public void onOrientationChanged(int arg0) {
-			// TODO Auto-generated method stub
-			redrawRoundNumber();
-		}
-		
-	}*/
-	
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 
@@ -215,28 +198,30 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 
 		for(int i = 0; i < childCount; i++){
 			View view = round_list.getChildAt(i);
-			view.findViewById(R.id.delete_checkbox).setVisibility(View.INVISIBLE);
+			CheckBox checkbox = (CheckBox) view.findViewById(R.id.delete_checkbox);
+			checkbox.setVisibility(View.INVISIBLE);
+	        checkbox.setChecked(false);
 		}
 		
 		//findViewById(R.id.delete_checkbox).setVisibility(View.INVISIBLE);
 	}
 	
 	private void showDeleteButtons(){
-		findViewById(R.id.horizontal_divider1).setVisibility(View.VISIBLE);
+	//	findViewById(R.id.horizontal_divider1).setVisibility(View.VISIBLE);
 		findViewById(R.id.button_layout).setVisibility(View.VISIBLE);
 		findViewById(R.id.button_delete_checkbox).setVisibility(View.VISIBLE);
 		findViewById(R.id.button_cancel_checkbox).setVisibility(View.VISIBLE);
-		findViewById(R.id.vertical_divider).setVisibility(View.VISIBLE);
-		findViewById(R.id.horizontal_divider2).setVisibility(View.VISIBLE);
+	//	findViewById(R.id.vertical_divider).setVisibility(View.VISIBLE);
+	//	findViewById(R.id.horizontal_divider2).setVisibility(View.VISIBLE);
 	}
 	
 	private void hideDeleteButtons(){
-		findViewById(R.id.horizontal_divider1).setVisibility(View.INVISIBLE);
+	//	findViewById(R.id.horizontal_divider1).setVisibility(View.INVISIBLE);
 		findViewById(R.id.button_layout).setVisibility(View.INVISIBLE);
 		findViewById(R.id.button_delete_checkbox).setVisibility(View.INVISIBLE);
 		findViewById(R.id.button_cancel_checkbox).setVisibility(View.INVISIBLE);
-		findViewById(R.id.vertical_divider).setVisibility(View.INVISIBLE);
-		findViewById(R.id.horizontal_divider2).setVisibility(View.INVISIBLE);
+//		findViewById(R.id.vertical_divider).setVisibility(View.INVISIBLE);
+	//	findViewById(R.id.horizontal_divider2).setVisibility(View.INVISIBLE);
 		}
 	
 	private void enlargeListView(){

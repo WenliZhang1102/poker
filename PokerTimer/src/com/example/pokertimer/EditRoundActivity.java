@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.NumberPicker;
+import android.widget.TimePicker;
 
 public class EditRoundActivity extends Activity {
 	
@@ -17,8 +19,12 @@ public class EditRoundActivity extends Activity {
 	EditText textSBEdit;
 	EditText textBBEdit;
 	EditText textAnteEdit;
-	EditText textTimeShow;
+	//EditText textTimeShow;
 	CheckBox chckBreakEdit;
+	NumberPicker numberPickerMinutes;
+    NumberPicker numberPickerSeconds;
+	
+	 ActionBar actionBar;
 	
 	/**
 	 * Set Activity content
@@ -28,15 +34,17 @@ public class EditRoundActivity extends Activity {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.round_activity);
         
-        ActionBar actionBar = getActionBar();
+        actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
         
         textSBEdit = (EditText) findViewById(R.id.sb_edit);
         textBBEdit = (EditText) findViewById(R.id.bb_edit);
         textAnteEdit = (EditText) findViewById(R.id.ante_edit);
-        textTimeShow = (EditText) findViewById(R.id.time_show);
+        //textTimeShow = (EditText) findViewById(R.id.time_show);
         chckBreakEdit = (CheckBox) findViewById(R.id.break_edit);
-
+        numberPickerMinutes = (NumberPicker) findViewById(R.id.number_picker_minutes);
+        numberPickerSeconds = (NumberPicker) findViewById(R.id.number_picker_seconds);
+        
         processIntent();
 	}
 	
@@ -49,9 +57,20 @@ public class EditRoundActivity extends Activity {
 		textSBEdit.setText(this.round.getSB()+"");
 		textBBEdit.setText(this.round.getBB()+"");
 		textAnteEdit.setText(this.round.getAnte()+"");
-		textTimeShow.setText(this.round.getTime()+"");
+		//textTimeShow.setText(this.round.getTime()+"");
 		chckBreakEdit.setChecked(this.round.isBreak());
 		checkControls(this.round.isBreak());
+		
+		numberPickerMinutes.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+		numberPickerSeconds.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+		numberPickerMinutes.setMaxValue(120);
+		numberPickerSeconds.setMaxValue(59);
+		numberPickerMinutes.setMinValue(0);
+		numberPickerSeconds.setMinValue(0);
+		numberPickerMinutes.setValue(this.round.getTime() /60);
+		numberPickerSeconds.setValue(this.round.getTime() %60);
+		
+		actionBar.setTitle(String.valueOf(this.round.getNumerOfRound())+". round");
 	}
 	
 	public void onCheckboxClicked(View view) {
@@ -86,7 +105,7 @@ public class EditRoundActivity extends Activity {
 		round.setSB(Integer.parseInt(textSBEdit.getText().toString()));
 		round.setBB(Integer.parseInt(textBBEdit.getText().toString()));
 		round.setAnte(Integer.parseInt(textAnteEdit.getText().toString()));
-		round.setTime(Integer.parseInt(textTimeShow.getText().toString()));
+		round.setTime(numberPickerMinutes.getValue()*60 + numberPickerSeconds.getValue());
 		round.setBreak(chckBreakEdit.isChecked());
 		resultIntent.putExtra("Round", round);
 		finish();

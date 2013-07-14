@@ -30,8 +30,17 @@
         <activity android:name="EditGameActivity"
           android:configChanges="orientation|screenSize"
           android:label="@string/app_name"/>
-        <activity android:name="GameCountdownActivity"/>
+
+         <activity android:name="GameCountdownActivity"
+          android:configChanges="orientation|screenSize"
+          android:label="@string/app_name"/>
+         
         <activity android:name="AboutActivity"/>
     </application>
+<supports-screens android:resizeable="true"
+                      android:smallScreens="true" 
+                      android:normalScreens="true" 
+                      android:largeScreens="true"
 
+                      android:anyDensity="true" />
 </manifest>
