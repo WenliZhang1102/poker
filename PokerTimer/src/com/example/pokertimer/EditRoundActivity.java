@@ -19,7 +19,6 @@ public class EditRoundActivity extends Activity {
 	EditText textSBEdit;
 	EditText textBBEdit;
 	EditText textAnteEdit;
-	//EditText textTimeShow;
 	CheckBox chckBreakEdit;
 	NumberPicker numberPickerMinutes;
     NumberPicker numberPickerSeconds;
@@ -40,7 +39,6 @@ public class EditRoundActivity extends Activity {
         textSBEdit = (EditText) findViewById(R.id.sb_edit);
         textBBEdit = (EditText) findViewById(R.id.bb_edit);
         textAnteEdit = (EditText) findViewById(R.id.ante_edit);
-        //textTimeShow = (EditText) findViewById(R.id.time_show);
         chckBreakEdit = (CheckBox) findViewById(R.id.break_edit);
         numberPickerMinutes = (NumberPicker) findViewById(R.id.number_picker_minutes);
         numberPickerSeconds = (NumberPicker) findViewById(R.id.number_picker_seconds);
@@ -57,7 +55,6 @@ public class EditRoundActivity extends Activity {
 		textSBEdit.setText(this.round.getSB()+"");
 		textBBEdit.setText(this.round.getBB()+"");
 		textAnteEdit.setText(this.round.getAnte()+"");
-		//textTimeShow.setText(this.round.getTime()+"");
 		chckBreakEdit.setChecked(this.round.isBreak());
 		checkControls(this.round.isBreak());
 		

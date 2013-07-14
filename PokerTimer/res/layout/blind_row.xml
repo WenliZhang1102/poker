@@ -25,4 +25,21 @@
         android:ellipsize="marquee"
         android:singleLine="true"
 		/>
+		<TextView android:id="@+id/round_number"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:paddingLeft="10sp"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="true"
+        
+         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20sp"
+     
+		android:layout_centerVertical="true"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text=""
+		/>
 </RelativeLayout>

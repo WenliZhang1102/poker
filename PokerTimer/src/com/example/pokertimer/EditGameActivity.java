@@ -34,6 +34,7 @@ import com.commonsware.cwac.tlv.TouchListView;
 
 public class EditGameActivity extends ListActivity implements AdapterView.OnItemClickListener {
 	
+	private static final int ACTIVITY_EDIT_ROUND = 0;
 	private Game game;
 	private ArrayList<Round> rounds = null;
 	
@@ -62,17 +63,17 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		setListAdapter(adapter);
 		
 		tlv.setDropListener(onDrop);
-		tlv.setRemoveListener(onRemove);
 		tlv.setOnItemClickListener(this);
-		
-		
 		
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		setTitle("New game");
 	}
 	
-	private TouchListView.DropListener onDrop=new TouchListView.DropListener() {
+	/**
+	 * Listener for moving rounds
+	 */
+	private TouchListView.DropListener onDrop = new TouchListView.DropListener() {
 		@Override
 		public void drop(int from, int to) {
 			Round item = adapter.getItem(from);
@@ -96,33 +97,30 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		}
 	};
 	
-	private TouchListView.RemoveListener onRemove=new TouchListView.RemoveListener() {
-		@Override
-		public void remove(int which) {
-			adapter.remove(adapter.getItem(which));
-			for(int i = which; i < adapter.getCount(); i++){
-				adapter.getItem(i).setNumberOfRound(i + 1);
-			}
-		}
-	};
-	
+	/**
+	 * Shows rows in table
+	 * @author Alesh
+	 *
+	 */
 	class IconicAdapter extends ArrayAdapter<Round> {
 		IconicAdapter() {
 			super(EditGameActivity.this, R.layout.row2, rounds);
 		}
 		
-		public View getView(int position, View convertView,
-												ViewGroup parent) {
-			View row=convertView;
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View row = convertView;
 			
-			if (row==null) {													
-				LayoutInflater inflater=getLayoutInflater();
-				
-				row=inflater.inflate(R.layout.row2, parent, false);
+			if (row == null) {											
+				LayoutInflater inflater = getLayoutInflater();
+				row = inflater.inflate(R.layout.row2, parent, false);
 			}
 			
-			TextView label=(TextView)row.findViewById(R.id.label);
+			// set round number
+			TextView round_number = (TextView)row.findViewById(R.id.round_number);
+			round_number.setText(rounds.get(position).getNumerOfRound() + ".");
 			
+			// set round info
+			TextView label = (TextView)row.findViewById(R.id.label);
 			label.setText(rounds.get(position).toString());
 			
 			return(row);
@@ -159,26 +157,12 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	    
 	    if(delete_visibility == true)
 	    	scaleDownListView();
-	    
-	    redrawRoundNumber();
-
 	  }
 	
-	
-	private void redrawRoundNumber(){
-		ViewGroup round_list = (ViewGroup) findViewById(android.R.id.list);
-		int childCount = round_list.getChildCount();
-
-		for(int i = 0; i < childCount; i++){
-			View view = round_list.getChildAt(i);
-			TextView tv = (TextView) view.findViewById(R.id.round_number);
-			tv.setText(String.valueOf(i+1)+".");
-		}
-	}
-	
+	/**
+	 * Shows delete checkboxes
+	 */
 	private void showDeleteCheckbox(){
-		
-		//ViewGroup round_list = (ViewGroup) getLayoutInflater().inflate(android.R.id.list, null);
 		ViewGroup round_list = (ViewGroup) findViewById(android.R.id.list);
 		int childCount = round_list.getChildCount();
 
@@ -186,56 +170,57 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 			View view = round_list.getChildAt(i);
 			view.findViewById(R.id.delete_checkbox).setVisibility(View.VISIBLE);
 		}
-
-			
-		//findViewById(R.id.delete_checkbox).setVisibility(View.VISIBLE);
 	}
 	
-	private void hideDeleteCheckbox(){
-		
+	/**
+	 * Hides delete checkboxes
+	 * @param	boolean	Delete rounds with checked checkbox
+	 */
+	private void hideDeleteCheckbox(boolean delete){
 		ViewGroup round_list = (ViewGroup) findViewById(android.R.id.list);
+		round_list.invalidate();
 		int childCount = round_list.getChildCount();
 
+		int number = 0;
 		for(int i = 0; i < childCount; i++){
 			View view = round_list.getChildAt(i);
 			CheckBox checkbox = (CheckBox) view.findViewById(R.id.delete_checkbox);
+			
+			if(checkbox.isChecked() && delete == true){
+				adapter.remove(adapter.getItem(number));
+			}else{
+				adapter.getItem(number).setNumberOfRound(number + 1);
+				number++;
+			}
+			
 			checkbox.setVisibility(View.INVISIBLE);
 	        checkbox.setChecked(false);
 		}
-		
-		//findViewById(R.id.delete_checkbox).setVisibility(View.INVISIBLE);
 	}
 	
 	private void showDeleteButtons(){
-	//	findViewById(R.id.horizontal_divider1).setVisibility(View.VISIBLE);
 		findViewById(R.id.button_layout).setVisibility(View.VISIBLE);
 		findViewById(R.id.button_delete_checkbox).setVisibility(View.VISIBLE);
 		findViewById(R.id.button_cancel_checkbox).setVisibility(View.VISIBLE);
-	//	findViewById(R.id.vertical_divider).setVisibility(View.VISIBLE);
-	//	findViewById(R.id.horizontal_divider2).setVisibility(View.VISIBLE);
 	}
 	
 	private void hideDeleteButtons(){
-	//	findViewById(R.id.horizontal_divider1).setVisibility(View.INVISIBLE);
+		// hide buttons
 		findViewById(R.id.button_layout).setVisibility(View.INVISIBLE);
 		findViewById(R.id.button_delete_checkbox).setVisibility(View.INVISIBLE);
 		findViewById(R.id.button_cancel_checkbox).setVisibility(View.INVISIBLE);
-//		findViewById(R.id.vertical_divider).setVisibility(View.INVISIBLE);
-	//	findViewById(R.id.horizontal_divider2).setVisibility(View.INVISIBLE);
-		}
+	}
 	
 	private void enlargeListView(){
 		View view = findViewById(android.R.id.list);
 		android.view.ViewGroup.LayoutParams params = view.getLayoutParams();
 		params.height = LayoutParams.FILL_PARENT;
 		view.setLayoutParams(params);
-		
 	}
+	
 	private void scaleDownListView(){
 		View view = findViewById(android.R.id.list);
 		android.view.ViewGroup.LayoutParams params = view.getLayoutParams();
-		/*this.stored_height = params.height;
-		Toast.makeText(this, String.valueOf(params.height), Toast.LENGTH_SHORT).show();*/
 		Display display = getWindowManager().getDefaultDisplay();
 		Point size = new Point();
 		display.getSize(size);
@@ -260,7 +245,6 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.blind_control, menu);
-	    redrawRoundNumber();//not for menu, but did not work in onCreate
 	    return true;
 	}
 	
@@ -276,25 +260,63 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		    	this.saveModifiedBlinds();
 		    	
 		}else if(itemId == R.id.menu_delete){
-			if(delete_visibility == true){
-		    	this.hideDeleteCheckbox();
+			if (delete_visibility == true) {
+		    	this.hideDeleteCheckbox(false);
 		    	this.hideDeleteButtons();
 		    	enlargeListView();
 		    	delete_visibility = false;
-			}
-			else{
-		    	this.showDeleteCheckbox();
+			} else {
+				this.showDeleteCheckbox();
 		    	this.showDeleteButtons();
 		    	scaleDownListView();
 		    	delete_visibility = true;
 			}
-
-	    	
+			
+		// add new round
+		}else if(itemId == R.id.menu_add){
+			Intent intent = new Intent(this, EditRoundActivity.class);
+			Round r = new Round();
+			
+			if(adapter.getCount() > 0){
+				Round last_round = adapter.getItem(adapter.getCount()-1);
+				r.setTime(last_round.getTime());
+				r.setSB(last_round.getSB()*2);
+				r.setBB(last_round.getBB()*2);
+				r.setAnte(last_round.getAnte()*2);
+				r.setNumberOfRound(last_round.getNumerOfRound() + 1);
+			}else{
+				r.setNumberOfRound(1);
+			}
+			
+			r.setNew(true);
+			
+			intent.putExtra("Round", r);
+			startActivityForResult(intent, ACTIVITY_EDIT_ROUND);
 		}else{
-		    	return super.onOptionsItemSelected(item);
+		    return super.onOptionsItemSelected(item);
 	    }
 		
 		return true;
+	}
+	
+	/**
+	 * Delete items from adapter
+	 */
+	public void delete(View view){
+		this.hideDeleteCheckbox(true);
+		this.hideDeleteButtons();
+		adapter.notifyDataSetChanged();
+		delete_visibility = false;
+	}
+	
+	/**
+	 * Cancel deleting items
+	 * @param v
+	 */
+	public void cancel(View view){
+		this.hideDeleteCheckbox(false);
+		this.hideDeleteButtons();
+		delete_visibility = false;
 	}
 	
 	/**
@@ -313,6 +335,30 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id){
 		Intent intent = new Intent(this, EditRoundActivity.class);
 		intent.putExtra("Round", rounds.get(position));
-		startActivity(intent);
+		startActivityForResult(intent, ACTIVITY_EDIT_ROUND);
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(requestCode) {
+			case (ACTIVITY_EDIT_ROUND) : 
+				if (resultCode == Activity.RESULT_OK) {
+					Round newRound = (Round) data.getSerializableExtra("Round");
+					if(newRound.isNew()){
+						newRound.setNew(false);
+						adapter.add(newRound);
+					}else{
+						Round r = adapter.getItem(newRound.getNumerOfRound() - 1);
+						r.setTime(newRound.getTime());
+						r.setSB(newRound.getSB());
+						r.setBB(newRound.getBB());
+						r.setAnte(newRound.getAnte());
+					}
+					
+					adapter.notifyDataSetChanged();
+				}
+			break;
+		}
 	}
 }
