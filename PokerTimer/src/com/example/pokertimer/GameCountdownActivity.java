@@ -58,6 +58,7 @@ public class GameCountdownActivity extends Activity {
 	
 	View buttonPlayPause;
 	
+	Intent countdownIntent;
 	
 	private Animation mInFromRight;
     private Animation mOutToLeft;
@@ -234,15 +235,20 @@ public class GameCountdownActivity extends Activity {
 	                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
 	                mViewFlipper.setInAnimation(mInFromRight);
 	                mViewFlipper.setOutAnimation(mOutToLeft);
-	                mViewFlipper.showNext();
-	                setNextRound();
+	                
+	                if(setNextRound() == true)
+	                	mViewFlipper.showNext();
+	                
 	    			setToStop();
+	    			
 	            } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
 	                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
 	                mViewFlipper.setInAnimation(mInFromLeft);
 	                mViewFlipper.setOutAnimation(mOutToRight);
-	                mViewFlipper.showPrevious();
-	                setPreviousRound();
+	                
+	                if(setPreviousRound() == true)
+	                	mViewFlipper.showPrevious();
+	                
 	    			setToStop();
 	            }
 	            return super.onFling(e1, e2, velocityX, velocityY);
@@ -253,7 +259,7 @@ public class GameCountdownActivity extends Activity {
 	 * Gets info from intent
 	 */
 	private void processIntent(){
-		Intent countdownIntent = getIntent();
+		countdownIntent = getIntent();
 		this.game = (Game) countdownIntent.getSerializableExtra("Game");
 		this.rounds = game.getRounds();
 	}
@@ -281,7 +287,9 @@ public class GameCountdownActivity extends Activity {
 		        .setContentText(text);  
 
 
-		Intent notificationIntent = new Intent(this, GameCountdownActivity.class);  
+		Intent notificationIntent = countdownIntent;// new Intent(this, GameCountdownActivity.class);  
+		
+		
 		
 		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		
@@ -350,32 +358,39 @@ public class GameCountdownActivity extends Activity {
 	/**
 	 * Starts next round
 	 */
-	public void setNextRound(){
+	public Boolean setNextRound(){
 		if(roundNumber < rounds.size()){
 			roundNumber++;
 			setRounds();
 			stopCountDown();
-		}else{
-			if(countDownTimer != null){
+		}else if(countDownTimer != null){
 				time = -1;
 				setToStop();
-			}
 		}
+		else{
+			return false;
+		}
+
 		
 		refreshGameInfo();
+		return true;
 	}
 	
 	/**
 	 * Starts previous round
 	 */
-	public void setPreviousRound(){
+	public Boolean setPreviousRound(){
 		if(roundNumber - 1 > 0){
 			roundNumber--;
 			setRounds();
 			stopCountDown();
 		}
+		else{
+			return false;
+		}
 		
 		refreshGameInfo();
+		return true;
 	}
 	
 	@Override
