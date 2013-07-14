@@ -332,6 +332,10 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		if(textGameName.getText().toString().equals("")){
 			textGameName.setError(getString(R.string.empty));
 			textGameName.setOnClickListener(removeError);
+		}else if(textGameName.getText().toString().length() > 25){
+			textGameName.setError(getString(R.string.too_long) + 
+			 " " + textGameName.getText().toString().length() + "." );
+			textGameName.setOnClickListener(removeError);
 		}else{
 			Intent resultIntent = new Intent();
 			setResult(Activity.RESULT_OK, resultIntent);

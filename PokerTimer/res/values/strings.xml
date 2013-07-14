@@ -69,6 +69,7 @@
 		   
 	
 	<string name="empty">This field cannot be empty.</string>
+	<string name="too_long">Name must be shorter than 25 characters. You have</string>
    
 	
 </resources>

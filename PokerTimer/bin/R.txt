@@ -133,6 +133,7 @@ int string ok 0x7f080007
 int string search 0x7f080001
 int string settings 0x7f080003
 int string time_of_backlight 0x7f08000c
+int string too_long 0x7f080018
 int string warn_1_minute 0x7f08000a
 int string warn_before_round_ends 0x7f080009
 int string warn_on_round_ends 0x7f08000b

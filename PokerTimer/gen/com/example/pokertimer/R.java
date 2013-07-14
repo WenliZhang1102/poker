@@ -214,6 +214,7 @@ containing a value of this type.
         public static final int search=0x7f080001;
         public static final int settings=0x7f080003;
         public static final int time_of_backlight=0x7f08000c;
+        public static final int too_long=0x7f080018;
         public static final int warn_1_minute=0x7f08000a;
         /**  SETTINGS STRINGS 
          */
