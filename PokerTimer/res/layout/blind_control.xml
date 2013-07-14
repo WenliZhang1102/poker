@@ -21,10 +21,9 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
 	    android:layout_below="@+id/game_name_edit"
-	    expanded_height="128dip"
 	    tlv:grabber="@+id/icon"
-	    tlv:normal_height="64dip"
-	    
+	    tlv:normal_height="64dp"
+	    tlv:expanded_height="128dp"
 	    android:drawSelectorOnTop="false" />
 	
 	
