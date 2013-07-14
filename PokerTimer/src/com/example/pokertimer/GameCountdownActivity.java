@@ -4,10 +4,18 @@ import java.util.List;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.app.NotificationCompat;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MenuItem;
@@ -176,7 +184,42 @@ public class GameCountdownActivity extends Activity {
 		this.game = (Game) countdownIntent.getSerializableExtra("Game");
 		this.rounds = game.getRounds();
 	}
-	
+	private void notifyNewRound(){
+		String ns = Context.NOTIFICATION_SERVICE;
+		NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
+
+		NotificationCompat.Builder builder =  
+		        new NotificationCompat.Builder(this)  
+		        .setSmallIcon(R.drawable.forward)  
+		        .setContentTitle("Next round:")  
+		        .setContentText("Blinds:  " + this.next_round.toString() + ",  Duration:  " 
+		        + String.format("%02d", next_round.getMinutes()) +":"
+		        + String.format("%02d", next_round.getSeconds()));  
+
+
+		Intent notificationIntent = new Intent(this, GameCountdownActivity.class);  
+		
+		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,   
+		        PendingIntent.FLAG_UPDATE_CURRENT);  
+
+		Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+		builder.setSound(alarmSound);
+		
+		builder.setContentIntent(contentIntent);  
+		builder.setAutoCancel(true);
+		builder.setLights(Color.BLUE, 500, 500);
+		long[] pattern = {500,500,500,500,500,500,500,500,500};
+		builder.setVibrate(pattern);
+		builder.setStyle(new NotificationCompat.InboxStyle());
+		// Add as notification  
+		NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);  
+		manager.notify(1, builder.build());  
+		
+		
+		
+	}
 	/**
 	 * Starts Countdown
 	 */
@@ -194,6 +237,7 @@ public class GameCountdownActivity extends Activity {
 					if(time >= 0){
 						refreshTimeInfo();
 					}else{
+						notifyNewRound();
 						setNextRound();
 					}
 				}
