@@ -112,58 +112,61 @@ containing a value of this type.
     public static final class id {
         public static final int about_email=0x7f060006;
         public static final int about_header=0x7f060005;
-        public static final int ante=0x7f060019;
-        public static final int ante_edit=0x7f060024;
-        public static final int ante_layout=0x7f060018;
-        public static final int ante_text=0x7f060023;
-        public static final int bb_edit=0x7f060022;
-        public static final int bb_layout=0x7f060020;
-        public static final int bb_text=0x7f060021;
-        public static final int blinds=0x7f060017;
-        public static final int blinds_layout=0x7f060015;
-        public static final int break_edit=0x7f06002b;
+        public static final int ante=0x7f06001b;
+        public static final int ante_edit=0x7f060026;
+        public static final int ante_layout=0x7f06001a;
+        public static final int ante_text=0x7f060025;
+        public static final int bb_edit=0x7f060024;
+        public static final int bb_layout=0x7f060022;
+        public static final int bb_text=0x7f060023;
+        public static final int blinds=0x7f060019;
+        public static final int blinds_layout=0x7f060017;
+        public static final int break_edit=0x7f06002d;
         public static final int button_cancel_checkbox=0x7f06000b;
         public static final int button_delete_checkbox=0x7f06000c;
         public static final int button_layout=0x7f06000a;
-        public static final int button_next=0x7f06001c;
-        public static final int button_play_pause=0x7f06001b;
-        public static final int button_previous=0x7f06001a;
-        public static final int delete_checkbox=0x7f06002c;
+        public static final int button_next=0x7f06001e;
+        public static final int button_play_pause=0x7f06001d;
+        public static final int button_previous=0x7f06001c;
+        public static final int delete_checkbox=0x7f06000d;
         public static final int donate=0x7f060007;
-        public static final int duration=0x7f06002a;
+        public static final int duration=0x7f06002c;
         public static final int fling=0x7f060001;
-        public static final int frameLayout1=0x7f060010;
+        public static final int frameLayout1=0x7f060012;
         public static final int game_name_edit=0x7f060008;
         public static final int icon=0x7f060009;
-        public static final int label=0x7f06000d;
-        public static final int menu_about=0x7f060032;
-        public static final int menu_add=0x7f06002e;
-        public static final int menu_context_delete=0x7f060035;
-        public static final int menu_context_edit=0x7f060034;
-        public static final int menu_delete=0x7f06002f;
-        public static final int menu_edit=0x7f060033;
-        public static final int menu_ok=0x7f06002d;
-        public static final int menu_round_ok=0x7f060030;
-        public static final int menu_settings=0x7f060031;
-        public static final int next_blinds=0x7f060012;
-        public static final int next_round=0x7f060011;
+        public static final int label=0x7f06000f;
+        public static final int menu_about=0x7f060035;
+        public static final int menu_add=0x7f06002f;
+        public static final int menu_context_delete=0x7f060038;
+        public static final int menu_context_edit=0x7f060037;
+        public static final int menu_delete=0x7f060030;
+        public static final int menu_deselect_all=0x7f060032;
+        public static final int menu_edit=0x7f060036;
+        public static final int menu_ok=0x7f06002e;
+        public static final int menu_round_ok=0x7f060033;
+        public static final int menu_select_all=0x7f060031;
+        public static final int menu_settings=0x7f060034;
+        public static final int next_blinds=0x7f060014;
+        public static final int next_round=0x7f060013;
         public static final int none=0x7f060000;
-        public static final int number_picker_layout=0x7f060025;
-        public static final int number_picker_minutes=0x7f060026;
-        public static final int number_picker_minutes_text=0x7f060027;
-        public static final int number_picker_seconds=0x7f060028;
-        public static final int number_picker_seconds_text=0x7f060029;
-        public static final int round_number=0x7f06000e;
-        public static final int sb_edit=0x7f06001f;
-        public static final int sb_layout=0x7f06001d;
-        public static final int sb_text=0x7f06001e;
+        public static final int number_picker_layout=0x7f060027;
+        public static final int number_picker_minutes=0x7f060028;
+        public static final int number_picker_minutes_text=0x7f060029;
+        public static final int number_picker_seconds=0x7f06002a;
+        public static final int number_picker_seconds_text=0x7f06002b;
+        public static final int round_number=0x7f060010;
+        public static final int round_time=0x7f06000e;
+        public static final int sb_edit=0x7f060021;
+        public static final int sb_layout=0x7f06001f;
+        public static final int sb_text=0x7f060020;
         public static final int slide=0x7f060002;
         public static final int slideLeft=0x7f060004;
         public static final int slideRight=0x7f060003;
-        public static final int strut=0x7f060013;
-        public static final int this_round=0x7f060016;
-        public static final int time=0x7f060014;
-        public static final int view_flipper=0x7f06000f;
+        public static final int strut=0x7f060015;
+        public static final int this_round=0x7f060018;
+        public static final int time=0x7f060016;
+        public static final int view_flipper=0x7f060011;
     }
     public static final class layout {
         public static final int about=0x7f030000;
@@ -188,19 +191,23 @@ containing a value of this type.
     }
     public static final class string {
         public static final int about=0x7f080004;
-        public static final int about_email_us=0x7f080016;
+        public static final int about_email_us=0x7f08001a;
         /**  ABOUT_APP STRINGS 
          */
-        public static final int about_header=0x7f080015;
+        public static final int about_header=0x7f080019;
         public static final int add_game=0x7f080002;
         /**  ADD_GAME STRINGS 
          */
         public static final int add_game_title=0x7f08000d;
-        public static final int add_round=0x7f080014;
+        public static final int add_round=0x7f080015;
         public static final int app_name=0x7f080000;
         public static final int cancel=0x7f080008;
-        public static final int delete_rounds=0x7f080013;
-        public static final int empty=0x7f080017;
+        public static final int delete=0x7f080013;
+        public static final int delete_rounds=0x7f080014;
+        public static final int deselect_all=0x7f080017;
+        /**  validation 
+         */
+        public static final int empty=0x7f08001b;
         public static final int enter_gamename=0x7f08000e;
         public static final int enter_roundlength=0x7f080010;
         public static final int enter_rounds_number=0x7f08000f;
@@ -208,18 +215,24 @@ containing a value of this type.
         public static final int menu_edit=0x7f080005;
         public static final int modify_rounds=0x7f080012;
         public static final int next=0x7f080011;
+        public static final int no_round_warning=0x7f08001e;
         public static final int ok=0x7f080007;
+        /**  NOTIFICATIONS 
+         */
+        public static final int round=0x7f080018;
         /**  MAIN MENU STRINGS 
          */
         public static final int search=0x7f080001;
+        public static final int select_all=0x7f080016;
         public static final int settings=0x7f080003;
         public static final int time_of_backlight=0x7f08000c;
-        public static final int too_long=0x7f080018;
+        public static final int too_long=0x7f08001c;
         public static final int warn_1_minute=0x7f08000a;
         /**  SETTINGS STRINGS 
          */
         public static final int warn_before_round_ends=0x7f080009;
         public static final int warn_on_round_ends=0x7f08000b;
+        public static final int warning=0x7f08001d;
     }
     public static final class style {
         /** 

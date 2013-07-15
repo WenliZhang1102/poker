@@ -270,7 +270,7 @@ public class GameCountdownActivity extends Activity {
 		String title = new String();
 		
 		if(next_round != null){
-			title = "Next round:";
+			title = this.next_round.getNumerOfRound() + ". " + getText(R.string.round);
 			text = "Blinds:  " + this.next_round.toString() + ",  Duration:  " 
 			        + String.format("%02d", next_round.getMinutes()) +":"
 			        + String.format("%02d", next_round.getSeconds());
@@ -288,8 +288,6 @@ public class GameCountdownActivity extends Activity {
 
 
 		Intent notificationIntent = countdownIntent;// new Intent(this, GameCountdownActivity.class);  
-		
-		
 		
 		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		
@@ -448,20 +446,7 @@ public class GameCountdownActivity extends Activity {
 		if(this.time >= 0){
 			int minutes = this.time / 60;
 			int seconds = this.time % 60;
-			textTime.setText(twoDigitString(minutes) + ":" + twoDigitString(seconds));
-		}
-	}
-	
-	/**
-	 * Creates two digits from one digit  (e. c. 9 -> "09"; 25 -> "25")
-	 * @param number
-	 * @return
-	 */
-	private String twoDigitString(Integer number){
-		if(number < 10){
-			return "0"+number;
-		}else{
-			return number.toString();
+			textTime.setText(Helpers.twoDigitString(minutes) + ":" + Helpers.twoDigitString(seconds));
 		}
 	}
 	

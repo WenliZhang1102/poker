@@ -15,4 +15,17 @@
           android:icon="@drawable/my_bin"
           android:title="@string/delete_rounds" 
           android:showAsAction="always"/>
+   
+   <item android:id="@+id/menu_select_all"
+          android:icon="@drawable/my_bin"
+          android:title="@string/select_all" 
+          android:showAsAction="never"
+          android:visible="false"
+          />
+   
+   <item android:id="@+id/menu_deselect_all"
+          android:title="@string/deselect_all" 
+          android:showAsAction="never"
+          android:visible="false"
+          />
 </menu>

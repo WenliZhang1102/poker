@@ -1,30 +1,31 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-<PreferenceCategory 
-        android:title="Game settings"
-        android:key="pref_key_storage_settings">
-    
-    <CheckBoxPreference
-        android:key="warn_1_minute"
-        android:title="@string/warn_before_round_ends"
-        android:summary="@string/warn_1_minute"
-        android:defaultValue="true" />
-    
-    <CheckBoxPreference
-        android:key="warn_on_end"
-        android:title="@string/warn_on_round_ends"
-        android:defaultValue="true" />
-    
+	<PreferenceCategory 
+	        android:title="Game settings"
+	        android:key="pref_key_storage_settings">
+	    
+	    <CheckBoxPreference
+	        android:key="warn_1_minute"
+	        android:title="@string/warn_before_round_ends"
+	        android:summary="@string/warn_1_minute"
+	        android:defaultValue="true" />
+	    
+	    <CheckBoxPreference
+	        android:key="warn_on_end"
+	        android:title="@string/warn_on_round_ends"
+	        android:defaultValue="true" />
+	    
 	</PreferenceCategory>
-    <PreferenceCategory 
-        android:title="General settings"
-        android:key="general_settings">
-        <ListPreference
-            android:key="backlight"
-            android:title="@string/time_of_backlight"
-            android:summary=""
-            android:defaultValue="500"
-            android:entries="@array/backlight_time_list"
-            android:entryValues="@array/backlight_time_list_values"
-        />   
+	
+	<PreferenceCategory 
+	        android:title="General settings"
+	        android:key="general_settings">
+	        <ListPreference
+	            android:key="backlight"
+	            android:title="@string/time_of_backlight"
+	            android:summary=""
+	            android:defaultValue="500"
+	            android:entries="@array/backlight_time_list"
+	            android:entryValues="@array/backlight_time_list_values"
+	        />   
 	</PreferenceCategory>
 </PreferenceScreen>

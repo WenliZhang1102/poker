@@ -64,7 +64,6 @@
             android:background="@drawable/delete_buttons"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            android:text="Delete selected"
             android:onClick="delete"
             android:visibility="invisible" />
     </LinearLayout>

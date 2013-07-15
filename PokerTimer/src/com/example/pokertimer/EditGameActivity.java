@@ -3,7 +3,9 @@ import java.util.ArrayList;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Point;
@@ -19,6 +21,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -37,8 +40,9 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	
 	private Boolean delete_visibility = false;
 	
+	private int delete_count = 0;
+	
 	private OnClickListener removeError = new OnClickListener(){
-
 		@Override
 		public void onClick(View v) {
 			textGameName.setError(null);
@@ -47,16 +51,39 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 
 	EditText textGameName;
 	
+	Button buttonDeleteCheckbox;
+	
 	private ArrayList<String> array;
 	
 	private OnClickListener checkboxclick = new View.OnClickListener() {  
 		public void onClick(View v) {  
+			// set round for delete
 			CheckBox checkbox = (CheckBox) v;
 			Round round = (Round) checkbox.getTag();  
-			round.setForDelete(checkbox.isChecked()); 
+			round.setForDelete(checkbox.isChecked());
+			
+			// update menu and buttons
+			if(checkbox.isChecked()){
+				delete_count++;
+			}else{
+				delete_count--;
+			}
+			
+			refreshDeleteButton();
+			
+			invalidateOptionsMenu();
 		}
 	};
 	
+	private void refreshDeleteButton(){
+		buttonDeleteCheckbox.setText(getText(R.string.delete) + " (" + delete_count + ")");
+		
+		if(delete_count == 0){
+			buttonDeleteCheckbox.setEnabled(false);
+		}else{
+			buttonDeleteCheckbox.setEnabled(true);
+		}
+	}
 	
 	/**
 	 * Set Activity content
@@ -67,6 +94,8 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
         setContentView(R.layout.blind_control);
 
         textGameName = (EditText) findViewById(R.id.game_name_edit);
+        
+        buttonDeleteCheckbox = (Button) findViewById(R.id.button_delete_checkbox);
         
         processIntent();
         
@@ -137,6 +166,10 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 			TextView label = (TextView)row.findViewById(R.id.label);
 			label.setText(round.toString());
 			
+			// set round time
+			TextView round_time = (TextView)row.findViewById(R.id.round_time);
+			round_time.setText(round.getReadableTime());
+			
 			// set checkbox
 			CheckBox checkbox = (CheckBox) row.findViewById(R.id.delete_checkbox);
 			
@@ -175,7 +208,6 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		textGameName.setText(this.game.getName()+"");
 	}
 	
-	
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 	    
@@ -185,14 +217,16 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	
 	private void showDeleteButtons(){
 		findViewById(R.id.button_layout).setVisibility(View.VISIBLE);
-		findViewById(R.id.button_delete_checkbox).setVisibility(View.VISIBLE);
+		buttonDeleteCheckbox.setVisibility(View.VISIBLE);
 		findViewById(R.id.button_cancel_checkbox).setVisibility(View.VISIBLE);
+		
+		refreshDeleteButton();
 	}
 	
 	private void hideDeleteButtons(){
 		// hide buttons
 		findViewById(R.id.button_layout).setVisibility(View.INVISIBLE);
-		findViewById(R.id.button_delete_checkbox).setVisibility(View.INVISIBLE);
+		buttonDeleteCheckbox.setVisibility(View.INVISIBLE);
 		findViewById(R.id.button_cancel_checkbox).setVisibility(View.INVISIBLE);
 	}
 	
@@ -229,33 +263,55 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.blind_control, menu);
+	    
+	    MenuItem menuSelectAll = menu.findItem(R.id.menu_select_all);
+	    menuSelectAll.setVisible(delete_visibility);
+	    		
+	    MenuItem menuDeselectAll = menu.findItem(R.id.menu_deselect_all);
+	    menuDeselectAll.setVisible(delete_visibility);
+	    
+	    if(delete_visibility){
+		    if(delete_count == 0){
+		    	menuSelectAll.setEnabled(true);
+		    	menuDeselectAll.setEnabled(false);
+		    }else if(delete_count == adapter.getCount()){
+		    	menuSelectAll.setEnabled(false);
+		    	menuDeselectAll.setEnabled(true);
+		    }else{
+		    	menuSelectAll.setEnabled(true);
+		    	menuDeselectAll.setEnabled(true);
+		    }
+	    }
+	    
+	    menu.findItem(R.id.menu_add).setVisible(!delete_visibility);
+	    menu.findItem(R.id.menu_ok).setVisible(!delete_visibility);
+	    menu.findItem(R.id.menu_delete).setVisible(!delete_visibility);
+	    
 	    return true;
 	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-
 		int itemId = item.getItemId();
 		
 		if(itemId == android.R.id.home){
 				super.onBackPressed();
 	    		return true;
 		}else if(itemId == R.id.menu_ok){
-		    	this.saveModifiedBlinds();
-		    	
-		}else if(itemId == R.id.menu_delete){
-			if (delete_visibility == true) {
-		    	this.hideDeleteButtons();
-		    	enlargeListView();
-		    	delete_visibility = false;
-			} else {
-		    	this.showDeleteButtons();
-		    	scaleDownListView();
-		    	delete_visibility = true;
-			}
-			
+			this.saveModifiedBlinds();
+		}else if(itemId == R.id.menu_select_all){
+			this.setSelectedRounds(true);
 			adapter.notifyDataSetChanged();
 			
+		}else if(itemId == R.id.menu_deselect_all){
+			this.setSelectedRounds(false);
+			adapter.notifyDataSetChanged();
+			
+		}else if(itemId == R.id.menu_delete){
+			setDeleteVisibility(true);
+			this.showDeleteButtons();
+	    	scaleDownListView();
+			adapter.notifyDataSetChanged();
 		// add new round
 		}else if(itemId == R.id.menu_add){
 			Intent intent = new Intent(this, EditRoundActivity.class);
@@ -304,10 +360,11 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	 * Delete items from adapter
 	 */
 	public void delete(View view){
-		delete_visibility = false;
 		this.deleteCheckedRounds();
 		this.hideDeleteButtons();
 		adapter.notifyDataSetChanged();
+		setDeleteVisibility(false);
+		delete_count = 0;
 	}
 	
 	/**
@@ -315,7 +372,7 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	 * @param v
 	 */
 	public void cancel(View view){
-		delete_visibility = false;
+		setDeleteVisibility(false);
 		this.hideDeleteButtons();
 		
 		for(int i = 0; i < adapter.getCount(); i++){
@@ -323,29 +380,65 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		}
 		
 		adapter.notifyDataSetChanged();
+		delete_count = 0;
+	}
+	
+	private void setDeleteVisibility(boolean visibility){
+		this.delete_visibility = visibility;
+		invalidateOptionsMenu();
 	}
 	
 	/**
 	 * Send modified blinds back to the AddGameActivity
 	 */
 	private void saveModifiedBlinds(){
+		// Game name validation
 		if(textGameName.getText().toString().equals("")){
 			textGameName.setError(getString(R.string.empty));
 			textGameName.setOnClickListener(removeError);
+			
 		}else if(textGameName.getText().toString().length() > 25){
 			textGameName.setError(getString(R.string.too_long) + 
 			 " " + textGameName.getText().toString().length() + "." );
 			textGameName.setOnClickListener(removeError);
+			
 		}else{
-			Intent resultIntent = new Intent();
-			setResult(Activity.RESULT_OK, resultIntent);
-			game.setName(textGameName.getText().toString());
-			resultIntent.putExtra("Game", game);
-			finish();
+			// Number of rounds have to be greater than 1
+			if(game.getRounds().size() == 0){
+				new AlertDialog.Builder(this)
+			    .setTitle(getString(R.string.warning))
+			    .setMessage(getString(R.string.no_round_warning))
+			    .setPositiveButton("OK", null)
+			    .setCancelable(false)
+			     .show();
+			}else{
+				Intent resultIntent = new Intent();
+				setResult(Activity.RESULT_OK, resultIntent);
+				game.setName(textGameName.getText().toString());
+				resultIntent.putExtra("Game", game);
+				finish();
+			}
 		}
 	}
 	
-
+	/**
+	 * Selects/Unselects all rounds in list
+	 */
+	public void setSelectedRounds(boolean selected){
+		for(Round r : this.rounds){
+			r.setForDelete(selected);
+		}
+		
+		if(selected){
+			delete_count = this.rounds.size();
+		}else{
+			delete_count = 0;
+		}
+		
+		invalidateOptionsMenu();
+		refreshDeleteButton();
+	}
+	
 	@Override
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id){
 		Intent intent = new Intent(this, EditRoundActivity.class);

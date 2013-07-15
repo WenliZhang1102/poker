@@ -54,6 +54,13 @@ public class Round implements Serializable {
 		return this.time % 60;
 	}
 	
+	public String getReadableTime(){
+		int minutes = getMinutes();
+		int seconds = getSeconds();
+		
+		return Helpers.twoDigitString(minutes) + ":" + Helpers.twoDigitString(seconds);
+	}
+	
 	/**
 	 * 
 	 * @return minutes

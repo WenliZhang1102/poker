@@ -98,9 +98,14 @@ public class EditRoundActivity extends Activity {
 	private void saveModifiedBlind(){
 		Intent resultIntent = new Intent();
 		setResult(Activity.RESULT_OK, resultIntent);
-		round.setSB(Integer.parseInt(textSBEdit.getText().toString()));
-		round.setBB(Integer.parseInt(textBBEdit.getText().toString()));
-		round.setAnte(Integer.parseInt(textAnteEdit.getText().toString()));
+		
+		String textSBEditText = textSBEdit.getText().toString();
+		String textBBEditText = textSBEdit.getText().toString();
+		String textAnteEditText = textAnteEdit.getText().toString();
+		
+		round.setSB(textSBEditText.equals("") ? 0 : Integer.parseInt(textSBEditText));
+		round.setBB(textBBEditText.equals("") ? 0 : Integer.parseInt(textBBEditText));
+		round.setAnte(textAnteEditText.equals("") ? 0 : Integer.parseInt(textAnteEditText));
 		round.setTime(numberPickerMinutes.getValue()*60 + numberPickerSeconds.getValue());
 		round.setBreak(chckBreakEdit.isChecked());
 		resultIntent.putExtra("Round", round);

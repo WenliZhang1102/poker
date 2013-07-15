@@ -53,23 +53,33 @@
 	<string name="next">Next</string>
 	<string name="modify_rounds">Modify rounds</string>
 	
+	<string name="delete">Delete</string>
+	
 	<string name="delete_rounds">Delete rounds</string>
 	<string name="add_round">Add round</string>
+	
+	<string name="select_all">Select all</string>
+	<string name="deselect_all">Deselect all</string>
 
+	
+	<!-- NOTIFICATIONS -->
+	<string name="round">round</string>
+	
 	
 	<!-- ABOUT_APP STRINGS -->
 	<string name="about_header">App version: 1.0\n
 	    Programmed by Aleš Kajzar and Ondřej Komárek, two indenpendent developers from Czech republic.	    
 	    If you enjoy using this app you can support further development by donating us.
-	    
-</string>
+	</string>
 
 	<string name="about_email_us">If you know about any bug or you think that you have great improvement idea for us, you can send e-mail at: someadress@somedomain.com
-</string>
+	</string>
 		   
-	
+	<!-- validation -->
 	<string name="empty">This field cannot be empty.</string>
 	<string name="too_long">Name must be shorter than 25 characters. You have</string>
    
+	<string name="warning">Warning</string>
+	<string name="no_round_warning">You didn\'t set any rounds!</string>
 	
 </resources>
