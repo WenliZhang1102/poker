@@ -100,7 +100,7 @@ public class EditRoundActivity extends Activity {
 		setResult(Activity.RESULT_OK, resultIntent);
 		
 		String textSBEditText = textSBEdit.getText().toString();
-		String textBBEditText = textSBEdit.getText().toString();
+		String textBBEditText = textBBEdit.getText().toString();
 		String textAnteEditText = textAnteEdit.getText().toString();
 		
 		round.setSB(textSBEditText.equals("") ? 0 : Integer.parseInt(textSBEditText));
