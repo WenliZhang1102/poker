@@ -1,1 +1,5 @@
 *.class
+*.jar
+*.cache
+BuildConfig.java
+cwac-touchlist-master/project.properties
