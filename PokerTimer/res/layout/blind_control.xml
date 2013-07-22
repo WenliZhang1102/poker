@@ -13,7 +13,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true">
 	</EditText>
-
+  
 	<com.commonsware.cwac.tlv.TouchListView
 	    xmlns:android="http://schemas.android.com/apk/res/android"
 	    xmlns:tlv="http://schemas.android.com/apk/res/com.example.pokertimer"
@@ -36,7 +36,7 @@
         android:text="borderless" />
 
   
-    <LinearLayout
+  <!--   <LinearLayout
         android:id="@+id/button_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -67,6 +67,37 @@
             android:onClick="delete"
             android:visibility="invisible" />
     </LinearLayout>
+    
+     -->
+    
+    <LinearLayout 
+        android:id="@+id/button_layout"
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:layout_alignParentBottom="true"
+    	style="@android:style/ButtonBar"
+        android:textColor="@android:color/black"
+    	android:visibility="invisible">
+
+    <Button android:id="@+id/button_cancel_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="18sp"
+      	android:text="Cancel"
+        android:onClick="cancel"
+        android:visibility="invisible" />
+
+    <Button android:id="@+id/button_delete_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        android:onClick="delete" 
+        android:textColor="@android:color/black"
+        android:visibility="invisible"/>
+</LinearLayout>
 
    
 
