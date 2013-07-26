@@ -70,9 +70,12 @@
 	<string name="about_header">App version: 1.0\nProgrammed by Aleš Kajzar and Ondřej Komárek, two indenpendent developers from Czech republic.\nIf you enjoy using this app you can support further development by donating us.
 	</string>
 
-	<string name="about_email_us">If you know about any bug or you think that you have great improvement idea for us, you can send e-mail at: ondrej.komarek.cz@gmail.com
+	<string name="about_email_us">If you know about any bug or you think that you have great improvement idea for us, you can send e-mail at: 
 	</string>
 		   
+	<string name="about_email">ondrej.komarek.cz@gmail.com
+	</string>
+	
 	<!-- validation -->
 	<string name="empty">This field cannot be empty.</string>
 	<string name="too_long">Name must be shorter than 25 characters. You have</string>
