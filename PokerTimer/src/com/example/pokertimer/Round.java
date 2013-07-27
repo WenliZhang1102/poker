@@ -87,6 +87,14 @@ public class Round implements Serializable {
 	public void setTime(int time) {
 		this.time = time;
 	}
+	
+	/**
+	 * @param minutes
+	 * @param seconds
+	 */
+	public void setTime(int minutes, int seconds){
+	    this.time = minutes*60 + seconds;
+	}
 
 	/**
 	 * @return the sb

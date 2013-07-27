@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.NumberPicker.OnScrollListener;
+import android.widget.NumberPicker.OnValueChangeListener;
+import android.widget.TimePicker;
 
 public class EditRoundActivity extends Activity {
 	
@@ -22,7 +25,19 @@ public class EditRoundActivity extends Activity {
 	NumberPicker numberPickerMinutes;
     NumberPicker numberPickerSeconds;
 	
-	 ActionBar actionBar;
+	ActionBar actionBar;
+	
+	/**
+	 * Time picker listener
+	 */
+	private OnScrollListener numberPickerChangeListener = new NumberPicker.OnScrollListener() {
+	    @Override
+        public void onScrollStateChange(NumberPicker numberPicker, int scrollState) {
+            if (scrollState == NumberPicker.OnScrollListener.SCROLL_STATE_IDLE) {
+                round.setTime(numberPickerMinutes.getValue(), numberPickerSeconds.getValue());
+            }
+        }
+   };
 	
 	/**
 	 * Set Activity content
@@ -41,6 +56,9 @@ public class EditRoundActivity extends Activity {
         chckBreakEdit = (CheckBox) findViewById(R.id.break_edit);
         numberPickerMinutes = (NumberPicker) findViewById(R.id.number_picker_minutes);
         numberPickerSeconds = (NumberPicker) findViewById(R.id.number_picker_seconds);
+        
+        numberPickerMinutes.setOnScrollListener(numberPickerChangeListener);
+        numberPickerSeconds.setOnScrollListener(numberPickerChangeListener);
         
         processIntent();
 	}
@@ -63,8 +81,8 @@ public class EditRoundActivity extends Activity {
 		numberPickerSeconds.setMaxValue(59);
 		numberPickerMinutes.setMinValue(0);
 		numberPickerSeconds.setMinValue(0);
-		numberPickerMinutes.setValue(this.round.getTime() /60);
-		numberPickerSeconds.setValue(this.round.getTime() %60);
+		numberPickerMinutes.setValue(this.round.getMinutes());
+		numberPickerSeconds.setValue(this.round.getSeconds());
 		
 		actionBar.setTitle(String.valueOf(this.round.getNumerOfRound())+". round");
 	}
@@ -106,7 +124,7 @@ public class EditRoundActivity extends Activity {
 		round.setSB(textSBEditText.equals("") ? 0 : Integer.parseInt(textSBEditText));
 		round.setBB(textBBEditText.equals("") ? 0 : Integer.parseInt(textBBEditText));
 		round.setAnte(textAnteEditText.equals("") ? 0 : Integer.parseInt(textAnteEditText));
-		round.setTime(numberPickerMinutes.getValue()*60 + numberPickerSeconds.getValue());
+		round.setTime(numberPickerMinutes.getValue(), numberPickerSeconds.getValue());
 		round.setBreak(chckBreakEdit.isChecked());
 		resultIntent.putExtra("Round", round);
 		finish();
@@ -132,4 +150,12 @@ public class EditRoundActivity extends Activity {
 	    		}
 	    		return true;
 	}
+	
+	@Override
+    public void onResume() {
+        super.onResume();
+        checkControls(this.round.isBreak());
+        numberPickerMinutes.setValue(this.round.getMinutes());
+        numberPickerSeconds.setValue(this.round.getSeconds());
+    }
 }
