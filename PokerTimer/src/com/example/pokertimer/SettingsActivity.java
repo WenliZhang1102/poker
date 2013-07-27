@@ -18,6 +18,7 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
 	public static final String KEY_WARNING_SOUND = "warning_sound";
     public static final String KEY_VIBRATIONS = "vibrations";
     public static final String KEY_NOTIFICATIONS = "notifications";
+    public static final String KEY_USE_LOCKSCREEN = "use_lockscreen";
     
     MyPreferenceFragment preferenceFragment;
     

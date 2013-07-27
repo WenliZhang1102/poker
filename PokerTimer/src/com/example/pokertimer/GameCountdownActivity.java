@@ -28,6 +28,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -127,6 +128,11 @@ public class GameCountdownActivity extends Activity {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		
 		setNotification();
+		
+		if(sharedPref.getBoolean(SettingsActivity.KEY_USE_LOCKSCREEN, true)){
+    		getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+    		getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+		}
 	}
 	
 	private void findViews(){
