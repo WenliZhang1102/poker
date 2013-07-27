@@ -18,30 +18,13 @@
     <string name="cancel">Cancel</string>
     <!-- SETTINGS STRINGS -->
     
-    <string name="warn_before_round_ends">Warn before round ends</string>
-    <string name="warn_1_minute">Warn 1 minute before round ends</string>
-    
-    <string name="warn_on_round_ends">Warn on round ends</string>
-    
-    <string name="time_of_backlight">Time of backlight</string>
-    
-    <string-array name="backlight_time_list">
-        <item name="0">Default</item>
-        <item name="10">10 seconds</item>
-        <item name="60">1 minute</item>
-        <item name="120">2 minutes</item>
-        <item name="300">5 minutes</item>
-    </string-array>
-    
-    <string-array name="backlight_time_list_values">
-        <item name="0">0</item>
-        <item name="10">10</item>
-        <item name="60">60</item>
-        <item name="120">120</item>
-        <item name="300">300</item>
-    </string-array>
-    
-    
+    <string name="sound_on_for_1_minute_warning">Sound on 1 minute warning</string>
+    <string name="warning_sound">Warning sound</string>
+    <string name="vibrations">Vibrations</string>
+    <string name="notifications">Notifications</string>
+    <string name="use_lockscreen">Use lockscreen</string>
+    <string name="never_off_the_screen">Never off the screen</string>
+        
 	<!-- ADD_GAME STRINGS -->
 	
 	<string name="add_game_title">Add new game</string>
@@ -60,6 +43,16 @@
 	
 	<string name="select_all">Select all</string>
 	<string name="deselect_all">Deselect all</string>
+	
+	
+	<!-- Edit round -->
+	<string name="small_blind">Small blind</string>
+	<string name="big_blind">Big blind</string>
+	<string name="ante">Ante</string>
+	<string name="duration">Duration</string>
+	<string name="minutes">Minutes</string>
+	<string name="seconds">Seconds</string>
+	<string name="set_this_round_as_break">Set this round as break</string>
 
 	
 	<!-- NOTIFICATIONS -->

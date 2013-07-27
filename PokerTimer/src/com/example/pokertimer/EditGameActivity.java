@@ -462,6 +462,7 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 						r.setSB(newRound.getSB());
 						r.setBB(newRound.getBB());
 						r.setAnte(newRound.getAnte());
+						r.setBreak(newRound.isBreak());
 					}
 					
 					adapter.notifyDataSetChanged();

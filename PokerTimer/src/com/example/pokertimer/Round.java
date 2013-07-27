@@ -26,11 +26,19 @@ public class Round implements Serializable {
 	// Will be used by the ArrayAdapter in the ListView
 	@Override
 	public String toString() {
-		return this.sb + "/" + this.bb + "/" + this.ante;
+	    if(this.is_break == true){
+    	    return "BREAK";
+	    }else{
+	        return this.sb + "/" + this.bb + "/" + this.ante;
+	    }
 	}
 	  
 	public String toShortString(){
-		return this.sb + "/" + this.bb;
+	    if(this.is_break == true){
+            return "BREAK";
+        }else{
+            return this.sb + "/" + this.bb;
+        }
 	}
 
 	/**

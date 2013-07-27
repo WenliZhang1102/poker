@@ -8,10 +8,6 @@
 package com.example.pokertimer;
 
 public final class R {
-    public static final class array {
-        public static final int backlight_time_list=0x7f090000;
-        public static final int backlight_time_list_values=0x7f090001;
-    }
     public static final class attr {
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
@@ -178,12 +174,12 @@ containing a value of this type.
         public static final int row2=0x7f030006;
     }
     public static final class menu {
-        public static final int blind_control=0x7f0b0000;
-        public static final int edit_round=0x7f0b0001;
-        public static final int games=0x7f0b0002;
-        public static final int games_actions=0x7f0b0003;
-        public static final int games_context=0x7f0b0004;
-        public static final int round_activity=0x7f0b0005;
+        public static final int blind_control=0x7f0a0000;
+        public static final int edit_round=0x7f0a0001;
+        public static final int games=0x7f0a0002;
+        public static final int games_actions=0x7f0a0003;
+        public static final int games_context=0x7f0a0004;
+        public static final int round_activity=0x7f0a0005;
     }
     public static final class raw {
         public static final int sql=0x7f050000;
@@ -191,48 +187,59 @@ containing a value of this type.
     }
     public static final class string {
         public static final int about=0x7f080004;
-        public static final int about_email_us=0x7f08001a;
+        public static final int about_email_us=0x7f080023;
         /**  ABOUT_APP STRINGS 
          */
-        public static final int about_header=0x7f080019;
+        public static final int about_header=0x7f080022;
         public static final int add_game=0x7f080002;
         /**  ADD_GAME STRINGS 
          */
-        public static final int add_game_title=0x7f08000d;
-        public static final int add_round=0x7f080015;
+        public static final int add_game_title=0x7f08000f;
+        public static final int add_round=0x7f080017;
+        public static final int ante=0x7f08001c;
         public static final int app_name=0x7f080000;
+        public static final int big_blind=0x7f08001b;
         public static final int cancel=0x7f080008;
-        public static final int delete=0x7f080013;
-        public static final int delete_rounds=0x7f080014;
-        public static final int deselect_all=0x7f080017;
+        public static final int delete=0x7f080015;
+        public static final int delete_rounds=0x7f080016;
+        public static final int deselect_all=0x7f080019;
+        public static final int duration=0x7f08001d;
         /**  validation 
          */
-        public static final int empty=0x7f08001b;
-        public static final int enter_gamename=0x7f08000e;
-        public static final int enter_roundlength=0x7f080010;
-        public static final int enter_rounds_number=0x7f08000f;
+        public static final int empty=0x7f080024;
+        public static final int enter_gamename=0x7f080010;
+        public static final int enter_roundlength=0x7f080012;
+        public static final int enter_rounds_number=0x7f080011;
         public static final int menu_delete=0x7f080006;
         public static final int menu_edit=0x7f080005;
-        public static final int modify_rounds=0x7f080012;
-        public static final int next=0x7f080011;
-        public static final int no_round_warning=0x7f08001e;
+        public static final int minutes=0x7f08001e;
+        public static final int modify_rounds=0x7f080014;
+        public static final int never_off_the_screen=0x7f08000e;
+        public static final int next=0x7f080013;
+        public static final int no_round_warning=0x7f080027;
+        public static final int notifications=0x7f08000c;
         public static final int ok=0x7f080007;
         /**  NOTIFICATIONS 
          */
-        public static final int round=0x7f080018;
+        public static final int round=0x7f080021;
         /**  MAIN MENU STRINGS 
          */
         public static final int search=0x7f080001;
-        public static final int select_all=0x7f080016;
+        public static final int seconds=0x7f08001f;
+        public static final int select_all=0x7f080018;
+        public static final int set_this_round_as_break=0x7f080020;
         public static final int settings=0x7f080003;
-        public static final int time_of_backlight=0x7f08000c;
-        public static final int too_long=0x7f08001c;
-        public static final int warn_1_minute=0x7f08000a;
+        /**  Edit round 
+         */
+        public static final int small_blind=0x7f08001a;
         /**  SETTINGS STRINGS 
          */
-        public static final int warn_before_round_ends=0x7f080009;
-        public static final int warn_on_round_ends=0x7f08000b;
-        public static final int warning=0x7f08001d;
+        public static final int sound_on_for_1_minute_warning=0x7f080009;
+        public static final int too_long=0x7f080025;
+        public static final int use_lockscreen=0x7f08000d;
+        public static final int vibrations=0x7f08000b;
+        public static final int warning=0x7f080026;
+        public static final int warning_sound=0x7f08000a;
     }
     public static final class style {
         /** 
@@ -256,11 +263,11 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f0a0000;
+        public static final int AppBaseTheme=0x7f090000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f0a0001;
+        public static final int AppTheme=0x7f090001;
     }
     public static final class xml {
         public static final int preferences=0x7f040000;

@@ -122,8 +122,6 @@ public class EditRoundActivity extends Activity {
 	
 	
 	public boolean onOptionsItemSelected(MenuItem item) {
-	
-	    		
 	    		int itemId = item.getItemId();
 	    		
 	    		if(itemId == android.R.id.home){
