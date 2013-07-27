@@ -4,18 +4,21 @@ import java.util.List;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.RingtoneManager;
+import android.provider.Settings;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -26,8 +29,6 @@ import android.view.View.OnTouchListener;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.FrameLayout;
-import android.widget.FrameLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -56,6 +57,8 @@ public class GameCountdownActivity extends Activity {
 	
 	private boolean is_paused = true;
 	
+	private SharedPreferences sharedPref;
+	
 	View buttonPlayPause;
 	
 	Intent countdownIntent;
@@ -65,6 +68,8 @@ public class GameCountdownActivity extends Activity {
     private Animation mInFromLeft;
     private Animation mOutToRight;
     private ViewFlipper mViewFlipper;
+    
+    private int defTimeout;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -102,6 +107,15 @@ public class GameCountdownActivity extends Activity {
 		this.setRounds();
 		refreshGameInfo();
 		
+		sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		
+		defTimeout = Settings.System.getInt(getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, 6000);
+		
+		if(sharedPref.getBoolean(SettingsActivity.KEY_NEVER_OFF_SCREEN, false)){
+            Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, -1);
+        }else{
+            Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, defTimeout);
+        }
 		
 		//Changing fonts for clock
 		Typeface tf;
@@ -121,12 +135,9 @@ public class GameCountdownActivity extends Activity {
 			super.onBackPressed();
 		else
 			moveTaskToBack(true);
-		
 	}
 	
-	
 	private void setLandscape(){
-		
 		RelativeLayout.LayoutParams blinds_params = (RelativeLayout.LayoutParams)blinds_layout.getLayoutParams();
 		//landscape transformations
     	blinds_params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
@@ -478,4 +489,11 @@ public class GameCountdownActivity extends Activity {
 		is_paused = true;
 		stopCountDown();
 	}
+	
+	@Override
+    protected void onDestroy() 
+    {
+        super.onDestroy();
+        Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, defTimeout);
+    }
 }
