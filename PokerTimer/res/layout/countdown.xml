@@ -28,18 +28,25 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
     -->
 
-         
-    <FrameLayout
-        android:id="@+id/frameLayout1"
+    <RelativeLayout
+        android:id="@+id/next_round_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/edit_text" >
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        
+        android:background="@drawable/rounded_dotted_square" >
 
         <TextView
             android:id="@+id/next_round"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:paddingLeft="10dp"
+			android:gravity="center_vertical|center"
+			android:layout_centerVertical="true"
             android:text="Next round:" >
 
             <requestFocus />
@@ -47,94 +54,140 @@
 
         <TextView
             android:id="@+id/next_blinds"
-            android:layout_width="124dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:textSize="20sp"
             android:background="@null"
+            android:paddingRight="10dp"
+			android:gravity="center_vertical|center"
+			android:layout_centerVertical="true"
             android:text="next blinds"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-    </FrameLayout>
 
-     <View
-            android:id="@+id/strut"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_centerHorizontal="true" 
-            android:layout_below="@+id/time"/>
+    </RelativeLayout>
+
     
     <RelativeLayout
-        android:id="@+id/blinds_layout"
+        android:id="@+id/middle_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/time"
-        android:background="@android:drawable/edit_text" >
-
-        <TextView
-            android:id="@+id/this_round"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/next_round_layout"
+        android:background="@drawable/rounded_dotted_square" >
+        
+         <TextView
+            android:id="@+id/number_of_round"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="0dp"
-            android:textSize="20sp"
-            android:text="Blinds:" >
+            android:textSize="40sp"
+            android:layout_marginTop="15dp"
+			android:gravity="center_vertical|center"
+			android:layout_centerHorizontal="true"
+            
+            android:text="2nd round" />
+         
+         <View
+            android:id="@+id/divired_under_round"
+            android:layout_width="fill_parent"
+			android:layout_height="1dp"
+			android:background="#FF000000"
+			android:layout_marginTop="10dp"
+			android:layout_marginLeft="15dp"     
+			android:layout_marginRight="15dp"     
+			android:layout_below="@+id/number_of_round"
+			/>
+
+         <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:text="12:36"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="100sp"
+        android:layout_below="@+id/divired_under_round"
+        android:typeface="sans" />
+         
+               <View
+            android:id="@+id/divired_under_time"
+            android:layout_width="fill_parent"
+			android:layout_height="1dp"
+			android:background="#FF000000"
+			android:layout_marginTop="0dp"
+			android:layout_marginLeft="15dp"     
+			android:layout_marginRight="15dp"     
+			android:layout_below="@+id/time"
+			/>
+
+        <TextView
+            android:id="@+id/this_round_blinds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:text="Blinds:" 
+            android:paddingLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/divired_under_time"
+            >
 
             <requestFocus />
         </TextView>
-
-        <TextView
+        
+            <TextView
             android:id="@+id/blinds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-           
-            android:layout_marginTop="26dp"
-            android:textSize="30sp"
+            android:layout_alignLeft="@+id/ante"
+            android:layout_alignTop="@+id/this_round_blinds"
             android:text="blinds"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/ante_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/blinds_layout"
-        android:background="@android:drawable/edit_text" >
-
+			android:layout_alignParentRight="true"
+			android:gravity="center_horizontal|right"
+			android:paddingRight="10dp"
+			android:layout_below="@+id/divired_under_time"
+			android:layout_marginTop="0dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="35sp" />
+   
         <TextView
-            android:id="@+id/this_round"
+            android:id="@+id/this_round_ante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="0dp"
-            android:textSize="20sp"
-            android:text="Ante:" >
+            android:textSize="35sp"
+            android:layout_below="@+id/blinds"
+            android:text="Ante:" 
+            android:layout_marginTop="20dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="10dp">
 
             <requestFocus />
         </TextView>
+
+
 
         <TextView
             android:id="@+id/ante"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            
-            android:layout_marginTop="26dp"
-            android:textSize="30sp"
+            android:layout_alignLeft="@+id/time"
+            android:layout_alignRight="@+id/time"
+            android:layout_below="@+id/blinds"
+            android:layout_marginLeft="40dp"
+   			android:layout_alignParentRight="true"
+   			android:gravity="center_horizontal|right"
             android:text="ante"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:layout_marginTop="20dp"
+            android:paddingBottom="15dp"
+            android:paddingRight="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="35sp" />
+
     </RelativeLayout>
 
-   
-
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/frameLayout1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
-        android:text="12:36"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="80sp"
-        android:typeface="sans" />
 
 </RelativeLayout>
 </ViewFlipper>
@@ -144,7 +197,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@null" >
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_dotted_square" >
 
         <ImageButton
             android:id="@+id/button_previous"

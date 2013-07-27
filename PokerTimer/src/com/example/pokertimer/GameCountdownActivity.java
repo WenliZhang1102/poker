@@ -23,6 +23,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -94,8 +95,8 @@ public class GameCountdownActivity extends Activity {
 		//SetLayoutParams();
 		
 		//if is landscape now, set this layout transformation. If not, let it be (portrait is default)
-		if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
-			setLandscape();
+		/*if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+			setLandscape();*/
 		//else
 			//setPortrait();
 		
@@ -135,8 +136,8 @@ public class GameCountdownActivity extends Activity {
         textTime = (TextView) findViewById(R.id.time);
         buttonPlayPause = findViewById(R.id.button_play_pause);
         
-        blinds_layout = (RelativeLayout) findViewById(R.id.blinds_layout);
-        ante_layout = (RelativeLayout) findViewById(R.id.ante_layout);
+       /* blinds_layout = (RelativeLayout) findViewById(R.id.blinds_layout);
+        ante_layout = (RelativeLayout) findViewById(R.id.ante_layout);*/
 	}
 	
 	@Override
@@ -147,7 +148,7 @@ public class GameCountdownActivity extends Activity {
 			moveTaskToBack(true);
 	}
 	
-	private void setLandscape(){
+	/*private void setLandscape(){
 		RelativeLayout.LayoutParams blinds_params = (RelativeLayout.LayoutParams)blinds_layout.getLayoutParams();
 		//landscape transformations
     	blinds_params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
@@ -193,7 +194,7 @@ public class GameCountdownActivity extends Activity {
 	    	setPortrait();
 	    }
 	  }
-	
+	*/
 	
 	
 	 private void initAnimations() {
@@ -457,6 +458,33 @@ public class GameCountdownActivity extends Activity {
 			textNextBlinds.setText(this.next_round.toString());
 		}else{
 			textNextBlinds.setText("");
+		}
+		
+		if(this.round.isBreak()){
+			findViewById(R.id.this_round_blinds).setVisibility(View.GONE);
+			findViewById(R.id.this_round_ante).setVisibility(View.GONE);
+			textAnte.setVisibility(View.GONE);
+			
+			textBlinds.setTextSize(70);
+			textBlinds.setGravity(Gravity.CENTER_VERTICAL);
+			
+			RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)textBlinds.getLayoutParams();
+			params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+
+			textBlinds.setLayoutParams(params);
+			
+		}else{
+			findViewById(R.id.this_round_blinds).setVisibility(View.VISIBLE);
+			findViewById(R.id.this_round_ante).setVisibility(View.VISIBLE);
+			textAnte.setVisibility(View.VISIBLE);
+			
+			textBlinds.setTextSize(40);
+			textBlinds.setGravity(Gravity.RIGHT);
+			
+			RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)textBlinds.getLayoutParams();
+			params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+
+			textBlinds.setLayoutParams(params);
 		}
 		
 		textBlinds.setText(this.round.toShortString());
