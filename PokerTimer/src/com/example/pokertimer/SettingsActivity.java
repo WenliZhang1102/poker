@@ -3,8 +3,10 @@ package com.example.pokertimer;
 import android.app.ActionBar;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -17,68 +19,76 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
     public static final String KEY_VIBRATIONS = "vibrations";
     public static final String KEY_NOTIFICATIONS = "notifications";
     
-    RingtonePreference warningSound;
+    MyPreferenceFragment preferenceFragment;
     
-	@Override
-    protected void onCreate(final Bundle savedInstanceState)
-    {
+    @Override
+    protected void onCreate(final Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
+        preferenceFragment = new MyPreferenceFragment();
+        getFragmentManager().beginTransaction().replace(android.R.id.content, preferenceFragment ).commit();
         
         //Action bar customize
         ActionBar ab = getActionBar();
         setTitle(getString(R.string.settings));
-		ab.setDisplayHomeAsUpEnabled(true);
-		
-		//warningSound = (RingtonePreference) findPreference(KEY_WARNING_SOUND);
-		showSummaries();
+    	ab.setDisplayHomeAsUpEnabled(true);
     }
 	
-	//When is back button in actionbar pressed
-	 public boolean onOptionsItemSelected(MenuItem menuItem)
-	    {       
-			 super.onBackPressed();
-	 		return true;
+    //When is back button in actionbar pressed
+    public boolean onOptionsItemSelected(MenuItem menuItem){       
+        super.onBackPressed();
+        return true;
+    }
+	 
+	@Override
+	protected void onResume() {
+	        super.onResume();
+	        // Setup the initial values
+	        // Set up a listener whenever a key changes
+	        PreferenceManager.getDefaultSharedPreferences(this)
+	                .registerOnSharedPreferenceChangeListener(this);
+	        preferenceFragment.showSummaries();
 	    }
 
-    public static class MyPreferenceFragment extends PreferenceFragment
-    {
+	    @Override
+	    protected void onPause() {
+	        super.onPause();
+	        // Unregister the listener whenever a key changes
+	        PreferenceManager.getDefaultSharedPreferences(this)
+	                .unregisterOnSharedPreferenceChangeListener(this);
+	    }
+
+	public SharedPreferences getPref(){
+	    return PreferenceManager.getDefaultSharedPreferences(this);
+	}
+	    
+    public static class MyPreferenceFragment extends PreferenceFragment{
+        RingtonePreference warningSound;
+        
         @Override
         public void onCreate(final Bundle savedInstanceState)
         {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
+            warningSound = (RingtonePreference)findPreference(KEY_WARNING_SOUND);
             
+            showSummaries();
+            
+            
+        }
+        
+        private void showSummaries(){
+            if(warningSound != null){
+                String strRingtonePreference = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(KEY_WARNING_SOUND, "default");
+                Uri ringtoneUri = Uri.parse(strRingtonePreference);
+                Ringtone ringtone = RingtoneManager.getRingtone(getActivity(), ringtoneUri);
+               
+                warningSound.setSummary(ringtone.getTitle(getActivity()));
+            }
         }
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(KEY_WARNING_SOUND)) {
-            showSummaries();
-        }
-    }
-    
-    private void showSummaries(){
-        /*SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        warningSound.setSummary(sharedPreferences.getString(KEY_WARNING_SOUND, ""));
-        */
-    }
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Setup the initial values
-        // Set up a listener whenever a key changes
-        PreferenceManager.getDefaultSharedPreferences(this)
-                .registerOnSharedPreferenceChangeListener(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // Unregister the listener whenever a key changes
-        PreferenceManager.getDefaultSharedPreferences(this)
-                .unregisterOnSharedPreferenceChangeListener(this);
+        preferenceFragment.showSummaries();
     }
 }
