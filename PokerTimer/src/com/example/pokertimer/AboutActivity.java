@@ -5,8 +5,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 public class AboutActivity extends Activity {
 	
@@ -19,6 +22,12 @@ public class AboutActivity extends Activity {
 		ActionBar ab = getActionBar();
         setTitle(getString(R.string.about));
 		ab.setDisplayHomeAsUpEnabled(true);
+		
+		
+		//click on email will launch default mail app
+		TextView feedback = (TextView) findViewById(R.id.about_click_email);
+		feedback.setText(Html.fromHtml("<a href=\"mailto:ondrej.komarek.cz@gmail.com\">ondrej.komarek.cz@gmail.com</a>"));
+		feedback.setMovementMethod(LinkMovementMethod.getInstance());
 
 	     
 	}
