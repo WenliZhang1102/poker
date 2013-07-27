@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ContentResolver;
@@ -70,6 +71,9 @@ public class GameCountdownActivity extends Activity {
     private ViewFlipper mViewFlipper;
     
     private int defTimeout;
+    
+    private NotificationCompat.Builder notificationBuilder;
+    private NotificationManager notificationManager;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -84,14 +88,7 @@ public class GameCountdownActivity extends Activity {
 		
 		this.processIntent();
 		
-		textBlinds = (TextView) findViewById(R.id.blinds);
-		textAnte = (TextView) findViewById(R.id.ante);
-		textNextBlinds = (TextView) findViewById(R.id.next_blinds);
-		textTime = (TextView) findViewById(R.id.time);
-		buttonPlayPause = findViewById(R.id.button_play_pause);
-		
-		blinds_layout = (RelativeLayout) findViewById(R.id.blinds_layout);
-		ante_layout = (RelativeLayout) findViewById(R.id.ante_layout);
+		findViews();
 		
 		//Landscape transformation inicialization
 		//SetLayoutParams();
@@ -127,6 +124,19 @@ public class GameCountdownActivity extends Activity {
 		ActionBar actionBar = getActionBar();
 		//actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		
+		setNotification();
+	}
+	
+	private void findViews(){
+	    textBlinds = (TextView) findViewById(R.id.blinds);
+        textAnte = (TextView) findViewById(R.id.ante);
+        textNextBlinds = (TextView) findViewById(R.id.next_blinds);
+        textTime = (TextView) findViewById(R.id.time);
+        buttonPlayPause = findViewById(R.id.button_play_pause);
+        
+        blinds_layout = (RelativeLayout) findViewById(R.id.blinds_layout);
+        ante_layout = (RelativeLayout) findViewById(R.id.ante_layout);
 	}
 	
 	@Override
@@ -275,6 +285,35 @@ public class GameCountdownActivity extends Activity {
 		this.rounds = game.getRounds();
 	}
 	
+	private void setNotification(){
+	    notificationBuilder =  
+                new NotificationCompat.Builder(this)  
+                .setSmallIcon(R.drawable.forward);
+
+
+        Intent notificationIntent = countdownIntent;// new Intent(this, GameCountdownActivity.class);  
+        
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,   
+                PendingIntent.FLAG_UPDATE_CURRENT);  
+
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        notificationBuilder.setSound(alarmSound);
+        
+        notificationBuilder.setContentIntent(contentIntent);  
+        notificationBuilder.setAutoCancel(true);
+        notificationBuilder.setLights(Color.GREEN, 500, 500);
+        long[] pattern = {500,500,500,500,500,500,500,500,500};
+        
+        if(sharedPref.getBoolean(SettingsActivity.KEY_VIBRATIONS, false)){
+            notificationBuilder.setVibrate(pattern);
+        }
+        
+        notificationBuilder.setStyle(new NotificationCompat.InboxStyle());
+        // Add as notification  
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+	}
 	
 	private void notifyNewRound(){
 		String text = new String();
@@ -285,42 +324,17 @@ public class GameCountdownActivity extends Activity {
 			text = "Blinds:  " + this.next_round.toString() + ",  Duration:  " 
 			        + String.format("%02d", next_round.getMinutes()) +":"
 			        + String.format("%02d", next_round.getSeconds());
-		}	
-		else{
+		} else {
 			title = "Game finished!";
 			text = "";
 		}
 		
-		NotificationCompat.Builder builder =  
-		        new NotificationCompat.Builder(this)  
-		        .setSmallIcon(R.drawable.forward)  
-		        .setContentTitle(title)  
-		        .setContentText(text);  
-
-
-		Intent notificationIntent = countdownIntent;// new Intent(this, GameCountdownActivity.class);  
-		
-		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		
-		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,   
-		        PendingIntent.FLAG_UPDATE_CURRENT);  
-
-		Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-		builder.setSound(alarmSound);
-		
-		builder.setContentIntent(contentIntent);  
-		builder.setAutoCancel(true);
-		builder.setLights(Color.BLUE, 500, 500);
-		long[] pattern = {500,500,500,500,500,500,500,500,500};
-		builder.setVibrate(pattern);
-		builder.setStyle(new NotificationCompat.InboxStyle());
-		// Add as notification  
-		NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);  
-		manager.notify(1, builder.build());  
-		
-		
-		
+		if(sharedPref.getBoolean(SettingsActivity.KEY_NOTIFICATIONS, false)){
+    		notificationBuilder.setContentTitle(title).setContentText(text);  
+            notificationManager.notify(1, notificationBuilder.build());
+		}
 	}
+	
 	/**
 	 * Starts Countdown
 	 */

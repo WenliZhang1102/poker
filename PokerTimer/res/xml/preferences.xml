@@ -18,11 +18,13 @@
         android:title="@string/notifications"
         android:defaultValue="false" />
     
+    <!-- 
     <CheckBoxPreference
         android:key="use_lockscreen"
         android:title="@string/use_lockscreen"
         android:defaultValue="true" />
-    
+     -->
+     
     <CheckBoxPreference
         android:key="never_off_the_screen"
         android:title="@string/never_off_the_screen"
