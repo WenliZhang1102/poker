@@ -24,6 +24,7 @@ import android.support.v4.app.NotificationCompat;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -72,10 +73,14 @@ public class GameCountdownActivity extends Activity {
     private Animation mOutToRight;
     private ViewFlipper mViewFlipper;
     
+    private final int SWIPE_SPEED = 300;
+    
     private int defTimeout;
     
     private NotificationCompat.Builder notificationBuilder;
     private NotificationManager notificationManager;
+    
+    private int active_layout = R.id.layout1;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -91,6 +96,8 @@ public class GameCountdownActivity extends Activity {
 		this.processIntent();
 		
 		findViews();
+		
+		buttonPlayPause = findViewById(R.id.button_play_pause);
 		
 		//Landscape transformation inicialization
 		//SetLayoutParams();
@@ -121,7 +128,10 @@ public class GameCountdownActivity extends Activity {
 		//tf = Typeface.createFromAsset(getAssets(),"fonts/Swiss 721 Bold Rounded AT.TTF");
 		tf = Typeface.createFromAsset(getAssets(),"fonts/UNVR47W.TTF");
 		//tf = Typeface.createFromAsset(getAssets(),"fonts/BRLNSR.TTF");
-		textTime.setTypeface(tf);
+		View layout1 = findViewById(R.id.layout1);
+		View layout2 = findViewById(R.id.layout2);
+		((TextView)layout1.findViewById(R.id.time)).setTypeface(tf);
+		((TextView)layout2.findViewById(R.id.time)).setTypeface(tf);
 		
 		ActionBar actionBar = getActionBar();
 		//actionBar.setDisplayShowHomeEnabled(false);
@@ -135,15 +145,27 @@ public class GameCountdownActivity extends Activity {
 		}
 	}
 	
+	private void toggleLayout(){
+	    this.active_layout = secondLayout();
+	}
+	
+	private int secondLayout(){
+	    if(this.active_layout == R.id.layout1){
+            return R.id.layout2;
+        }else{
+            return R.id.layout1;
+        }
+	    
+	}
+	
 	private void findViews(){
-	    textBlinds = (TextView) findViewById(R.id.blinds);
-        textAnte = (TextView) findViewById(R.id.ante);
-        textNextBlinds = (TextView) findViewById(R.id.next_blinds);
-        textTime = (TextView) findViewById(R.id.time);
-        buttonPlayPause = findViewById(R.id.button_play_pause);
-        
-       /* blinds_layout = (RelativeLayout) findViewById(R.id.blinds_layout);
-        ante_layout = (RelativeLayout) findViewById(R.id.ante_layout);*/
+	    
+	    View layout = findViewById(this.active_layout);
+	    
+	    textBlinds = (TextView) layout.findViewById(R.id.blinds);
+        textAnte = (TextView) layout.findViewById(R.id.ante);
+        textNextBlinds = (TextView) layout.findViewById(R.id.next_blinds);
+        textTime = (TextView) layout.findViewById(R.id.time);
 	}
 	
 	@Override
@@ -208,7 +230,7 @@ public class GameCountdownActivity extends Activity {
 	                +1.0f, Animation.RELATIVE_TO_PARENT, 0.0f,
 	                Animation.RELATIVE_TO_PARENT, 0.0f,
 	                Animation.RELATIVE_TO_PARENT, 0.0f);
-	        mInFromRight.setDuration(500);
+	        mInFromRight.setDuration(SWIPE_SPEED);
 	        AccelerateInterpolator accelerateInterpolator = new AccelerateInterpolator();
 	        mInFromRight.setInterpolator(accelerateInterpolator);
 
@@ -216,21 +238,21 @@ public class GameCountdownActivity extends Activity {
 	                -1.0f, Animation.RELATIVE_TO_PARENT, 0.0f,
 	                Animation.RELATIVE_TO_PARENT, 0.0f,
 	                Animation.RELATIVE_TO_PARENT, 0.0f);
-	        mInFromLeft.setDuration(500);
+	        mInFromLeft.setDuration(SWIPE_SPEED);
 	        mInFromLeft.setInterpolator(accelerateInterpolator);
 
 	        mOutToRight = new TranslateAnimation(Animation.RELATIVE_TO_PARENT,
 	                0.0f, Animation.RELATIVE_TO_PARENT, +1.0f,
 	                Animation.RELATIVE_TO_PARENT, 0.0f,
 	                Animation.RELATIVE_TO_PARENT, 0.0f);
-	        mOutToRight.setDuration(500);
+	        mOutToRight.setDuration(SWIPE_SPEED);
 	        mOutToRight.setInterpolator(accelerateInterpolator);
 
 	        mOutToLeft = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, 0.0f,
 	                Animation.RELATIVE_TO_PARENT, -1.0f,
 	                Animation.RELATIVE_TO_PARENT, 0.0f,
 	                Animation.RELATIVE_TO_PARENT, 0.0f);
-	        mOutToLeft.setDuration(500);
+	        mOutToLeft.setDuration(SWIPE_SPEED);
 	        mOutToLeft.setInterpolator(accelerateInterpolator);
 
 	        final GestureDetector gestureDetector;
@@ -250,13 +272,11 @@ public class GameCountdownActivity extends Activity {
 
 	    private class MyGestureDetector extends SimpleOnGestureListener {
 
-	        private static final int SWIPE_MIN_DISTANCE = 120;
+	        private static final int SWIPE_MIN_DISTANCE = 90;
 	        private static final int SWIPE_MAX_OFF_PATH = 250;
 	        private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
-	        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-	                float velocityY) {
-	            System.out.println(" in onFling() :: ");
+	        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
 	            if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
 	                return false;
 	            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
@@ -264,20 +284,26 @@ public class GameCountdownActivity extends Activity {
 	                mViewFlipper.setInAnimation(mInFromRight);
 	                mViewFlipper.setOutAnimation(mOutToLeft);
 	                
-	                if(setNextRound() == true)
+	                if(!isLastRound()){
+	                    toggleLayout();
+	                    findViews();
+	                    setToStop();
+	                    setNextRound();
 	                	mViewFlipper.showNext();
-	                
-	    			setToStop();
+	                }
 	    			
 	            } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
 	                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
 	                mViewFlipper.setInAnimation(mInFromLeft);
 	                mViewFlipper.setOutAnimation(mOutToRight);
 	                
-	                if(setPreviousRound() == true)
-	                	mViewFlipper.showPrevious();
-	                
-	    			setToStop();
+	                if(!isFirstRound()){
+	                    toggleLayout();
+	                    findViews();
+	                    setPreviousRound();
+	                    setToStop();
+                        mViewFlipper.showPrevious();
+	                }
 	            }
 	            return super.onFling(e1, e2, velocityX, velocityY);
 	        }
@@ -386,9 +412,25 @@ public class GameCountdownActivity extends Activity {
 	}
 	
 	/**
+	 * Is current level last round?
+	 * @return
+	 */
+	public boolean isLastRound(){
+	    return roundNumber + 1 == rounds.size();
+	}
+	
+	/**
+     * Is current level first round?
+     * @return
+     */
+	public boolean isFirstRound(){
+	    return roundNumber == 1;
+	}
+	
+	/**
 	 * Starts next round
 	 */
-	public Boolean setNextRound(){
+	public boolean setNextRound(){
 		if(roundNumber < rounds.size()){
 			roundNumber++;
 			setRounds();
@@ -400,7 +442,6 @@ public class GameCountdownActivity extends Activity {
 		else{
 			return false;
 		}
-
 		
 		refreshGameInfo();
 		return true;
@@ -409,8 +450,8 @@ public class GameCountdownActivity extends Activity {
 	/**
 	 * Starts previous round
 	 */
-	public Boolean setPreviousRound(){
-		if(roundNumber - 1 > 0){
+	public boolean setPreviousRound(){
+		if(roundNumber > 1){
 			roundNumber--;
 			setRounds();
 			stopCountDown();
