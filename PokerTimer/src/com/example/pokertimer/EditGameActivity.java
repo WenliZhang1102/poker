@@ -5,7 +5,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Point;
@@ -108,7 +107,7 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		setTitle("Edit game");
+		setTitle(getResources().getString(R.string.edit_game));
 	}
 	
 	/**
@@ -213,6 +212,8 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	    
 	    if(delete_visibility == true)
 	    	scaleDownListView();
+	    else
+	    	enlargeListView();
 	  }
 	
 	private void showDeleteButtons(){
@@ -233,7 +234,7 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	private void enlargeListView(){
 		View view = findViewById(android.R.id.list);
 		android.view.ViewGroup.LayoutParams params = view.getLayoutParams();
-		params.height = LayoutParams.FILL_PARENT;
+		params.height = LayoutParams.MATCH_PARENT;
 		view.setLayoutParams(params);
 	}
 	
@@ -362,6 +363,7 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	public void delete(View view){
 		this.deleteCheckedRounds();
 		this.hideDeleteButtons();
+		enlargeListView();
 		adapter.notifyDataSetChanged();
 		setDeleteVisibility(false);
 		delete_count = 0;
@@ -373,6 +375,7 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 	 */
 	public void cancel(View view){
 		setDeleteVisibility(false);
+		enlargeListView();
 		this.hideDeleteButtons();
 		
 		for(int i = 0; i < adapter.getCount(); i++){

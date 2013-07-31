@@ -35,6 +35,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 
@@ -47,6 +48,10 @@ public class GameCountdownActivity extends Activity {
 	private TextView textAnte;
 	private TextView textNextBlinds;
 	private TextView textTime;
+	
+	private TextView textBreak;
+	private TextView textNumberOfRound;
+	
 	private List<Round> rounds;
 	
 	private RelativeLayout blinds_layout;
@@ -60,6 +65,7 @@ public class GameCountdownActivity extends Activity {
 	private CountDownTimer countDownTimer = null;
 	
 	private boolean is_paused = true;
+	private boolean can_leave = false;
 	
 	private SharedPreferences sharedPref;
 	
@@ -166,6 +172,10 @@ public class GameCountdownActivity extends Activity {
         textAnte = (TextView) layout.findViewById(R.id.ante);
         textNextBlinds = (TextView) layout.findViewById(R.id.next_blinds);
         textTime = (TextView) layout.findViewById(R.id.time);
+        
+        textBreak = (TextView) layout.findViewById(R.id.break_tv);
+        textNumberOfRound = (TextView) layout.findViewById(R.id.number_of_round);
+
 	}
 	
 	@Override
@@ -173,7 +183,37 @@ public class GameCountdownActivity extends Activity {
 		if(is_paused == true)
 			super.onBackPressed();
 		else
-			moveTaskToBack(true);
+		{
+			if(can_leave == true)
+			{
+				super.onBackPressed();
+			}
+			else
+			{
+				Toast.makeText(this, "Press back again to leave", Toast.LENGTH_LONG).show();
+				can_leave = true;
+				Thread thread=  new Thread(){
+			        @Override
+			        public void run(){
+			            try {
+			                synchronized(this){
+			                    wait(3000);
+			                    can_leave = false;
+			                    
+			                }
+			            }
+			            catch(InterruptedException ex){                    
+			            }
+
+			            // TODO              
+			        }
+			    };
+
+			    thread.start();   
+			}
+			
+			
+		}
 	}
 	
 	/*private void setLandscape(){
@@ -321,7 +361,7 @@ public class GameCountdownActivity extends Activity {
 	private void setNotification(){
 	    notificationBuilder =  
                 new NotificationCompat.Builder(this)  
-                .setSmallIcon(R.drawable.forward);
+                .setSmallIcon(R.drawable.ic_launcher);
 
 
         Intent notificationIntent = countdownIntent;// new Intent(this, GameCountdownActivity.class);  
@@ -354,9 +394,8 @@ public class GameCountdownActivity extends Activity {
 		
 		if(next_round != null){
 			title = this.next_round.getNumerOfRound() + ". " + getText(R.string.round);
-			text = "Blinds:  " + this.next_round.toString() + ",  Duration:  " 
-			        + String.format("%02d", next_round.getMinutes()) +":"
-			        + String.format("%02d", next_round.getSeconds());
+			text = "Blinds: " + this.next_round.getSB() + "/" + this.next_round.getBB() + 
+					",  Ante: " +  this.next_round.getAnte();
 		} else {
 			title = "Game finished!";
 			text = "";
@@ -471,10 +510,9 @@ public class GameCountdownActivity extends Activity {
 		
 		if(itemId == android.R.id.home){
 			
-			if(is_paused == true)
-				super.onBackPressed();
-			else
-				moveTaskToBack(true);	
+			//if(is_paused == true)
+			super.onBackPressed();
+			//moveTaskToBack(true);	
 		}
 		
 		return true;
@@ -503,6 +541,8 @@ public class GameCountdownActivity extends Activity {
 		
 		if(next_round != null){
 			textNextBlinds.setText(this.next_round.toString());
+			textNumberOfRound.setText(this.roundNumber+". round");
+			
 		}else{
 			textNextBlinds.setText("");
 		}
@@ -511,27 +551,21 @@ public class GameCountdownActivity extends Activity {
 			findViewById(R.id.this_round_blinds).setVisibility(View.GONE);
 			findViewById(R.id.this_round_ante).setVisibility(View.GONE);
 			textAnte.setVisibility(View.GONE);
+			textBlinds.setVisibility(View.GONE);
 			
-			textBlinds.setTextSize(70);
-			textBlinds.setGravity(Gravity.CENTER_VERTICAL);
+			//if(textBreak != null)
+				textBreak.setVisibility(View.VISIBLE);
 			
-			RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)textBlinds.getLayoutParams();
-			params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-
-			textBlinds.setLayoutParams(params);
 			
 		}else{
 			findViewById(R.id.this_round_blinds).setVisibility(View.VISIBLE);
 			findViewById(R.id.this_round_ante).setVisibility(View.VISIBLE);
 			textAnte.setVisibility(View.VISIBLE);
+			textBlinds.setVisibility(View.VISIBLE);
 			
-			textBlinds.setTextSize(40);
-			textBlinds.setGravity(Gravity.RIGHT);
+			if(textBreak != null)
+				textBreak.setVisibility(View.GONE);
 			
-			RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)textBlinds.getLayoutParams();
-			params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-
-			textBlinds.setLayoutParams(params);
 		}
 		
 		textBlinds.setText(this.round.toShortString());

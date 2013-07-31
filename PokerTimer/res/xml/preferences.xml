@@ -7,15 +7,15 @@
     <RingtonePreference
         android:key="warning_sound"
         android:title="@string/warning_sound" />
-	
-    <CheckBoxPreference
-        android:key="vibrations"
-        android:title="@string/vibrations"
-        android:defaultValue="false" />
     
     <CheckBoxPreference
         android:key="notifications"
         android:title="@string/notifications"
+        android:defaultValue="false" />
+    
+    <CheckBoxPreference
+        android:key="vibrations"
+        android:title="@string/vibrations"
         android:defaultValue="false" />
     
     <CheckBoxPreference

@@ -18,12 +18,12 @@
     <string name="cancel">Cancel</string>
     
     <!-- SETTINGS STRINGS -->
-    <string name="sound_on_for_1_minute_warning">Sound on 1 minute warning</string>
-    <string name="warning_sound">Warning sound</string>
+    <string name="sound_on_for_1_minute_warning">Warn 1 minute before round ends</string>
+    <string name="warning_sound">Notification sound</string>
     <string name="vibrations">Enable vibrations</string>
     <string name="notifications">Enable notifications</string>
-    <string name="use_lockscreen">Use lockscreen</string>
-    <string name="never_off_the_screen">Never off the screen</string>
+    <string name="use_lockscreen">Use lockscreen widget</string>
+    <string name="never_off_the_screen">Never turn off the screen</string>
         
 	<!-- ADD_GAME STRINGS -->
 	<string name="add_game_title">Add new game</string>
@@ -53,6 +53,8 @@
 	<string name="seconds">Seconds</string>
 	<string name="set_this_round_as_break">Set this round as break</string>
 
+	<!-- Edit Game -->
+	<string name="edit_game">Edit game</string>
 	
 	<!-- NOTIFICATIONS -->
 	<string name="round">round</string>

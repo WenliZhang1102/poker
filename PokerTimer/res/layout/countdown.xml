@@ -166,7 +166,7 @@
             android:layout_alignLeft="@+id/time"
             android:layout_alignRight="@+id/time"
             android:layout_below="@+id/blinds"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="10dp"
    			android:layout_alignParentRight="true"
    			android:gravity="center_horizontal|right"
             android:text="ante"
@@ -183,9 +183,9 @@
             android:layout_below="@+id/divired_under_time"
             android:layout_centerHorizontal="true"
             android:text="BREAK"
-            android:paddingBottom="23dp"
+            android:paddingBottom="31dp"
             android:paddingTop="20dp"
-            android:textSize="80sp"
+            android:textSize="70sp"
             android:visibility="gone" />
         
 
