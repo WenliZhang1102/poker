@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
@@ -447,6 +448,16 @@ public class EditGameActivity extends ListActivity implements AdapterView.OnItem
 		Intent intent = new Intent(this, EditRoundActivity.class);
 		intent.putExtra("Round", rounds.get(position));
 		startActivityForResult(intent, ACTIVITY_EDIT_ROUND);
+	}
+	
+	@Override
+	public void onBackPressed() {
+		if(delete_visibility == false)
+			super.onBackPressed();
+		else
+		{
+			cancel( new View(this));
+		}
 	}
 	
 	@Override
